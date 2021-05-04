@@ -38,6 +38,8 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleException(Exception ex) {
         ApiError error = ApiError.builder().build();
 
+        ex.printStackTrace();
+
         return createResponseEntity(error);
     }
 
