@@ -3,10 +3,12 @@ package com.praktyki.backend.web.controllers;
 import com.praktyki.backend.interactors.StringConcatenationUseCase;
 import com.praktyki.backend.services.exception.EntityNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin
 @RestController
 public class StringController {
 
