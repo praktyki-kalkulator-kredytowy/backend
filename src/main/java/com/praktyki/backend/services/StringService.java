@@ -4,9 +4,11 @@ import com.praktyki.backend.data.entities.StringEntity;
 import com.praktyki.backend.data.repositories.StringRepository;
 import com.praktyki.backend.services.exception.EntityNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Iterator;
 
+@Service
 public class StringService {
 
     @Autowired
