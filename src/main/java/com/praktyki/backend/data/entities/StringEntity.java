@@ -3,7 +3,7 @@ package com.praktyki.backend.data.entities;
 import javax.persistence.*;
 
 @Entity
-//@Table(name = "strings")
+@Table(name = "strings")
 public class StringEntity {
 
     @Id
