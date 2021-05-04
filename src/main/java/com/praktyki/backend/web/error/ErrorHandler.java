@@ -20,13 +20,13 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
     @Autowired
     private HttpServletRequest mRequest;
 
-    private ResponseEntity<Object> createResponseEntity(ApiError error) {
-        return new ResponseEntity<Object>(error, error.getStatus());
+    private ResponseEntity<ApiError> createResponseEntity(ApiError error) {
+        return new ResponseEntity<>(error, error.getStatus());
     }
 
 
     @ExceptionHandler(EntityNotFound.class)
-    public ResponseEntity<Object> handleEntityNotFoundException(
+    public ResponseEntity<ApiError> handleEntityNotFoundException(
             EntityNotFoundException exception,
             HttpHeaders httpHeaders,
             HttpStatus status,
