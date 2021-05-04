@@ -1,7 +1,7 @@
-package com.praktyki.backend.data.interactors;
+package com.praktyki.backend.interactors;
 
-import com.praktyki.backend.data.services.StringService;
-import com.praktyki.backend.data.services.exception.EntityNotFound;
+import com.praktyki.backend.services.StringService;
+import com.praktyki.backend.services.exception.EntityNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class StringConcatenationUseCase {

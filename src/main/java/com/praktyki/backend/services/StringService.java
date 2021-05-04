@@ -1,8 +1,8 @@
-package com.praktyki.backend.data.services;
+package com.praktyki.backend.services;
 
 import com.praktyki.backend.data.entities.StringEntity;
 import com.praktyki.backend.data.repositories.StringRepository;
-import com.praktyki.backend.data.services.exception.EntityNotFound;
+import com.praktyki.backend.services.exception.EntityNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Iterator;

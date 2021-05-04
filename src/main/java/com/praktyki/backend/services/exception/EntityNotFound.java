@@ -1,4 +1,4 @@
-package com.praktyki.backend.data.services.exception;
+package com.praktyki.backend.services.exception;
 
 public class EntityNotFound extends Exception{
 
