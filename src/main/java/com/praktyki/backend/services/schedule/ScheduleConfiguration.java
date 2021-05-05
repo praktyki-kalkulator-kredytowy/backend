@@ -1,6 +1,7 @@
 package com.praktyki.backend.services.schedule;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class ScheduleConfiguration {
 
@@ -37,5 +38,28 @@ public class ScheduleConfiguration {
         mInstallmentAmount = installmentAmount;
         mInterestRate = interestRate;
         mWithdrawalDate = withdrawalDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ScheduleConfiguration that = (ScheduleConfiguration) o;
+        return Double.compare(that.getCapital(), getCapital()) == 0
+                && getInstallmentAmount() == that.getInstallmentAmount()
+                && getInterestRate() == that.getInterestRate()
+                && getInstallmentType() == that.getInstallmentType()
+                && getWithdrawalDate().equals(that.getWithdrawalDate());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+                getCapital(),
+                getInstallmentType(),
+                getInstallmentAmount(),
+                getInterestRate(),
+                getWithdrawalDate()
+        );
     }
 }
