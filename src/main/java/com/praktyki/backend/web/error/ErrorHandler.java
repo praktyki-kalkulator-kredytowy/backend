@@ -1,6 +1,6 @@
 package com.praktyki.backend.web.error;
 
-import com.praktyki.backend.services.exception.EntityNotFound;
+import com.praktyki.backend.services.exception.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 
 @ControllerAdvice
@@ -22,8 +21,8 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
     }
 
 
-    @ExceptionHandler(EntityNotFound.class)
-    public ResponseEntity<Object> handleEntityNotFoundException(EntityNotFoundException ex) {
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<Object> handleEntityNotFoundException(javax.persistence.EntityNotFoundException ex) {
         ApiError error = ApiError.builder()
                 .setMessage("No string was found")
                 .setSuggestedAction("Please insert a string to a database")

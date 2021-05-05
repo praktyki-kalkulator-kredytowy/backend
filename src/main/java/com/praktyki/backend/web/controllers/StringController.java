@@ -1,7 +1,7 @@
 package com.praktyki.backend.web.controllers;
 
 import com.praktyki.backend.interactors.StringConcatenationUseCase;
-import com.praktyki.backend.services.exception.EntityNotFound;
+import com.praktyki.backend.services.exception.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ public class StringController {
     private StringConcatenationUseCase mStringConcatenationUseCase;
 
     @GetMapping("/api/v1/concat/{strValue}")
-    public String concatenation(@PathVariable(name = "strValue") String text) throws EntityNotFound {
+    public String concatenation(@PathVariable(name = "strValue") String text) throws EntityNotFoundException {
         return mStringConcatenationUseCase.concatenation(text);
     }
 
