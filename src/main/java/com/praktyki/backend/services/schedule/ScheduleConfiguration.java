@@ -11,6 +11,10 @@ public class ScheduleConfiguration {
     private int mInterestRate;
     private LocalDate mWithdrawalDate;
 
+    public static Builder builder(){
+        return new Builder();
+    }
+
     public double getCapital() {
         return mCapital;
     }
@@ -40,8 +44,46 @@ public class ScheduleConfiguration {
         mWithdrawalDate = withdrawalDate;
     }
 
+    public ScheduleConfiguration() {}
+
+    public static class Builder {
+
+        private ScheduleConfiguration mScheduleConfiguration = new ScheduleConfiguration();
+
+        public Builder setCapital(double capital) {
+            mScheduleConfiguration.mCapital = capital;
+            return this;
+        }
+
+        public Builder setInstallmentType(InstallmentType installmentType) {
+            mScheduleConfiguration.mInstallmentType = installmentType;
+            return this;
+        }
+
+        public Builder setInstallmentAmount(int installmentAmount) {
+            mScheduleConfiguration.mInstallmentAmount = installmentAmount;
+            return this;
+        }
+
+        public Builder setInterestRate(int interestRate) {
+            mScheduleConfiguration.mInterestRate = interestRate;
+            return this;
+        }
+
+        public Builder setWithdrawalDate(LocalDate withdrawalDate) {
+            mScheduleConfiguration.mWithdrawalDate = withdrawalDate;
+            return this;
+        }
+
+        public ScheduleConfiguration build() {
+            return mScheduleConfiguration;
+        }
+
+    }
+
     @Override
     public boolean equals(Object o) {
+
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ScheduleConfiguration that = (ScheduleConfiguration) o;
@@ -54,6 +96,7 @@ public class ScheduleConfiguration {
 
     @Override
     public int hashCode() {
+
         return Objects.hash(
                 getCapital(),
                 getInstallmentType(),
