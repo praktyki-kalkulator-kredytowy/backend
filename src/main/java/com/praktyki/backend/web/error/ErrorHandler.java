@@ -22,7 +22,7 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
 
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<Object> handleEntityNotFoundException(javax.persistence.EntityNotFoundException ex) {
+    public ResponseEntity<Object> handleEntityNotFoundException(EntityNotFoundException ex) {
         ApiError error = ApiError.builder()
                 .setMessage("No string was found")
                 .setSuggestedAction("Please insert a string to a database")
