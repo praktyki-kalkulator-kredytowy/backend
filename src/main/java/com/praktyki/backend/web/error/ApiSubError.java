@@ -2,6 +2,10 @@ package com.praktyki.backend.web.error;
 
 public class ApiSubError {
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     private String mMessage;
 
     private String mSuggestedAction;
@@ -24,6 +28,8 @@ public class ApiSubError {
     public static class Builder {
         private ApiSubError mApiSubError = new ApiSubError();
 
+        private Builder() {}
+
         public Builder setMessage(String message) {
             mApiSubError.mMessage = message;
             return this;
@@ -32,6 +38,10 @@ public class ApiSubError {
         public Builder setSuggestedAction(String action) {
             mApiSubError.mSuggestedAction = action;
             return this;
+        }
+
+        public ApiSubError build() {
+            return mApiSubError;
         }
     }
 }
