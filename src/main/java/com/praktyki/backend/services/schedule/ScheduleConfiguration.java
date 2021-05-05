@@ -1,11 +1,12 @@
 package com.praktyki.backend.services.schedule;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
 public class ScheduleConfiguration {
 
-    private double mCapital;
+    private BigDecimal mCapital;
     private InstallmentType mInstallmentType;
     private int mInstallmentAmount;
     private double mInterestRate;
@@ -15,7 +16,7 @@ public class ScheduleConfiguration {
         return new Builder();
     }
 
-    public double getCapital() {
+    public BigDecimal getCapital() {
         return mCapital;
     }
 
@@ -35,7 +36,7 @@ public class ScheduleConfiguration {
         return mWithdrawalDate;
     }
 
-    public ScheduleConfiguration(double capital, InstallmentType installmentType, int installmentAmount,
+    public ScheduleConfiguration(BigDecimal capital, InstallmentType installmentType, int installmentAmount,
                                  double interestRate, LocalDate withdrawalDate) {
         mCapital = capital;
         mInstallmentType = installmentType;
@@ -50,7 +51,7 @@ public class ScheduleConfiguration {
 
         private ScheduleConfiguration mScheduleConfiguration = new ScheduleConfiguration();
 
-        public Builder setCapital(double capital) {
+        public Builder setCapital(BigDecimal capital) {
             mScheduleConfiguration.mCapital = capital;
             return this;
         }
@@ -83,27 +84,18 @@ public class ScheduleConfiguration {
 
     @Override
     public boolean equals(Object o) {
-
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ScheduleConfiguration that = (ScheduleConfiguration) o;
-        return Double.compare(that.getCapital(), getCapital()) == 0
-                && getInstallmentAmount() == that.getInstallmentAmount()
-                && Double.compare(getInterestRate(),that.getInterestRate()) == 0
-                && getInstallmentType() == that.getInstallmentType()
+        return getInstallmentAmount() == that.getInstallmentAmount()
+                && Double.compare(that.getInterestRate(), getInterestRate()) == 0
+                && getCapital().equals(that.getCapital()) && getInstallmentType() == that.getInstallmentType()
                 && getWithdrawalDate().equals(that.getWithdrawalDate());
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(
-                getCapital(),
-                getInstallmentType(),
-                getInstallmentAmount(),
-                getInterestRate(),
-                getWithdrawalDate()
-        );
+        return Objects.hash(getCapital(), getInstallmentType(), getInstallmentAmount(), getInterestRate(), getWithdrawalDate());
     }
 
     @Override

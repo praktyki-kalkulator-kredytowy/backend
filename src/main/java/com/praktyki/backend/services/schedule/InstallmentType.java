@@ -1,5 +1,7 @@
 package com.praktyki.backend.services.schedule;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
@@ -16,7 +18,7 @@ public enum InstallmentType implements InstallmentCalculator {
                     installmentDate,
                     previousInstallment.getCapitalInstallment(),
                     calculateInterestInstallment(scheduleConfiguration, previousInstallment, installmentDate),
-                    previousInstallment.getRemainingDebt() - previousInstallment.getCapitalInstallment()
+                    previousInstallment.getRemainingDebt().subtract(previousInstallment.getCapitalInstallment())
                     );
         }
     },
@@ -26,13 +28,13 @@ public enum InstallmentType implements InstallmentCalculator {
             if(previousInstallment == null)
                 previousInstallment = createDefaultPrevious(scheduleConfiguration);
 
-            double totalInstallment = calculateTotalConstantInstallment(scheduleConfiguration);
+            BigDecimal totalInstallment = calculateTotalConstantInstallment(scheduleConfiguration);
 
-            double interestInstallment = calculateInterestInstallment(scheduleConfiguration, previousInstallment, installmentDate);
+            BigDecimal interestInstallment = calculateInterestInstallment(scheduleConfiguration, previousInstallment, installmentDate);
 
-            double capitalInstallment = totalInstallment - interestInstallment;
+            BigDecimal capitalInstallment = totalInstallment.subtract(interestInstallment);
 
-            double remainingDebt = previousInstallment.getRemainingDebt() - capitalInstallment;
+            BigDecimal remainingDebt = previousInstallment.getRemainingDebt().subtract(capitalInstallment);
 
             return new Installment(
                     previousInstallment.getIndex() + 1,
@@ -47,26 +49,35 @@ public enum InstallmentType implements InstallmentCalculator {
 
     };
 
-    private static double calculateTotalConstantInstallment(ScheduleConfiguration c) {
-        return (c.getCapital() * c.getInterestRate())
-                / (c.getInstallmentAmount()
-                * (1 - Math.pow((c.getInstallmentAmount() / (c.getInstallmentAmount() + c.getInterestRate())),
-                c.getInstallmentAmount())));
+    private static BigDecimal calculateTotalConstantInstallment(ScheduleConfiguration c) {
+        return (c.getCapital().multiply(BigDecimal.valueOf(c.getInterestRate())))
+                .divide(BigDecimal
+                                .valueOf(c.getInstallmentAmount()).multiply(
+                                        BigDecimal.ONE.subtract(
+                                                BigDecimal.valueOf(c.getInstallmentAmount())
+                                                        .divide(BigDecimal
+                                                                        .valueOf(c.getInstallmentAmount())
+                                                                        .add(BigDecimal.valueOf(c.getInterestRate())),
+                                                                RoundingMode.HALF_UP
+                                                        ))
+                        ),
+                        RoundingMode.HALF_UP
+                );
     }
 
-    private static double calculateInterestInstallment(ScheduleConfiguration conf, Installment prev, LocalDate date) {
+    private static BigDecimal calculateInterestInstallment(ScheduleConfiguration conf, Installment prev, LocalDate date) {
         long timeDifference = ChronoUnit.DAYS.between(prev.getInstallmentDate(), date);
 
         return prev.getRemainingDebt()
-                        * conf.getInterestRate()
-                        *  (timeDifference / (double) date.lengthOfYear());
+                .multiply(BigDecimal.valueOf(conf.getInterestRate()))
+                .multiply(BigDecimal.valueOf(timeDifference / (double) date.lengthOfYear()));
     }
 
     private static Installment createDefaultPrevious(ScheduleConfiguration conf) {
         return new Installment(0,
                 conf.getWithdrawalDate(),
-                conf.getCapital() / conf.getInstallmentAmount(),
-                0,
+                conf.getCapital().divide(BigDecimal.valueOf(conf.getInstallmentAmount()), RoundingMode.HALF_UP),
+                BigDecimal.ZERO,
                 conf.getCapital());
     }
 

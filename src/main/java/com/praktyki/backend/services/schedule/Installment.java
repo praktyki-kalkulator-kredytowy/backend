@@ -1,5 +1,6 @@
 package com.praktyki.backend.services.schedule;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -7,9 +8,9 @@ public class Installment {
 
     private int mIndex;
     private LocalDate mInstallmentDate;
-    private double mCapitalInstallment;
-    private double mInterestInstallment;
-    private double mRemainingDebt;
+    private BigDecimal mCapitalInstallment;
+    private BigDecimal mInterestInstallment;
+    private BigDecimal mRemainingDebt;
 
     public int getIndex() {
         return mIndex;
@@ -19,20 +20,20 @@ public class Installment {
         return mInstallmentDate;
     }
 
-    public double getCapitalInstallment() {
+    public BigDecimal getCapitalInstallment() {
         return mCapitalInstallment;
     }
 
-    public double getInterestInstallment() {
+    public BigDecimal getInterestInstallment() {
         return mInterestInstallment;
     }
 
-    public double getRemainingDebt() {
+    public BigDecimal getRemainingDebt() {
         return mRemainingDebt;
     }
 
-    public Installment(int index, LocalDate InstallmentDate, double capitalInstallment,
-                       double interestInstallment, double remainingDebt) {
+    public Installment(int index, LocalDate InstallmentDate, BigDecimal capitalInstallment,
+                       BigDecimal interestInstallment, BigDecimal remainingDebt) {
         mIndex = index;
         mInstallmentDate = InstallmentDate;
         mCapitalInstallment = capitalInstallment;
@@ -40,27 +41,22 @@ public class Installment {
         mRemainingDebt = remainingDebt;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Installment that = (Installment) o;
         return getIndex() == that.getIndex()
-                && Double.compare(that.getCapitalInstallment(), getCapitalInstallment()) == 0
-                && Double.compare(that.getInterestInstallment(), getInterestInstallment()) == 0
-                && Double.compare(that.getRemainingDebt(), getRemainingDebt()) == 0
-                && getInstallmentDate().equals(that.getInstallmentDate());
+                && getInstallmentDate().equals(that.getInstallmentDate())
+                && getCapitalInstallment().equals(that.getCapitalInstallment())
+                && getInterestInstallment().equals(that.getInterestInstallment())
+                && getRemainingDebt().equals(that.getRemainingDebt());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(
-                getIndex(),
-                getInstallmentDate(),
-                getCapitalInstallment(),
-                getInterestInstallment(),
-                getRemainingDebt()
-        );
+        return Objects.hash(getIndex(), getInstallmentDate(), getCapitalInstallment(), getInterestInstallment(), getRemainingDebt());
     }
 
     @Override
