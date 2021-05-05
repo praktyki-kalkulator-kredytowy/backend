@@ -1,6 +1,7 @@
 package com.praktyki.backend.services.schedule;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -32,13 +33,13 @@ public class Installment {
         return mRemainingDebt;
     }
 
-    public Installment(int index, LocalDate InstallmentDate, BigDecimal capitalInstallment,
+    public Installment(int index, LocalDate installmentDate, BigDecimal capitalInstallment,
                        BigDecimal interestInstallment, BigDecimal remainingDebt) {
         mIndex = index;
-        mInstallmentDate = InstallmentDate;
-        mCapitalInstallment = capitalInstallment;
-        mInterestInstallment = interestInstallment;
-        mRemainingDebt = remainingDebt;
+        mInstallmentDate = installmentDate;
+        mCapitalInstallment = capitalInstallment.setScale(2, RoundingMode.HALF_UP);
+        mInterestInstallment = interestInstallment.setScale(2, RoundingMode.HALF_UP);
+        mRemainingDebt = remainingDebt.setScale(2, RoundingMode.HALF_UP);
     }
 
 

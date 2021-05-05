@@ -1,6 +1,7 @@
 package com.praktyki.backend.services.schedule;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -38,7 +39,7 @@ public class ScheduleConfiguration {
 
     public ScheduleConfiguration(BigDecimal capital, InstallmentType installmentType, int installmentAmount,
                                  double interestRate, LocalDate withdrawalDate) {
-        mCapital = capital;
+        mCapital = capital.setScale(2, RoundingMode.HALF_UP);
         mInstallmentType = installmentType;
         mInstallmentAmount = installmentAmount;
         mInterestRate = interestRate;
@@ -52,7 +53,7 @@ public class ScheduleConfiguration {
         private ScheduleConfiguration mScheduleConfiguration = new ScheduleConfiguration();
 
         public Builder setCapital(BigDecimal capital) {
-            mScheduleConfiguration.mCapital = capital;
+            mScheduleConfiguration.mCapital = capital.setScale(2, RoundingMode.HALF_UP);
             return this;
         }
 
@@ -76,7 +77,7 @@ public class ScheduleConfiguration {
             return this;
         }
 
-        public void validate() throws IllegalStateException{
+        private void validate() throws IllegalStateException{
 
             if(mScheduleConfiguration.mWithdrawalDate == null
             || mScheduleConfiguration.mInterestRate == 0.0
