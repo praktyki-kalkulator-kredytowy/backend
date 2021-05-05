@@ -105,4 +105,15 @@ public class ScheduleConfiguration {
                 getWithdrawalDate()
         );
     }
+
+    @Override
+    public String toString() {
+        return "ScheduleConfiguration {" +
+                " Capital = " + mCapital +
+                ", InstallmentType = " + mInstallmentType +
+                ", InstallmentAmount = " + mInstallmentAmount +
+                ", InterestRate = " + mInterestRate +
+                ", WithdrawalDate = " + mWithdrawalDate +
+                " }";
+    }
 }

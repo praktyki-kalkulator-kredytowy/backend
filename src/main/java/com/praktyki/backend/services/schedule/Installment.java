@@ -62,4 +62,15 @@ public class Installment {
                 getRemainingDebt()
         );
     }
+
+    @Override
+    public String toString() {
+        return "Installment { " +
+                " Index = " + mIndex +
+                ", InstallmentDate = " + mInstallmentDate +
+                ", CapitalInstallment = " + mCapitalInstallment +
+                ", InterestInstallment = " + mInterestInstallment +
+                ", RemainingDebt = " + mRemainingDebt +
+                " }";
+    }
 }
