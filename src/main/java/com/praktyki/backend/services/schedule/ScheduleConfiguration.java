@@ -76,7 +76,19 @@ public class ScheduleConfiguration {
             return this;
         }
 
+        public void validate() throws IllegalStateException{
+
+            if(mScheduleConfiguration.mWithdrawalDate == null
+            || mScheduleConfiguration.mInterestRate == 0.0
+            || mScheduleConfiguration.mInstallmentAmount == 0
+            || mScheduleConfiguration.mInstallmentType == null
+            || mScheduleConfiguration.mCapital == null)
+                throw new IllegalStateException("Not all parameters specified");
+
+        }
+
         public ScheduleConfiguration build() {
+            validate();
             return mScheduleConfiguration;
         }
 
