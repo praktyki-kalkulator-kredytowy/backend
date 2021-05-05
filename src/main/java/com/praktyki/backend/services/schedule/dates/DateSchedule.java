@@ -1,4 +1,4 @@
-package com.praktyki.backend.services.schedule;
+package com.praktyki.backend.services.schedule.dates;
 
 import java.time.LocalDate;
 

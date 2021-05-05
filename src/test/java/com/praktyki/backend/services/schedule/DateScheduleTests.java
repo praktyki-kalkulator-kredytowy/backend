@@ -1,6 +1,7 @@
 package com.praktyki.backend.services.schedule;
 
-import org.apache.tomcat.jni.Local;
+import com.praktyki.backend.services.schedule.dates.DateSchedule;
+import com.praktyki.backend.services.schedule.dates.DateScheduleCalculatorImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

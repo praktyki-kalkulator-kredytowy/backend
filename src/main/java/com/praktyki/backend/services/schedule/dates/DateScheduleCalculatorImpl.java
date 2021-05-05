@@ -1,4 +1,4 @@
-package com.praktyki.backend.services.schedule;
+package com.praktyki.backend.services.schedule.dates;
 
 import org.springframework.stereotype.Component;
 
