@@ -5,18 +5,18 @@ import java.util.Objects;
 
 public class Installment {
 
-    private int mId;
-    private LocalDate mLocalDate;
+    private int mIndex;
+    private LocalDate mInstallmentDate;
     private double mCapitalInstallment;
     private double mInterestInstallment;
     private double mRemainingDebt;
 
-    public int getId() {
-        return mId;
+    public int getIndex() {
+        return mIndex;
     }
 
-    public LocalDate getLocalDate() {
-        return mLocalDate;
+    public LocalDate getInstallmentDate() {
+        return mInstallmentDate;
     }
 
     public double getCapitalInstallment() {
@@ -31,10 +31,10 @@ public class Installment {
         return mRemainingDebt;
     }
 
-    public Installment(int id, LocalDate localDate, double capitalInstallment,
+    public Installment(int index, LocalDate InstallmentDate, double capitalInstallment,
                        double interestInstallment, double remainingDebt) {
-        mId = id;
-        mLocalDate = localDate;
+        mIndex = index;
+        mInstallmentDate = InstallmentDate;
         mCapitalInstallment = capitalInstallment;
         mInterestInstallment = interestInstallment;
         mRemainingDebt = remainingDebt;
@@ -45,18 +45,18 @@ public class Installment {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Installment that = (Installment) o;
-        return getId() == that.getId()
+        return getIndex() == that.getIndex()
                 && Double.compare(that.getCapitalInstallment(), getCapitalInstallment()) == 0
                 && Double.compare(that.getInterestInstallment(), getInterestInstallment()) == 0
                 && Double.compare(that.getRemainingDebt(), getRemainingDebt()) == 0
-                && getLocalDate().equals(that.getLocalDate());
+                && getInstallmentDate().equals(that.getInstallmentDate());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
-                getId(),
-                getLocalDate(),
+                getIndex(),
+                getInstallmentDate(),
                 getCapitalInstallment(),
                 getInterestInstallment(),
                 getRemainingDebt()
