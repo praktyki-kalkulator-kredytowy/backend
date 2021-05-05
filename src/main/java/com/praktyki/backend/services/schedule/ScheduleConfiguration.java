@@ -8,7 +8,7 @@ public class ScheduleConfiguration {
     private double mCapital;
     private InstallmentType mInstallmentType;
     private int mInstallmentAmount;
-    private int mInterestRate;
+    private double mInterestRate;
     private LocalDate mWithdrawalDate;
 
     public static Builder builder(){
@@ -27,7 +27,7 @@ public class ScheduleConfiguration {
         return mInstallmentAmount;
     }
 
-    public int getInterestRate() {
+    public double getInterestRate() {
         return mInterestRate;
     }
 
@@ -36,7 +36,7 @@ public class ScheduleConfiguration {
     }
 
     public ScheduleConfiguration(double capital, InstallmentType installmentType, int installmentAmount,
-                                 int interestRate, LocalDate withdrawalDate) {
+                                 double interestRate, LocalDate withdrawalDate) {
         mCapital = capital;
         mInstallmentType = installmentType;
         mInstallmentAmount = installmentAmount;
@@ -65,7 +65,7 @@ public class ScheduleConfiguration {
             return this;
         }
 
-        public Builder setInterestRate(int interestRate) {
+        public Builder setInterestRate(double interestRate) {
             mScheduleConfiguration.mInterestRate = interestRate;
             return this;
         }
@@ -89,7 +89,7 @@ public class ScheduleConfiguration {
         ScheduleConfiguration that = (ScheduleConfiguration) o;
         return Double.compare(that.getCapital(), getCapital()) == 0
                 && getInstallmentAmount() == that.getInstallmentAmount()
-                && getInterestRate() == that.getInterestRate()
+                && Double.compare(getInterestRate(),that.getInterestRate()) == 0
                 && getInstallmentType() == that.getInstallmentType()
                 && getWithdrawalDate().equals(that.getWithdrawalDate());
     }
