@@ -19,6 +19,9 @@ public class ApiError {
 
     private String mMessage = DEFAULT_ERROR_MESSAGE;
 
+    public String getMessage() {
+        return mMessage;
+    }
     private String mSuggestedAction = DEFAULT_SUGGESTED_ACTION;
 
     private List<ApiSubError> mSubErrors = new LinkedList<>();
@@ -27,8 +30,9 @@ public class ApiError {
         return mStatus;
     }
 
-    public String getMessage() {
-        return mMessage;
+
+    public List<ApiSubError> getSubErrors() {
+        return mSubErrors;
     }
 
     private ApiError() {}
