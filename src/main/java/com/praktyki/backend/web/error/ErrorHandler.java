@@ -5,15 +5,21 @@ import com.praktyki.backend.web.exception.ConfigurationNotFound;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintViolationException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class ErrorHandler extends ResponseEntityExceptionHandler {
@@ -60,6 +66,21 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
 
         return createResponseEntity(error);
 
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        List<ApiSubError> subErrors = ex.getBindingResult().getFieldErrors().stream().map( e -> new ApiSubError(
+                "Validation failed for: " + e.getRejectedValue() + " - " + e.getDefaultMessage(),
+                "Check the rejected value against the error"
+        )).collect(Collectors.toList());
+
+        return createResponseEntity(ApiError.builder()
+                .setSubErrors(subErrors)
+                .setMessage("Validation failed")
+                .setSuggestedAction("See validation errors for more info")
+                .setStatus(HttpStatus.BAD_REQUEST)
+                .build());
     }
 
     @ExceptionHandler(Exception.class)
