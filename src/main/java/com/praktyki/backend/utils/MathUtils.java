@@ -1,4 +1,4 @@
-package com.praktyki.backend;
+package com.praktyki.backend.utils;
 
 import java.math.MathContext;
 import java.math.RoundingMode;

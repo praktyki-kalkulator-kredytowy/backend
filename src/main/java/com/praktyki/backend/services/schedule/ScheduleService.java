@@ -1,14 +1,13 @@
 package com.praktyki.backend.services.schedule;
 
-import com.praktyki.backend.MathUtils;
+import com.praktyki.backend.utils.InstallmentUtils;
+import com.praktyki.backend.utils.MathUtils;
 import com.praktyki.backend.services.schedule.dates.DateSchedule;
 import com.praktyki.backend.services.schedule.dates.DateScheduleCalculator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
-import java.math.RoundingMode;
 import java.time.temporal.ChronoUnit;
 import java.util.LinkedList;
 import java.util.List;
@@ -40,19 +39,12 @@ public class ScheduleService {
                     installmentList.get(i).getCapitalInstallment(), MathUtils.CONTEXT);
         }
 
-        long timeDifference = ChronoUnit.DAYS.between(
-                installmentList.get(installmentList.size()-1).getInstallmentDate(),
+        BigDecimal interestInstallment = InstallmentUtils.calculateInterestInstallment(
+                scheduleConfiguration,
+                installmentList.get(installmentList.size()-1),
                 dateSchedule.getDateFor(scheduleConfiguration.getInstallmentAmount())
-                );
+        );
 
-        BigDecimal interestInstallment = BigDecimal.valueOf(scheduleConfiguration.getInterestRate())
-                .multiply(installmentList.get(installmentList.size()-1).getRemainingDebt(), MathUtils.CONTEXT)
-                .multiply(BigDecimal.valueOf(timeDifference), MathUtils.CONTEXT)
-                .divide(
-                        BigDecimal.valueOf(
-                                dateSchedule.getDateFor(scheduleConfiguration.getInstallmentAmount()).lengthOfYear()),
-                        MathUtils.CONTEXT
-                );
 
         installmentList.add(new Installment(
                         scheduleConfiguration.getInstallmentAmount(),
