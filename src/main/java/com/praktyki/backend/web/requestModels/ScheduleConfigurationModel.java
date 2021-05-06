@@ -3,41 +3,42 @@ package com.praktyki.backend.web.requestModels;
 import com.praktyki.backend.services.schedule.InstallmentType;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class ScheduleConfigurationModel {
 
-    private double mCapital;
-    private InstallmentType mInstallmentType;
-    private int mInstallmentAmount;
-    private double mInterestRate;
-    private LocalDate mWithdrawalDate;
+    private double capital;
+    private InstallmentType installmentType;
+    private int installmentAmount;
+    private double interestRate;
+    private Date withdrawalDate;
 
     public double getCapital() {
-        return mCapital;
+        return capital;
     }
 
     public InstallmentType getInstallmentType() {
-        return mInstallmentType;
+        return installmentType;
     }
 
     public int getInstallmentAmount() {
-        return mInstallmentAmount;
+        return installmentAmount;
     }
 
     public double getInterestRate() {
-        return mInterestRate;
+        return interestRate;
     }
 
-    public LocalDate getWithdrawalDate() {
-        return mWithdrawalDate;
+    public Date getWithdrawalDate() {
+        return withdrawalDate;
     }
 
     public ScheduleConfigurationModel(double capital, InstallmentType installmentType,
-                                      int installmentAmount, double interestRate, LocalDate withdrawalDate) {
-        mCapital = capital;
-        mInstallmentType = installmentType;
-        mInstallmentAmount = installmentAmount;
-        mInterestRate = interestRate;
-        mWithdrawalDate = withdrawalDate;
+                                      int installmentAmount, double interestRate, Date withdrawalDate) {
+        this.capital = capital;
+        this.installmentType = installmentType;
+        this.installmentAmount = installmentAmount;
+        this.interestRate = interestRate;
+        this.withdrawalDate = withdrawalDate;
     }
 }

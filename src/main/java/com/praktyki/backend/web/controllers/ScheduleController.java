@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.util.List;
 
 @CrossOrigin
@@ -31,7 +32,7 @@ public class ScheduleController {
                 scheduleConfigurationModel.getInstallmentType(),
                 scheduleConfigurationModel.getInstallmentAmount(),
                 scheduleConfigurationModel.getInterestRate(),
-                scheduleConfigurationModel.getWithdrawalDate()
+                new Date(scheduleConfigurationModel.getWithdrawalDate().getTime()).toLocalDate()
         );
     }
 
