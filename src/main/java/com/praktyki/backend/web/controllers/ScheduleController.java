@@ -38,12 +38,4 @@ public class ScheduleController {
                 new Date(scheduleConfigurationModel.withdrawalDate.getTime()).toLocalDate()
         );
     }
-
-    @GetMapping("/api/v1/schedule/create")
-    public List<Installment> createSchedule() throws ConfigurationNotFound {
-
-        if(mScheduleConfiguration == null) throw new ConfigurationNotFound("Configuration not found");
-
-        return mScheduleService.createSchedule(mScheduleConfiguration);
-    }
 }
