@@ -4,10 +4,12 @@ import com.praktyki.backend.services.schedule.Installment;
 import com.praktyki.backend.services.schedule.InstallmentType;
 import com.praktyki.backend.services.schedule.ScheduleConfiguration;
 import com.praktyki.backend.services.schedule.ScheduleService;
-import com.praktyki.backend.web.exception.ConfigurationNotFound;
 import com.praktyki.backend.web.requestModels.ScheduleConfigurationModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.math.BigDecimal;

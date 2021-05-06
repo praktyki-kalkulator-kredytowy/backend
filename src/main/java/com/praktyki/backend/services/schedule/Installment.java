@@ -1,7 +1,6 @@
 package com.praktyki.backend.services.schedule;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.Objects;
 

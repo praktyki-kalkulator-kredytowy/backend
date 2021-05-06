@@ -1,13 +1,11 @@
 package com.praktyki.backend.web.requestModels;
 
-import com.praktyki.backend.services.schedule.InstallmentType;
 import com.praktyki.backend.web.validation.ValidInstallmentType;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
-import java.time.LocalDate;
 import java.util.Date;
 
 public class ScheduleConfigurationModel {

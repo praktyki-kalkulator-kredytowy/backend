@@ -1,14 +1,13 @@
 package com.praktyki.backend.services.schedule;
 
-import com.praktyki.backend.utils.InstallmentUtils;
-import com.praktyki.backend.utils.MathUtils;
 import com.praktyki.backend.services.schedule.dates.DateSchedule;
 import com.praktyki.backend.services.schedule.dates.DateScheduleCalculator;
+import com.praktyki.backend.utils.InstallmentUtils;
+import com.praktyki.backend.utils.MathUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.time.temporal.ChronoUnit;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
