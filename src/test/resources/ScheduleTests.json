@@ -1,0 +1,919 @@
+[ {
+  "configuration" : {
+    "mCapital" : 20000.00,
+    "mInstallmentAmount" : 12,
+    "mInstallmentType" : "CONSTANT",
+    "mInterestRate" : 10.0,
+    "mWithdrawalDate" : [ 2021, 5, 31 ]
+  },
+  "installments" : [ {
+    "mIndex" : 1,
+    "mInstallmentDate" : [ 2021, 6, 30 ],
+    "mCapitalInstallment" : 1593.94,
+    "mInterestInstallment" : 164.38,
+    "mRemainingDebt" : 18406.06
+  }, {
+    "mIndex" : 2,
+    "mInstallmentDate" : [ 2021, 7, 31 ],
+    "mCapitalInstallment" : 1601.99,
+    "mInterestInstallment" : 156.33,
+    "mRemainingDebt" : 16804.07
+  }, {
+    "mIndex" : 3,
+    "mInstallmentDate" : [ 2021, 8, 31 ],
+    "mCapitalInstallment" : 1615.60,
+    "mInterestInstallment" : 142.72,
+    "mRemainingDebt" : 15188.48
+  }, {
+    "mIndex" : 4,
+    "mInstallmentDate" : [ 2021, 9, 30 ],
+    "mCapitalInstallment" : 1633.48,
+    "mInterestInstallment" : 124.84,
+    "mRemainingDebt" : 13555.00
+  }, {
+    "mIndex" : 5,
+    "mInstallmentDate" : [ 2021, 10, 31 ],
+    "mCapitalInstallment" : 1643.20,
+    "mInterestInstallment" : 115.12,
+    "mRemainingDebt" : 11911.80
+  }, {
+    "mIndex" : 6,
+    "mInstallmentDate" : [ 2021, 11, 30 ],
+    "mCapitalInstallment" : 1660.41,
+    "mInterestInstallment" : 97.91,
+    "mRemainingDebt" : 10251.39
+  }, {
+    "mIndex" : 7,
+    "mInstallmentDate" : [ 2021, 12, 31 ],
+    "mCapitalInstallment" : 1671.25,
+    "mInterestInstallment" : 87.07,
+    "mRemainingDebt" : 8580.15
+  }, {
+    "mIndex" : 8,
+    "mInstallmentDate" : [ 2022, 1, 31 ],
+    "mCapitalInstallment" : 1685.45,
+    "mInterestInstallment" : 72.87,
+    "mRemainingDebt" : 6894.70
+  }, {
+    "mIndex" : 9,
+    "mInstallmentDate" : [ 2022, 2, 28 ],
+    "mCapitalInstallment" : 1705.43,
+    "mInterestInstallment" : 52.89,
+    "mRemainingDebt" : 5189.27
+  }, {
+    "mIndex" : 10,
+    "mInstallmentDate" : [ 2022, 3, 31 ],
+    "mCapitalInstallment" : 1714.25,
+    "mInterestInstallment" : 44.07,
+    "mRemainingDebt" : 3475.02
+  }, {
+    "mIndex" : 11,
+    "mInstallmentDate" : [ 2022, 4, 30 ],
+    "mCapitalInstallment" : 1729.76,
+    "mInterestInstallment" : 28.56,
+    "mRemainingDebt" : 1745.26
+  }, {
+    "mIndex" : 12,
+    "mInstallmentDate" : [ 2022, 5, 31 ],
+    "mCapitalInstallment" : 1745.26,
+    "mInterestInstallment" : 14.82,
+    "mRemainingDebt" : 0.00
+  } ]
+}, {
+  "configuration" : {
+    "mCapital" : 30000.00,
+    "mInstallmentAmount" : 24,
+    "mInstallmentType" : "CONSTANT",
+    "mInterestRate" : 15.0,
+    "mWithdrawalDate" : [ 2021, 4, 21 ]
+  },
+  "installments" : [ {
+    "mIndex" : 1,
+    "mInstallmentDate" : [ 2021, 5, 21 ],
+    "mCapitalInstallment" : 1084.74,
+    "mInterestInstallment" : 369.86,
+    "mRemainingDebt" : 28915.26
+  }, {
+    "mIndex" : 2,
+    "mInstallmentDate" : [ 2021, 6, 21 ],
+    "mCapitalInstallment" : 1086.23,
+    "mInterestInstallment" : 368.37,
+    "mRemainingDebt" : 27829.03
+  }, {
+    "mIndex" : 3,
+    "mInstallmentDate" : [ 2021, 7, 21 ],
+    "mCapitalInstallment" : 1111.50,
+    "mInterestInstallment" : 343.10,
+    "mRemainingDebt" : 26717.53
+  }, {
+    "mIndex" : 4,
+    "mInstallmentDate" : [ 2021, 8, 21 ],
+    "mCapitalInstallment" : 1114.23,
+    "mInterestInstallment" : 340.37,
+    "mRemainingDebt" : 25603.30
+  }, {
+    "mIndex" : 5,
+    "mInstallmentDate" : [ 2021, 9, 21 ],
+    "mCapitalInstallment" : 1128.42,
+    "mInterestInstallment" : 326.18,
+    "mRemainingDebt" : 24474.88
+  }, {
+    "mIndex" : 6,
+    "mInstallmentDate" : [ 2021, 10, 21 ],
+    "mCapitalInstallment" : 1152.85,
+    "mInterestInstallment" : 301.75,
+    "mRemainingDebt" : 23322.03
+  }, {
+    "mIndex" : 7,
+    "mInstallmentDate" : [ 2021, 11, 21 ],
+    "mCapitalInstallment" : 1157.48,
+    "mInterestInstallment" : 297.12,
+    "mRemainingDebt" : 22164.55
+  }, {
+    "mIndex" : 8,
+    "mInstallmentDate" : [ 2021, 12, 21 ],
+    "mCapitalInstallment" : 1181.34,
+    "mInterestInstallment" : 273.26,
+    "mRemainingDebt" : 20983.21
+  }, {
+    "mIndex" : 9,
+    "mInstallmentDate" : [ 2022, 1, 21 ],
+    "mCapitalInstallment" : 1187.28,
+    "mInterestInstallment" : 267.32,
+    "mRemainingDebt" : 19795.94
+  }, {
+    "mIndex" : 10,
+    "mInstallmentDate" : [ 2022, 2, 21 ],
+    "mCapitalInstallment" : 1202.41,
+    "mInterestInstallment" : 252.19,
+    "mRemainingDebt" : 18593.53
+  }, {
+    "mIndex" : 11,
+    "mInstallmentDate" : [ 2022, 3, 21 ],
+    "mCapitalInstallment" : 1240.65,
+    "mInterestInstallment" : 213.95,
+    "mRemainingDebt" : 17352.88
+  }, {
+    "mIndex" : 12,
+    "mInstallmentDate" : [ 2022, 4, 21 ],
+    "mCapitalInstallment" : 1233.53,
+    "mInterestInstallment" : 221.07,
+    "mRemainingDebt" : 16119.35
+  }, {
+    "mIndex" : 13,
+    "mInstallmentDate" : [ 2022, 5, 21 ],
+    "mCapitalInstallment" : 1255.87,
+    "mInterestInstallment" : 198.73,
+    "mRemainingDebt" : 14863.48
+  }, {
+    "mIndex" : 14,
+    "mInstallmentDate" : [ 2022, 6, 21 ],
+    "mCapitalInstallment" : 1265.24,
+    "mInterestInstallment" : 189.36,
+    "mRemainingDebt" : 13598.24
+  }, {
+    "mIndex" : 15,
+    "mInstallmentDate" : [ 2022, 7, 21 ],
+    "mCapitalInstallment" : 1286.95,
+    "mInterestInstallment" : 167.65,
+    "mRemainingDebt" : 12311.29
+  }, {
+    "mIndex" : 16,
+    "mInstallmentDate" : [ 2022, 8, 21 ],
+    "mCapitalInstallment" : 1297.76,
+    "mInterestInstallment" : 156.84,
+    "mRemainingDebt" : 11013.53
+  }, {
+    "mIndex" : 17,
+    "mInstallmentDate" : [ 2022, 9, 21 ],
+    "mCapitalInstallment" : 1314.29,
+    "mInterestInstallment" : 140.31,
+    "mRemainingDebt" : 9699.24
+  }, {
+    "mIndex" : 18,
+    "mInstallmentDate" : [ 2022, 10, 21 ],
+    "mCapitalInstallment" : 1335.02,
+    "mInterestInstallment" : 119.58,
+    "mRemainingDebt" : 8364.22
+  }, {
+    "mIndex" : 19,
+    "mInstallmentDate" : [ 2022, 11, 21 ],
+    "mCapitalInstallment" : 1348.04,
+    "mInterestInstallment" : 106.56,
+    "mRemainingDebt" : 7016.18
+  }, {
+    "mIndex" : 20,
+    "mInstallmentDate" : [ 2022, 12, 21 ],
+    "mCapitalInstallment" : 1368.10,
+    "mInterestInstallment" : 86.50,
+    "mRemainingDebt" : 5648.08
+  }, {
+    "mIndex" : 21,
+    "mInstallmentDate" : [ 2023, 1, 21 ],
+    "mCapitalInstallment" : 1382.64,
+    "mInterestInstallment" : 71.96,
+    "mRemainingDebt" : 4265.44
+  }, {
+    "mIndex" : 22,
+    "mInstallmentDate" : [ 2023, 2, 21 ],
+    "mCapitalInstallment" : 1400.26,
+    "mInterestInstallment" : 54.34,
+    "mRemainingDebt" : 2865.18
+  }, {
+    "mIndex" : 23,
+    "mInstallmentDate" : [ 2023, 3, 21 ],
+    "mCapitalInstallment" : 1421.63,
+    "mInterestInstallment" : 32.97,
+    "mRemainingDebt" : 1443.55
+  }, {
+    "mIndex" : 24,
+    "mInstallmentDate" : [ 2023, 4, 21 ],
+    "mCapitalInstallment" : 1443.55,
+    "mInterestInstallment" : 18.39,
+    "mRemainingDebt" : 0.00
+  } ]
+}, {
+  "configuration" : {
+    "mCapital" : 40000.00,
+    "mInstallmentAmount" : 36,
+    "mInstallmentType" : "CONSTANT",
+    "mInterestRate" : 20.0,
+    "mWithdrawalDate" : [ 2021, 1, 15 ]
+  },
+  "installments" : [ {
+    "mIndex" : 1,
+    "mInstallmentDate" : [ 2021, 2, 15 ],
+    "mCapitalInstallment" : 807.09,
+    "mInterestInstallment" : 679.45,
+    "mRemainingDebt" : 39192.91
+  }, {
+    "mIndex" : 2,
+    "mInstallmentDate" : [ 2021, 3, 15 ],
+    "mCapitalInstallment" : 885.22,
+    "mInterestInstallment" : 601.32,
+    "mRemainingDebt" : 38307.68
+  }, {
+    "mIndex" : 3,
+    "mInstallmentDate" : [ 2021, 4, 15 ],
+    "mCapitalInstallment" : 835.83,
+    "mInterestInstallment" : 650.71,
+    "mRemainingDebt" : 37471.85
+  }, {
+    "mIndex" : 4,
+    "mInstallmentDate" : [ 2021, 5, 15 ],
+    "mCapitalInstallment" : 870.56,
+    "mInterestInstallment" : 615.98,
+    "mRemainingDebt" : 36601.29
+  }, {
+    "mIndex" : 5,
+    "mInstallmentDate" : [ 2021, 6, 15 ],
+    "mCapitalInstallment" : 864.82,
+    "mInterestInstallment" : 621.72,
+    "mRemainingDebt" : 35736.46
+  }, {
+    "mIndex" : 6,
+    "mInstallmentDate" : [ 2021, 7, 15 ],
+    "mCapitalInstallment" : 899.09,
+    "mInterestInstallment" : 587.45,
+    "mRemainingDebt" : 34837.37
+  }, {
+    "mIndex" : 7,
+    "mInstallmentDate" : [ 2021, 8, 15 ],
+    "mCapitalInstallment" : 894.78,
+    "mInterestInstallment" : 591.76,
+    "mRemainingDebt" : 33942.59
+  }, {
+    "mIndex" : 8,
+    "mInstallmentDate" : [ 2021, 9, 15 ],
+    "mCapitalInstallment" : 909.98,
+    "mInterestInstallment" : 576.56,
+    "mRemainingDebt" : 33032.60
+  }, {
+    "mIndex" : 9,
+    "mInstallmentDate" : [ 2021, 10, 15 ],
+    "mCapitalInstallment" : 943.54,
+    "mInterestInstallment" : 543.00,
+    "mRemainingDebt" : 32089.06
+  }, {
+    "mIndex" : 10,
+    "mInstallmentDate" : [ 2021, 11, 15 ],
+    "mCapitalInstallment" : 941.47,
+    "mInterestInstallment" : 545.07,
+    "mRemainingDebt" : 31147.59
+  }, {
+    "mIndex" : 11,
+    "mInstallmentDate" : [ 2021, 12, 15 ],
+    "mCapitalInstallment" : 974.52,
+    "mInterestInstallment" : 512.02,
+    "mRemainingDebt" : 30173.06
+  }, {
+    "mIndex" : 12,
+    "mInstallmentDate" : [ 2022, 1, 15 ],
+    "mCapitalInstallment" : 974.01,
+    "mInterestInstallment" : 512.53,
+    "mRemainingDebt" : 29199.05
+  }, {
+    "mIndex" : 13,
+    "mInstallmentDate" : [ 2022, 2, 15 ],
+    "mCapitalInstallment" : 990.56,
+    "mInterestInstallment" : 495.98,
+    "mRemainingDebt" : 28208.49
+  }, {
+    "mIndex" : 14,
+    "mInstallmentDate" : [ 2022, 3, 15 ],
+    "mCapitalInstallment" : 1053.75,
+    "mInterestInstallment" : 432.79,
+    "mRemainingDebt" : 27154.73
+  }, {
+    "mIndex" : 15,
+    "mInstallmentDate" : [ 2022, 4, 15 ],
+    "mCapitalInstallment" : 1025.28,
+    "mInterestInstallment" : 461.26,
+    "mRemainingDebt" : 26129.45
+  }, {
+    "mIndex" : 16,
+    "mInstallmentDate" : [ 2022, 5, 15 ],
+    "mCapitalInstallment" : 1057.01,
+    "mInterestInstallment" : 429.53,
+    "mRemainingDebt" : 25072.44
+  }, {
+    "mIndex" : 17,
+    "mInstallmentDate" : [ 2022, 6, 15 ],
+    "mCapitalInstallment" : 1060.65,
+    "mInterestInstallment" : 425.89,
+    "mRemainingDebt" : 24011.78
+  }, {
+    "mIndex" : 18,
+    "mInstallmentDate" : [ 2022, 7, 15 ],
+    "mCapitalInstallment" : 1091.83,
+    "mInterestInstallment" : 394.71,
+    "mRemainingDebt" : 22919.95
+  }, {
+    "mIndex" : 19,
+    "mInstallmentDate" : [ 2022, 8, 15 ],
+    "mCapitalInstallment" : 1097.21,
+    "mInterestInstallment" : 389.33,
+    "mRemainingDebt" : 21822.74
+  }, {
+    "mIndex" : 20,
+    "mInstallmentDate" : [ 2022, 9, 15 ],
+    "mCapitalInstallment" : 1115.85,
+    "mInterestInstallment" : 370.69,
+    "mRemainingDebt" : 20706.88
+  }, {
+    "mIndex" : 21,
+    "mInstallmentDate" : [ 2022, 10, 15 ],
+    "mCapitalInstallment" : 1146.15,
+    "mInterestInstallment" : 340.39,
+    "mRemainingDebt" : 19560.73
+  }, {
+    "mIndex" : 22,
+    "mInstallmentDate" : [ 2022, 11, 15 ],
+    "mCapitalInstallment" : 1154.28,
+    "mInterestInstallment" : 332.26,
+    "mRemainingDebt" : 18406.45
+  }, {
+    "mIndex" : 23,
+    "mInstallmentDate" : [ 2022, 12, 15 ],
+    "mCapitalInstallment" : 1183.97,
+    "mInterestInstallment" : 302.57,
+    "mRemainingDebt" : 17222.47
+  }, {
+    "mIndex" : 24,
+    "mInstallmentDate" : [ 2023, 1, 15 ],
+    "mCapitalInstallment" : 1193.99,
+    "mInterestInstallment" : 292.55,
+    "mRemainingDebt" : 16028.48
+  }, {
+    "mIndex" : 25,
+    "mInstallmentDate" : [ 2023, 2, 15 ],
+    "mCapitalInstallment" : 1214.28,
+    "mInterestInstallment" : 272.26,
+    "mRemainingDebt" : 14814.20
+  }, {
+    "mIndex" : 26,
+    "mInstallmentDate" : [ 2023, 3, 15 ],
+    "mCapitalInstallment" : 1259.25,
+    "mInterestInstallment" : 227.29,
+    "mRemainingDebt" : 13554.94
+  }, {
+    "mIndex" : 27,
+    "mInstallmentDate" : [ 2023, 4, 15 ],
+    "mCapitalInstallment" : 1256.29,
+    "mInterestInstallment" : 230.25,
+    "mRemainingDebt" : 12298.65
+  }, {
+    "mIndex" : 28,
+    "mInstallmentDate" : [ 2023, 5, 15 ],
+    "mCapitalInstallment" : 1284.37,
+    "mInterestInstallment" : 202.17,
+    "mRemainingDebt" : 11014.28
+  }, {
+    "mIndex" : 29,
+    "mInstallmentDate" : [ 2023, 6, 15 ],
+    "mCapitalInstallment" : 1299.45,
+    "mInterestInstallment" : 187.09,
+    "mRemainingDebt" : 9714.82
+  }, {
+    "mIndex" : 30,
+    "mInstallmentDate" : [ 2023, 7, 15 ],
+    "mCapitalInstallment" : 1326.84,
+    "mInterestInstallment" : 159.70,
+    "mRemainingDebt" : 8387.98
+  }, {
+    "mIndex" : 31,
+    "mInstallmentDate" : [ 2023, 8, 15 ],
+    "mCapitalInstallment" : 1344.06,
+    "mInterestInstallment" : 142.48,
+    "mRemainingDebt" : 7043.92
+  }, {
+    "mIndex" : 32,
+    "mInstallmentDate" : [ 2023, 9, 15 ],
+    "mCapitalInstallment" : 1366.89,
+    "mInterestInstallment" : 119.65,
+    "mRemainingDebt" : 5677.02
+  }, {
+    "mIndex" : 33,
+    "mInstallmentDate" : [ 2023, 10, 15 ],
+    "mCapitalInstallment" : 1393.22,
+    "mInterestInstallment" : 93.32,
+    "mRemainingDebt" : 4283.80
+  }, {
+    "mIndex" : 34,
+    "mInstallmentDate" : [ 2023, 11, 15 ],
+    "mCapitalInstallment" : 1413.77,
+    "mInterestInstallment" : 72.77,
+    "mRemainingDebt" : 2870.03
+  }, {
+    "mIndex" : 35,
+    "mInstallmentDate" : [ 2023, 12, 15 ],
+    "mCapitalInstallment" : 1439.36,
+    "mInterestInstallment" : 47.18,
+    "mRemainingDebt" : 1430.66
+  }, {
+    "mIndex" : 36,
+    "mInstallmentDate" : [ 2024, 1, 15 ],
+    "mCapitalInstallment" : 1430.66,
+    "mInterestInstallment" : 24.30,
+    "mRemainingDebt" : 0.00
+  } ]
+}, {
+  "configuration" : {
+    "mCapital" : 600000.00,
+    "mInstallmentAmount" : 48,
+    "mInstallmentType" : "CONSTANT",
+    "mInterestRate" : 5.0,
+    "mWithdrawalDate" : [ 2020, 7, 16 ]
+  },
+  "installments" : [ {
+    "mIndex" : 1,
+    "mInstallmentDate" : [ 2020, 8, 16 ],
+    "mCapitalInstallment" : 11269.63,
+    "mInterestInstallment" : 2547.95,
+    "mRemainingDebt" : 588730.37
+  }, {
+    "mIndex" : 2,
+    "mInstallmentDate" : [ 2020, 9, 16 ],
+    "mCapitalInstallment" : 11317.49,
+    "mInterestInstallment" : 2500.09,
+    "mRemainingDebt" : 577412.89
+  }, {
+    "mIndex" : 3,
+    "mInstallmentDate" : [ 2020, 10, 16 ],
+    "mCapitalInstallment" : 11444.65,
+    "mInterestInstallment" : 2372.93,
+    "mRemainingDebt" : 565968.24
+  }, {
+    "mIndex" : 4,
+    "mInstallmentDate" : [ 2020, 11, 16 ],
+    "mCapitalInstallment" : 11414.15,
+    "mInterestInstallment" : 2403.43,
+    "mRemainingDebt" : 554554.10
+  }, {
+    "mIndex" : 5,
+    "mInstallmentDate" : [ 2020, 12, 16 ],
+    "mCapitalInstallment" : 11538.59,
+    "mInterestInstallment" : 2278.99,
+    "mRemainingDebt" : 543015.51
+  }, {
+    "mIndex" : 6,
+    "mInstallmentDate" : [ 2021, 1, 16 ],
+    "mCapitalInstallment" : 11511.62,
+    "mInterestInstallment" : 2305.96,
+    "mRemainingDebt" : 531503.89
+  }, {
+    "mIndex" : 7,
+    "mInstallmentDate" : [ 2021, 2, 16 ],
+    "mCapitalInstallment" : 11560.51,
+    "mInterestInstallment" : 2257.07,
+    "mRemainingDebt" : 519943.39
+  }, {
+    "mIndex" : 8,
+    "mInstallmentDate" : [ 2021, 3, 16 ],
+    "mCapitalInstallment" : 11823.28,
+    "mInterestInstallment" : 1994.30,
+    "mRemainingDebt" : 508120.11
+  }, {
+    "mIndex" : 9,
+    "mInstallmentDate" : [ 2021, 4, 16 ],
+    "mCapitalInstallment" : 11659.81,
+    "mInterestInstallment" : 2157.77,
+    "mRemainingDebt" : 496460.30
+  }, {
+    "mIndex" : 10,
+    "mInstallmentDate" : [ 2021, 5, 16 ],
+    "mCapitalInstallment" : 11777.33,
+    "mInterestInstallment" : 2040.25,
+    "mRemainingDebt" : 484682.98
+  }, {
+    "mIndex" : 11,
+    "mInstallmentDate" : [ 2021, 6, 16 ],
+    "mCapitalInstallment" : 11759.34,
+    "mInterestInstallment" : 2058.24,
+    "mRemainingDebt" : 472923.64
+  }, {
+    "mIndex" : 12,
+    "mInstallmentDate" : [ 2021, 7, 16 ],
+    "mCapitalInstallment" : 11874.06,
+    "mInterestInstallment" : 1943.52,
+    "mRemainingDebt" : 461049.59
+  }, {
+    "mIndex" : 13,
+    "mInstallmentDate" : [ 2021, 8, 16 ],
+    "mCapitalInstallment" : 11859.70,
+    "mInterestInstallment" : 1957.88,
+    "mRemainingDebt" : 449189.89
+  }, {
+    "mIndex" : 14,
+    "mInstallmentDate" : [ 2021, 9, 16 ],
+    "mCapitalInstallment" : 11910.06,
+    "mInterestInstallment" : 1907.52,
+    "mRemainingDebt" : 437279.83
+  }, {
+    "mIndex" : 15,
+    "mInstallmentDate" : [ 2021, 10, 16 ],
+    "mCapitalInstallment" : 12020.54,
+    "mInterestInstallment" : 1797.04,
+    "mRemainingDebt" : 425259.30
+  }, {
+    "mIndex" : 16,
+    "mInstallmentDate" : [ 2021, 11, 16 ],
+    "mCapitalInstallment" : 12011.68,
+    "mInterestInstallment" : 1805.90,
+    "mRemainingDebt" : 413247.62
+  }, {
+    "mIndex" : 17,
+    "mInstallmentDate" : [ 2021, 12, 16 ],
+    "mCapitalInstallment" : 12119.30,
+    "mInterestInstallment" : 1698.28,
+    "mRemainingDebt" : 401128.33
+  }, {
+    "mIndex" : 18,
+    "mInstallmentDate" : [ 2022, 1, 16 ],
+    "mCapitalInstallment" : 12114.16,
+    "mInterestInstallment" : 1703.42,
+    "mRemainingDebt" : 389014.17
+  }, {
+    "mIndex" : 19,
+    "mInstallmentDate" : [ 2022, 2, 16 ],
+    "mCapitalInstallment" : 12165.60,
+    "mInterestInstallment" : 1651.98,
+    "mRemainingDebt" : 376848.57
+  }, {
+    "mIndex" : 20,
+    "mInstallmentDate" : [ 2022, 3, 16 ],
+    "mCapitalInstallment" : 12372.13,
+    "mInterestInstallment" : 1445.45,
+    "mRemainingDebt" : 364476.45
+  }, {
+    "mIndex" : 21,
+    "mInstallmentDate" : [ 2022, 4, 16 ],
+    "mCapitalInstallment" : 12269.80,
+    "mInterestInstallment" : 1547.78,
+    "mRemainingDebt" : 352206.65
+  }, {
+    "mIndex" : 22,
+    "mInstallmentDate" : [ 2022, 5, 16 ],
+    "mCapitalInstallment" : 12370.16,
+    "mInterestInstallment" : 1447.42,
+    "mRemainingDebt" : 339836.49
+  }, {
+    "mIndex" : 23,
+    "mInstallmentDate" : [ 2022, 6, 16 ],
+    "mCapitalInstallment" : 12374.44,
+    "mInterestInstallment" : 1443.14,
+    "mRemainingDebt" : 327462.06
+  }, {
+    "mIndex" : 24,
+    "mInstallmentDate" : [ 2022, 7, 16 ],
+    "mCapitalInstallment" : 12471.85,
+    "mInterestInstallment" : 1345.73,
+    "mRemainingDebt" : 314990.21
+  }, {
+    "mIndex" : 25,
+    "mInstallmentDate" : [ 2022, 8, 16 ],
+    "mCapitalInstallment" : 12479.95,
+    "mInterestInstallment" : 1337.63,
+    "mRemainingDebt" : 302510.27
+  }, {
+    "mIndex" : 26,
+    "mInstallmentDate" : [ 2022, 9, 16 ],
+    "mCapitalInstallment" : 12532.95,
+    "mInterestInstallment" : 1284.63,
+    "mRemainingDebt" : 289977.32
+  }, {
+    "mIndex" : 27,
+    "mInstallmentDate" : [ 2022, 10, 16 ],
+    "mCapitalInstallment" : 12625.89,
+    "mInterestInstallment" : 1191.69,
+    "mRemainingDebt" : 277351.43
+  }, {
+    "mIndex" : 28,
+    "mInstallmentDate" : [ 2022, 11, 16 ],
+    "mCapitalInstallment" : 12639.79,
+    "mInterestInstallment" : 1177.79,
+    "mRemainingDebt" : 264711.65
+  }, {
+    "mIndex" : 29,
+    "mInstallmentDate" : [ 2022, 12, 16 ],
+    "mCapitalInstallment" : 12729.72,
+    "mInterestInstallment" : 1087.86,
+    "mRemainingDebt" : 251981.93
+  }, {
+    "mIndex" : 30,
+    "mInstallmentDate" : [ 2023, 1, 16 ],
+    "mCapitalInstallment" : 12747.52,
+    "mInterestInstallment" : 1070.06,
+    "mRemainingDebt" : 239234.42
+  }, {
+    "mIndex" : 31,
+    "mInstallmentDate" : [ 2023, 2, 16 ],
+    "mCapitalInstallment" : 12801.65,
+    "mInterestInstallment" : 1015.93,
+    "mRemainingDebt" : 226432.77
+  }, {
+    "mIndex" : 32,
+    "mInstallmentDate" : [ 2023, 3, 16 ],
+    "mCapitalInstallment" : 12949.07,
+    "mInterestInstallment" : 868.51,
+    "mRemainingDebt" : 213483.70
+  }, {
+    "mIndex" : 33,
+    "mInstallmentDate" : [ 2023, 4, 16 ],
+    "mCapitalInstallment" : 12911.01,
+    "mInterestInstallment" : 906.57,
+    "mRemainingDebt" : 200572.70
+  }, {
+    "mIndex" : 34,
+    "mInstallmentDate" : [ 2023, 5, 16 ],
+    "mCapitalInstallment" : 12993.31,
+    "mInterestInstallment" : 824.27,
+    "mRemainingDebt" : 187579.39
+  }, {
+    "mIndex" : 35,
+    "mInstallmentDate" : [ 2023, 6, 16 ],
+    "mCapitalInstallment" : 13021.01,
+    "mInterestInstallment" : 796.57,
+    "mRemainingDebt" : 174558.39
+  }, {
+    "mIndex" : 36,
+    "mInstallmentDate" : [ 2023, 7, 16 ],
+    "mCapitalInstallment" : 13100.22,
+    "mInterestInstallment" : 717.36,
+    "mRemainingDebt" : 161458.17
+  }, {
+    "mIndex" : 37,
+    "mInstallmentDate" : [ 2023, 8, 16 ],
+    "mCapitalInstallment" : 13131.94,
+    "mInterestInstallment" : 685.64,
+    "mRemainingDebt" : 148326.23
+  }, {
+    "mIndex" : 38,
+    "mInstallmentDate" : [ 2023, 9, 16 ],
+    "mCapitalInstallment" : 13187.70,
+    "mInterestInstallment" : 629.88,
+    "mRemainingDebt" : 135138.54
+  }, {
+    "mIndex" : 39,
+    "mInstallmentDate" : [ 2023, 10, 16 ],
+    "mCapitalInstallment" : 13262.22,
+    "mInterestInstallment" : 555.36,
+    "mRemainingDebt" : 121876.32
+  }, {
+    "mIndex" : 40,
+    "mInstallmentDate" : [ 2023, 11, 16 ],
+    "mCapitalInstallment" : 13300.02,
+    "mInterestInstallment" : 517.56,
+    "mRemainingDebt" : 108576.30
+  }, {
+    "mIndex" : 41,
+    "mInstallmentDate" : [ 2023, 12, 16 ],
+    "mCapitalInstallment" : 13371.38,
+    "mInterestInstallment" : 446.20,
+    "mRemainingDebt" : 95204.93
+  }, {
+    "mIndex" : 42,
+    "mInstallmentDate" : [ 2024, 1, 16 ],
+    "mCapitalInstallment" : 13413.29,
+    "mInterestInstallment" : 404.29,
+    "mRemainingDebt" : 81791.64
+  }, {
+    "mIndex" : 43,
+    "mInstallmentDate" : [ 2024, 2, 16 ],
+    "mCapitalInstallment" : 13470.25,
+    "mInterestInstallment" : 347.33,
+    "mRemainingDebt" : 68321.40
+  }, {
+    "mIndex" : 44,
+    "mInstallmentDate" : [ 2024, 3, 16 ],
+    "mCapitalInstallment" : 13546.17,
+    "mInterestInstallment" : 271.41,
+    "mRemainingDebt" : 54775.23
+  }, {
+    "mIndex" : 45,
+    "mInstallmentDate" : [ 2024, 4, 16 ],
+    "mCapitalInstallment" : 13584.97,
+    "mInterestInstallment" : 232.61,
+    "mRemainingDebt" : 41190.26
+  }, {
+    "mIndex" : 46,
+    "mInstallmentDate" : [ 2024, 5, 16 ],
+    "mCapitalInstallment" : 13648.30,
+    "mInterestInstallment" : 169.28,
+    "mRemainingDebt" : 27541.97
+  }, {
+    "mIndex" : 47,
+    "mInstallmentDate" : [ 2024, 6, 16 ],
+    "mCapitalInstallment" : 13700.62,
+    "mInterestInstallment" : 116.96,
+    "mRemainingDebt" : 13841.35
+  }, {
+    "mIndex" : 48,
+    "mInstallmentDate" : [ 2024, 7, 16 ],
+    "mCapitalInstallment" : 13841.35,
+    "mInterestInstallment" : 56.88,
+    "mRemainingDebt" : 0.00
+  } ]
+}, {
+  "configuration" : {
+    "mCapital" : 10000.00,
+    "mInstallmentAmount" : 6,
+    "mInstallmentType" : "CONSTANT",
+    "mInterestRate" : 12.0,
+    "mWithdrawalDate" : [ 2019, 3, 18 ]
+  },
+  "installments" : [ {
+    "mIndex" : 1,
+    "mInstallmentDate" : [ 2019, 4, 18 ],
+    "mCapitalInstallment" : 1623.56,
+    "mInterestInstallment" : 101.92,
+    "mRemainingDebt" : 8376.44
+  }, {
+    "mIndex" : 2,
+    "mInstallmentDate" : [ 2019, 5, 18 ],
+    "mCapitalInstallment" : 1691.06,
+    "mInterestInstallment" : 34.42,
+    "mRemainingDebt" : 6685.37
+  }, {
+    "mIndex" : 3,
+    "mInstallmentDate" : [ 2019, 6, 18 ],
+    "mCapitalInstallment" : 1697.09,
+    "mInterestInstallment" : 28.39,
+    "mRemainingDebt" : 4988.28
+  }, {
+    "mIndex" : 4,
+    "mInstallmentDate" : [ 2019, 7, 18 ],
+    "mCapitalInstallment" : 1704.98,
+    "mInterestInstallment" : 20.50,
+    "mRemainingDebt" : 3283.30
+  }, {
+    "mIndex" : 5,
+    "mInstallmentDate" : [ 2019, 8, 18 ],
+    "mCapitalInstallment" : 1711.54,
+    "mInterestInstallment" : 13.94,
+    "mRemainingDebt" : 1571.75
+  }, {
+    "mIndex" : 6,
+    "mInstallmentDate" : [ 2019, 9, 18 ],
+    "mCapitalInstallment" : 1571.75,
+    "mInterestInstallment" : 6.67,
+    "mRemainingDebt" : 0.00
+  } ]
+}, {
+  "configuration" : {
+    "mCapital" : 25000.00,
+    "mInstallmentAmount" : 18,
+    "mInstallmentType" : "CONSTANT",
+    "mInterestRate" : 15.0,
+    "mWithdrawalDate" : [ 2018, 11, 30 ]
+  },
+  "installments" : [ {
+    "mIndex" : 1,
+    "mInstallmentDate" : [ 2018, 12, 30 ],
+    "mCapitalInstallment" : 1251.40,
+    "mInterestInstallment" : 308.22,
+    "mRemainingDebt" : 23748.60
+  }, {
+    "mIndex" : 2,
+    "mInstallmentDate" : [ 2019, 1, 30 ],
+    "mCapitalInstallment" : 1257.07,
+    "mInterestInstallment" : 302.55,
+    "mRemainingDebt" : 22491.53
+  }, {
+    "mIndex" : 3,
+    "mInstallmentDate" : [ 2019, 2, 28 ],
+    "mCapitalInstallment" : 1291.57,
+    "mInterestInstallment" : 268.05,
+    "mRemainingDebt" : 21199.96
+  }, {
+    "mIndex" : 4,
+    "mInstallmentDate" : [ 2019, 3, 30 ],
+    "mCapitalInstallment" : 1298.25,
+    "mInterestInstallment" : 261.37,
+    "mRemainingDebt" : 19901.71
+  }, {
+    "mIndex" : 5,
+    "mInstallmentDate" : [ 2019, 4, 30 ],
+    "mCapitalInstallment" : 1306.08,
+    "mInterestInstallment" : 253.54,
+    "mRemainingDebt" : 18595.63
+  }, {
+    "mIndex" : 6,
+    "mInstallmentDate" : [ 2019, 5, 30 ],
+    "mCapitalInstallment" : 1330.36,
+    "mInterestInstallment" : 229.26,
+    "mRemainingDebt" : 17265.27
+  }, {
+    "mIndex" : 7,
+    "mInstallmentDate" : [ 2019, 6, 30 ],
+    "mCapitalInstallment" : 1339.67,
+    "mInterestInstallment" : 219.95,
+    "mRemainingDebt" : 15925.60
+  }, {
+    "mIndex" : 8,
+    "mInstallmentDate" : [ 2019, 7, 30 ],
+    "mCapitalInstallment" : 1363.28,
+    "mInterestInstallment" : 196.34,
+    "mRemainingDebt" : 14562.32
+  }, {
+    "mIndex" : 9,
+    "mInstallmentDate" : [ 2019, 8, 30 ],
+    "mCapitalInstallment" : 1374.10,
+    "mInterestInstallment" : 185.52,
+    "mRemainingDebt" : 13188.22
+  }, {
+    "mIndex" : 10,
+    "mInstallmentDate" : [ 2019, 9, 30 ],
+    "mCapitalInstallment" : 1391.61,
+    "mInterestInstallment" : 168.01,
+    "mRemainingDebt" : 11796.61
+  }, {
+    "mIndex" : 11,
+    "mInstallmentDate" : [ 2019, 10, 30 ],
+    "mCapitalInstallment" : 1414.18,
+    "mInterestInstallment" : 145.44,
+    "mRemainingDebt" : 10382.43
+  }, {
+    "mIndex" : 12,
+    "mInstallmentDate" : [ 2019, 11, 30 ],
+    "mCapitalInstallment" : 1427.35,
+    "mInterestInstallment" : 132.27,
+    "mRemainingDebt" : 8955.08
+  }, {
+    "mIndex" : 13,
+    "mInstallmentDate" : [ 2019, 12, 30 ],
+    "mCapitalInstallment" : 1449.21,
+    "mInterestInstallment" : 110.41,
+    "mRemainingDebt" : 7505.87
+  }, {
+    "mIndex" : 14,
+    "mInstallmentDate" : [ 2020, 1, 30 ],
+    "mCapitalInstallment" : 1464.00,
+    "mInterestInstallment" : 95.62,
+    "mRemainingDebt" : 6041.87
+  }, {
+    "mIndex" : 15,
+    "mInstallmentDate" : [ 2020, 2, 29 ],
+    "mCapitalInstallment" : 1485.13,
+    "mInterestInstallment" : 74.49,
+    "mRemainingDebt" : 4556.74
+  }, {
+    "mIndex" : 16,
+    "mInstallmentDate" : [ 2020, 3, 30 ],
+    "mCapitalInstallment" : 1503.44,
+    "mInterestInstallment" : 56.18,
+    "mRemainingDebt" : 3053.31
+  }, {
+    "mIndex" : 17,
+    "mInstallmentDate" : [ 2020, 4, 30 ],
+    "mCapitalInstallment" : 1520.72,
+    "mInterestInstallment" : 38.90,
+    "mRemainingDebt" : 1532.59
+  }, {
+    "mIndex" : 18,
+    "mInstallmentDate" : [ 2020, 5, 30 ],
+    "mCapitalInstallment" : 1532.59,
+    "mInterestInstallment" : 18.89,
+    "mRemainingDebt" : 0.00
+  } ]
+} ]

@@ -42,6 +42,8 @@ public class Installment {
         mRemainingDebt = remainingDebt.setScale(2, RoundingMode.HALF_UP);
     }
 
+    private Installment() {}
+
 
     @Override
     public boolean equals(Object o) {
