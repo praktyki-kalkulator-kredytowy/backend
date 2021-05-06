@@ -1,6 +1,7 @@
 package com.praktyki.backend.web.error;
 
 import com.praktyki.backend.services.exception.EntityNotFoundException;
+import com.praktyki.backend.web.exception.ConfigurationNotFound;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,18 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
         ApiError error = ApiError.builder()
                 .setMessage("No string was found")
                 .setSuggestedAction("Please insert a string to a database")
+                .setStatus(HttpStatus.NOT_FOUND)
+                .build();
+
+        return createResponseEntity(error);
+
+    }
+
+    @ExceptionHandler(ConfigurationNotFound.class)
+    public ResponseEntity<Object> handleConfigurationNotFoundException(ConfigurationNotFound ex) {
+        ApiError error = ApiError.builder()
+                .setMessage("No configuration was found")
+                .setSuggestedAction("Please insert date for configuration before creating schedule")
                 .setStatus(HttpStatus.NOT_FOUND)
                 .build();
 
