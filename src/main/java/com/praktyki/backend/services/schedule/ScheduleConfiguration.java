@@ -39,7 +39,7 @@ public class ScheduleConfiguration {
 
     public ScheduleConfiguration(BigDecimal capital, InstallmentType installmentType, int installmentAmount,
                                  double interestRate, LocalDate withdrawalDate) {
-        mCapital = capital.setScale(2, RoundingMode.HALF_UP);
+        mCapital = capital;
         mInstallmentType = installmentType;
         mInstallmentAmount = installmentAmount;
         mInterestRate = interestRate;
@@ -53,7 +53,7 @@ public class ScheduleConfiguration {
         private ScheduleConfiguration mScheduleConfiguration = new ScheduleConfiguration();
 
         public Builder setCapital(BigDecimal capital) {
-            mScheduleConfiguration.mCapital = capital.setScale(2, RoundingMode.HALF_UP);
+            mScheduleConfiguration.mCapital = capital;
             return this;
         }
 

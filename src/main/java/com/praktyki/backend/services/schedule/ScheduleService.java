@@ -1,15 +1,18 @@
 package com.praktyki.backend.services.schedule;
 
+import com.praktyki.backend.MathUtils;
 import com.praktyki.backend.services.schedule.dates.DateSchedule;
 import com.praktyki.backend.services.schedule.dates.DateScheduleCalculator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.math.RoundingMode;
 import java.time.temporal.ChronoUnit;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ScheduleService {
@@ -33,7 +36,8 @@ public class ScheduleService {
                     dateSchedule.getDateFor(i + 1)
             ));
 
-            capitalInstallmentSum = capitalInstallmentSum.add( installmentList.get(i).getCapitalInstallment());
+            capitalInstallmentSum = capitalInstallmentSum.add(
+                    installmentList.get(i).getCapitalInstallment(), MathUtils.CONTEXT);
         }
 
         long timeDifference = ChronoUnit.DAYS.between(
@@ -42,23 +46,23 @@ public class ScheduleService {
                 );
 
         BigDecimal interestInstallment = BigDecimal.valueOf(scheduleConfiguration.getInterestRate())
-                .multiply(installmentList.get(installmentList.size()-1).getRemainingDebt())
-                .multiply(BigDecimal.valueOf(timeDifference))
+                .multiply(installmentList.get(installmentList.size()-1).getRemainingDebt(), MathUtils.CONTEXT)
+                .multiply(BigDecimal.valueOf(timeDifference), MathUtils.CONTEXT)
                 .divide(
                         BigDecimal.valueOf(
                                 dateSchedule.getDateFor(scheduleConfiguration.getInstallmentAmount()).lengthOfYear()),
-                        RoundingMode.HALF_UP
+                        MathUtils.CONTEXT
                 );
 
         installmentList.add(new Installment(
                         scheduleConfiguration.getInstallmentAmount(),
                         dateSchedule.getDateFor(scheduleConfiguration.getInstallmentAmount()),
-                        scheduleConfiguration.getCapital().subtract(capitalInstallmentSum),
+                        scheduleConfiguration.getCapital().subtract(capitalInstallmentSum, MathUtils.CONTEXT),
                         interestInstallment,
                         BigDecimal.ZERO
                         ));
 
-        return installmentList;
+        return installmentList.stream().peek(Installment::round).collect(Collectors.toList());
 
     }
 

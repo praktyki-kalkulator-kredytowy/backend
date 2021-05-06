@@ -37,12 +37,18 @@ public class Installment {
                        BigDecimal interestInstallment, BigDecimal remainingDebt) {
         mIndex = index;
         mInstallmentDate = installmentDate;
-        mCapitalInstallment = capitalInstallment.setScale(2, RoundingMode.HALF_UP);
-        mInterestInstallment = interestInstallment.setScale(2, RoundingMode.HALF_UP);
-        mRemainingDebt = remainingDebt.setScale(2, RoundingMode.HALF_UP);
+        mCapitalInstallment = capitalInstallment;
+        mInterestInstallment = interestInstallment;
+        mRemainingDebt = remainingDebt;
     }
 
     private Installment() {}
+
+    public void round() {
+        mCapitalInstallment = mCapitalInstallment.setScale(2, BigDecimal.ROUND_HALF_UP);
+        mInterestInstallment = mInterestInstallment.setScale(2, BigDecimal.ROUND_HALF_UP);
+        mRemainingDebt = mRemainingDebt.setScale(2, BigDecimal.ROUND_HALF_UP);
+    }
 
 
     @Override
