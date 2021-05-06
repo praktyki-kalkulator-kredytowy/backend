@@ -1,44 +1,31 @@
 package com.praktyki.backend.web.requestModels;
 
 import com.praktyki.backend.services.schedule.InstallmentType;
+import com.praktyki.backend.web.validation.ValidInstallmentType;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.time.LocalDate;
 import java.util.Date;
 
 public class ScheduleConfigurationModel {
 
-    private double capital;
-    private InstallmentType installmentType;
-    private int installmentAmount;
-    private double interestRate;
-    private Date withdrawalDate;
+    @Positive(message = "Capital must be positive")
+    public double capital;
 
-    public double getCapital() {
-        return capital;
-    }
+    @NotBlank
+    @ValidInstallmentType
+    public String installmentType;
 
-    public InstallmentType getInstallmentType() {
-        return installmentType;
-    }
+    @Min(value = 2, message = "There must be at least 2 installments")
+    public int installmentAmount;
 
-    public int getInstallmentAmount() {
-        return installmentAmount;
-    }
+    @Positive(message = "Interest rate must be positive")
+    public double interestRate;
 
-    public double getInterestRate() {
-        return interestRate;
-    }
-
-    public Date getWithdrawalDate() {
-        return withdrawalDate;
-    }
-
-    public ScheduleConfigurationModel(double capital, InstallmentType installmentType,
-                                      int installmentAmount, double interestRate, Date withdrawalDate) {
-        this.capital = capital;
-        this.installmentType = installmentType;
-        this.installmentAmount = installmentAmount;
-        this.interestRate = interestRate;
-        this.withdrawalDate = withdrawalDate;
-    }
+    @NotNull
+    public Date withdrawalDate;
+    
 }
