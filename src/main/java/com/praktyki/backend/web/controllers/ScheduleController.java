@@ -4,7 +4,7 @@ import com.praktyki.backend.services.schedule.Installment;
 import com.praktyki.backend.services.schedule.InstallmentType;
 import com.praktyki.backend.services.schedule.ScheduleConfiguration;
 import com.praktyki.backend.services.schedule.ScheduleService;
-import com.praktyki.backend.web.requestModels.ScheduleConfigurationModel;
+import com.praktyki.backend.web.request.models.ScheduleConfigurationModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;

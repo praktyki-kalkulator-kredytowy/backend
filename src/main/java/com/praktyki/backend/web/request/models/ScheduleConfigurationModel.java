@@ -1,4 +1,4 @@
-package com.praktyki.backend.web.requestModels;
+package com.praktyki.backend.web.request.models;
 
 import com.praktyki.backend.web.validation.ValidInstallmentType;
 
