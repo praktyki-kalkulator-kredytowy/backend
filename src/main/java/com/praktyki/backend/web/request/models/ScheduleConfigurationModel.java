@@ -13,7 +13,7 @@ public class ScheduleConfigurationModel {
     @Positive(message = "Capital must be positive")
     public double capital;
 
-    @NotBlank
+    @NotBlank(message = "Please provide an installation type")
     @ValidInstallmentType
     public String installmentType;
 
@@ -23,7 +23,7 @@ public class ScheduleConfigurationModel {
     @Positive(message = "Interest rate must be positive")
     public double interestRate;
 
-    @NotNull
+    @NotNull(message = "Please specify a withdrawal date")
     public Date withdrawalDate;
     
 }
