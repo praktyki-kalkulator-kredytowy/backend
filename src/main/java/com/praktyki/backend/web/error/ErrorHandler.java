@@ -15,6 +15,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintViolationException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.List;
@@ -72,6 +73,21 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
         List<ApiSubError> subErrors = ex.getBindingResult().getFieldErrors().stream().map( e -> new ApiSubError(
                 "Validation failed for: " + e.getRejectedValue() + " - " + e.getDefaultMessage(),
                 "Check the rejected value against the error"
+        )).collect(Collectors.toList());
+
+        return createResponseEntity(ApiError.builder()
+                .setSubErrors(subErrors)
+                .setMessage("Validation failed")
+                .setSuggestedAction("See validation errors for more info")
+                .setStatus(HttpStatus.BAD_REQUEST)
+                .build());
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<Object> handleConstraintViolationException(ConstraintViolationException ex) {
+        List<ApiSubError> subErrors = ex.getConstraintViolations().stream().map(v -> new ApiSubError(
+                "Validation failed for " + v.getInvalidValue() + " - " + v.getMessage(),
+                "Check rejected value against the error"
         )).collect(Collectors.toList());
 
         return createResponseEntity(ApiError.builder()
