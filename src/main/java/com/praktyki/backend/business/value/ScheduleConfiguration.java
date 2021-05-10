@@ -8,6 +8,11 @@ import java.util.Objects;
 
 public class ScheduleConfiguration {
 
+    public static final double MIN_INTEREST_RATE = 0.01;
+    public static final double MAX_INTEREST_RATE = 1;
+    public static final double MIN_COMMISSION_RATE = 0;
+    public static final double MAX_COMMISSION_RATE = 0.2;
+
     private BigDecimal mCapital;
     private InstallmentType mInstallmentType;
     private int mInstallmentAmount;
