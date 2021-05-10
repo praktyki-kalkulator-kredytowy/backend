@@ -47,7 +47,7 @@ public class ScheduleConfiguration {
         mWithdrawalDate = withdrawalDate;
     }
 
-    public ScheduleConfiguration() {}
+    private ScheduleConfiguration() {}
 
     public static class Builder {
 
@@ -78,7 +78,7 @@ public class ScheduleConfiguration {
             return this;
         }
 
-        private void validate() throws IllegalStateException{
+        public void validate() throws IllegalStateException {
 
             if(mScheduleConfiguration.mWithdrawalDate == null
             || mScheduleConfiguration.mInterestRate == 0.0
