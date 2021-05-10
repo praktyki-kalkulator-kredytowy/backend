@@ -1,0 +1,8 @@
+package com.praktyki.backend.business.services.schedule.dates;
+
+import java.time.LocalDate;
+
+@FunctionalInterface
+public interface DateSchedule {
+    LocalDate getDateFor(int installmentIndex);
+}

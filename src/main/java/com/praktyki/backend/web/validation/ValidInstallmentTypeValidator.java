@@ -1,6 +1,6 @@
 package com.praktyki.backend.web.validation;
 
-import com.praktyki.backend.services.schedule.InstallmentType;
+import com.praktyki.backend.business.entities.InstallmentType;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

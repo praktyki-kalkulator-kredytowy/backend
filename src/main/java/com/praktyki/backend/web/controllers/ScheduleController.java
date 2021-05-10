@@ -1,9 +1,9 @@
 package com.praktyki.backend.web.controllers;
 
-import com.praktyki.backend.services.schedule.Installment;
-import com.praktyki.backend.services.schedule.InstallmentType;
-import com.praktyki.backend.services.schedule.ScheduleConfiguration;
-import com.praktyki.backend.services.schedule.ScheduleService;
+import com.praktyki.backend.app.interactors.ScheduleInteractor;
+import com.praktyki.backend.business.entities.Installment;
+import com.praktyki.backend.business.entities.InstallmentType;
+import com.praktyki.backend.business.entities.ScheduleConfiguration;
 import com.praktyki.backend.web.request.models.ScheduleConfigurationModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,14 +21,11 @@ import java.util.List;
 public class ScheduleController {
 
     @Autowired
-    private ScheduleService mScheduleService;
-
-    private ScheduleConfiguration mScheduleConfiguration;
+    private ScheduleInteractor mScheduleInteractor;
 
     @PostMapping("/api/v1/schedule")
     public List<Installment> createScheduleConfiguration(@Valid @RequestBody ScheduleConfigurationModel scheduleConfigurationModel) {
-        mScheduleConfiguration = convertToScheduleConfiguration(scheduleConfigurationModel);
-        return mScheduleService.createSchedule(mScheduleConfiguration);
+        return mScheduleInteractor.calculateSchedule(convertToScheduleConfiguration(scheduleConfigurationModel));
     }
 
     public ScheduleConfiguration convertToScheduleConfiguration(ScheduleConfigurationModel scheduleConfigurationModel){

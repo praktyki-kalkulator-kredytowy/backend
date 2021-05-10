@@ -1,6 +1,6 @@
 package com.praktyki.backend.web.error;
 
-import com.praktyki.backend.services.exception.EntityNotFoundException;
+import com.praktyki.backend.app.data.exceptions.EntityNotFoundException;
 import com.praktyki.backend.web.exception.ConfigurationNotFound;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
