@@ -13,6 +13,8 @@ public class ScheduleConfiguration {
     private int mInstallmentAmount;
     private double mInterestRate;
     private LocalDate mWithdrawalDate;
+    private double mCommissionRate;
+    private double mInsuranceRate;
 
     public static Builder builder(){
         return new Builder();
@@ -38,13 +40,26 @@ public class ScheduleConfiguration {
         return mWithdrawalDate;
     }
 
-    public ScheduleConfiguration(BigDecimal capital, InstallmentType installmentType, int installmentAmount,
-                                 double interestRate, LocalDate withdrawalDate) {
+    public double getCommissionRate() {
+        return mCommissionRate;
+    }
+
+    public double getInsuranceRate() {
+        return mInsuranceRate;
+    }
+
+    public ScheduleConfiguration(
+            BigDecimal capital, InstallmentType installmentType,
+            int installmentAmount, double interestRate,
+            LocalDate withdrawalDate, double commissionRate, double insuranceRate
+    ) {
         mCapital = capital;
         mInstallmentType = installmentType;
         mInstallmentAmount = installmentAmount;
         mInterestRate = interestRate;
         mWithdrawalDate = withdrawalDate;
+        mCommissionRate = commissionRate;
+        mInsuranceRate = insuranceRate;
     }
 
     private ScheduleConfiguration() {}
@@ -78,13 +93,25 @@ public class ScheduleConfiguration {
             return this;
         }
 
+        public Builder setCommissionRate(double commissionRate) {
+            mScheduleConfiguration.mCommissionRate = commissionRate;
+            return this;
+        }
+
+        public Builder setInsuranceRate(double insuranceRate) {
+            mScheduleConfiguration.mInsuranceRate = insuranceRate;
+            return this;
+        }
+
         public void validate() throws IllegalStateException {
 
             if(mScheduleConfiguration.mWithdrawalDate == null
             || mScheduleConfiguration.mInterestRate == 0.0
             || mScheduleConfiguration.mInstallmentAmount == 0
             || mScheduleConfiguration.mInstallmentType == null
-            || mScheduleConfiguration.mCapital == null)
+            || mScheduleConfiguration.mCapital == null
+            || (mScheduleConfiguration.mCommissionRate >= 0 && mScheduleConfiguration.mCommissionRate <= 0.2)
+            || mScheduleConfiguration.mInsuranceRate >= 0)
                 throw new IllegalStateException("Not all parameters specified");
 
         }
@@ -104,7 +131,9 @@ public class ScheduleConfiguration {
         return getInstallmentAmount() == that.getInstallmentAmount()
                 && Double.compare(that.getInterestRate(), getInterestRate()) == 0
                 && getCapital().equals(that.getCapital()) && getInstallmentType() == that.getInstallmentType()
-                && getWithdrawalDate().equals(that.getWithdrawalDate());
+                && getWithdrawalDate().equals(that.getWithdrawalDate())
+                && Double.compare(that.getCommissionRate(), getCommissionRate()) == 0
+                && Double.compare(that.getInsuranceRate(), getInsuranceRate()) == 0;
     }
 
     @Override
@@ -114,7 +143,9 @@ public class ScheduleConfiguration {
                 getInstallmentType(),
                 getInstallmentAmount(),
                 getInterestRate(),
-                getWithdrawalDate());
+                getWithdrawalDate(),
+                getCommissionRate(),
+                getInsuranceRate());
     }
 
     @Override
@@ -125,6 +156,8 @@ public class ScheduleConfiguration {
                 ", InstallmentAmount = " + mInstallmentAmount +
                 ", InterestRate = " + mInterestRate +
                 ", WithdrawalDate = " + mWithdrawalDate +
+                ", CommissionRate = " + mCommissionRate +
+                ", InsuranceRate = " + mInsuranceRate +
                 " }";
     }
 }

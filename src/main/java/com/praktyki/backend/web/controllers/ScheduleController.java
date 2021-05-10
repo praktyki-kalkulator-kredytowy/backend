@@ -34,7 +34,9 @@ public class ScheduleController {
                 InstallmentType.valueOf(scheduleConfigurationModel.installmentType),
                 scheduleConfigurationModel.installmentAmount,
                 scheduleConfigurationModel.interestRate,
-                new Date(scheduleConfigurationModel.withdrawalDate.getTime()).toLocalDate()
+                new Date(scheduleConfigurationModel.withdrawalDate.getTime()).toLocalDate(),
+                scheduleConfigurationModel.commissionRate,
+                scheduleConfigurationModel.insuranceRate
         );
     }
 }

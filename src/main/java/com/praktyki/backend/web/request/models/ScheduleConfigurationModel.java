@@ -1,5 +1,6 @@
 package com.praktyki.backend.web.request.models;
 
+import com.praktyki.backend.web.validation.ValidCommissionRate;
 import com.praktyki.backend.web.validation.ValidInstallmentType;
 import com.praktyki.backend.web.validation.ValidInterestRate;
 
@@ -26,5 +27,10 @@ public class ScheduleConfigurationModel {
 
     @NotNull(message = "Please specify a withdrawal date")
     public Date withdrawalDate;
-    
+
+    @ValidCommissionRate
+    public double commissionRate;
+
+    @Positive(message = "Insurance rate must be positive")
+    public double insuranceRate;
 }
