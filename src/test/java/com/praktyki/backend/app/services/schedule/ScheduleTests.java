@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.praktyki.backend.business.entities.Installment;
+import com.praktyki.backend.business.value.Installment;
 import com.praktyki.backend.business.services.schedule.ScheduleService;
 import com.praktyki.backend.business.services.schedule.dates.MonthlyDateCalculator;
 import org.junit.jupiter.api.Assertions;

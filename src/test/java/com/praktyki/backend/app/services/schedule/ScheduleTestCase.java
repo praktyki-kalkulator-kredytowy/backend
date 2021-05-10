@@ -1,7 +1,7 @@
 package com.praktyki.backend.app.services.schedule;
 
-import com.praktyki.backend.business.entities.Installment;
-import com.praktyki.backend.business.entities.ScheduleConfiguration;
+import com.praktyki.backend.business.value.Installment;
+import com.praktyki.backend.business.value.ScheduleConfiguration;
 
 import java.util.List;
 

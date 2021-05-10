@@ -1,4 +1,6 @@
-package com.praktyki.backend.business.entities;
+package com.praktyki.backend.business.value;
+
+import com.praktyki.backend.business.entities.InstallmentType;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

@@ -1,13 +1,11 @@
 package com.praktyki.backend.business.services.schedule;
 
-import com.praktyki.backend.business.entities.Installment;
-import com.praktyki.backend.business.entities.ScheduleConfiguration;
+import com.praktyki.backend.business.value.Installment;
+import com.praktyki.backend.business.value.ScheduleConfiguration;
 import com.praktyki.backend.business.services.schedule.dates.DateSchedule;
 import com.praktyki.backend.business.services.schedule.dates.DateScheduleCalculator;
 import com.praktyki.backend.business.utils.InstallmentUtils;
 import com.praktyki.backend.business.utils.MathUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.LinkedList;

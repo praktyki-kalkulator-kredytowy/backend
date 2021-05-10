@@ -1,9 +1,9 @@
 package com.praktyki.backend.web.controllers;
 
 import com.praktyki.backend.app.interactors.ScheduleInteractor;
-import com.praktyki.backend.business.entities.Installment;
+import com.praktyki.backend.business.value.Installment;
 import com.praktyki.backend.business.entities.InstallmentType;
-import com.praktyki.backend.business.entities.ScheduleConfiguration;
+import com.praktyki.backend.business.value.ScheduleConfiguration;
 import com.praktyki.backend.web.request.models.ScheduleConfigurationModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
