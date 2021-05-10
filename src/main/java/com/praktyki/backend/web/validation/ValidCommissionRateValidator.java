@@ -5,7 +5,7 @@ import com.praktyki.backend.business.value.ScheduleConfiguration;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class ValidCommissionRateValidator implements ConstraintValidator<ValidInterestRate, Double> {
+public class ValidCommissionRateValidator implements ConstraintValidator<ValidCommissionRate, Double> {
 
     @Override
     public boolean isValid(Double value, ConstraintValidatorContext context) {
