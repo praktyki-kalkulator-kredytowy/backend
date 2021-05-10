@@ -109,7 +109,12 @@ public class ScheduleConfiguration {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCapital(), getInstallmentType(), getInstallmentAmount(), getInterestRate(), getWithdrawalDate());
+        return Objects.hash(
+                getCapital(),
+                getInstallmentType(),
+                getInstallmentAmount(),
+                getInterestRate(),
+                getWithdrawalDate());
     }
 
     @Override
