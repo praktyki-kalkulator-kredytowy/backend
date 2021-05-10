@@ -8,6 +8,7 @@ public class ScheduleInstallmentResult {
 
     private ScheduleConfiguration scheduleConfiguration;
     private List<Installment> installmentList;
+    private List<InsurancePremium> insurancePremiumList;
     private BigDecimal loanPaidOutAmount;
     private BigDecimal commissionAmount;
     private BigDecimal insuranceTotalAmount;
@@ -21,6 +22,10 @@ public class ScheduleInstallmentResult {
 
     public List<Installment> getInstallmentList() {
         return installmentList;
+    }
+
+    public List<InsurancePremium> getInsurancePremiumList() {
+        return insurancePremiumList;
     }
 
     public BigDecimal getLoanPaidOutAmount() {
@@ -41,11 +46,12 @@ public class ScheduleInstallmentResult {
 
     public ScheduleInstallmentResult(
             ScheduleConfiguration scheduleConfiguration, List<Installment> installmentList,
-            BigDecimal loanPaidOutAmount, BigDecimal commissionAmount,
+            List<InsurancePremium> insurancePremiumList, BigDecimal loanPaidOutAmount, BigDecimal commissionAmount,
             BigDecimal insuranceTotalAmount, BigDecimal loanTotalCost
     ) {
         this.scheduleConfiguration = scheduleConfiguration;
         this.installmentList = installmentList;
+        this.insurancePremiumList = insurancePremiumList;
         this.loanPaidOutAmount = loanPaidOutAmount;
         this.commissionAmount = commissionAmount;
         this.insuranceTotalAmount = insuranceTotalAmount;
@@ -65,6 +71,11 @@ public class ScheduleInstallmentResult {
 
         public Builder setInstallmentList(List<Installment> installmentList) {
             mScheduleInstallmentResult.installmentList = installmentList;
+            return this;
+        }
+
+        public Builder setInsurancePremiumList(List<InsurancePremium> insurancePremiumList) {
+            mScheduleInstallmentResult.insurancePremiumList = insurancePremiumList;
             return this;
         }
 
