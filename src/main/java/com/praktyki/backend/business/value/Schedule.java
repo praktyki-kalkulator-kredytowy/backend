@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 
-public class ScheduleInstallmentResult {
+public class Schedule {
 
     private ScheduleConfiguration scheduleConfiguration;
     private List<Installment> installmentList;
@@ -44,7 +44,7 @@ public class ScheduleInstallmentResult {
         return loanTotalCost;
     }
 
-    public ScheduleInstallmentResult(
+    public Schedule(
             ScheduleConfiguration scheduleConfiguration, List<Installment> installmentList,
             List<InsurancePremium> insurancePremiumList, BigDecimal loanPaidOutAmount, BigDecimal commissionAmount,
             BigDecimal insuranceTotalAmount, BigDecimal loanTotalCost
@@ -58,61 +58,61 @@ public class ScheduleInstallmentResult {
         this.loanTotalCost = loanTotalCost;
     }
     
-    private ScheduleInstallmentResult(){};
+    private Schedule(){};
 
     public static class Builder{
         
-        private ScheduleInstallmentResult mScheduleInstallmentResult = new ScheduleInstallmentResult();
+        private Schedule mSchedule = new Schedule();
 
         public Builder setScheduleConfiguration(ScheduleConfiguration scheduleConfiguration) {
-            mScheduleInstallmentResult.scheduleConfiguration = scheduleConfiguration;
+            mSchedule.scheduleConfiguration = scheduleConfiguration;
             return this;
         }
 
         public Builder setInstallmentList(List<Installment> installmentList) {
-            mScheduleInstallmentResult.installmentList = installmentList;
+            mSchedule.installmentList = installmentList;
             return this;
         }
 
         public Builder setInsurancePremiumList(List<InsurancePremium> insurancePremiumList) {
-            mScheduleInstallmentResult.insurancePremiumList = insurancePremiumList;
+            mSchedule.insurancePremiumList = insurancePremiumList;
             return this;
         }
 
         public Builder setLoanPaidOutAmount(BigDecimal loanPaidOutAmount) {
-            mScheduleInstallmentResult.loanPaidOutAmount = loanPaidOutAmount;
+            mSchedule.loanPaidOutAmount = loanPaidOutAmount;
             return this;
         }
 
         public Builder setCommissionAmount(BigDecimal commissionAmount) {
-            mScheduleInstallmentResult.commissionAmount = commissionAmount;
+            mSchedule.commissionAmount = commissionAmount;
             return this;
         }
 
         public Builder setInsuranceTotalAmount(BigDecimal insuranceTotalAmount) {
-            mScheduleInstallmentResult.insuranceTotalAmount = insuranceTotalAmount;
+            mSchedule.insuranceTotalAmount = insuranceTotalAmount;
             return this;
         }
 
         public Builder setLoanTotalCost(BigDecimal loanTotalCost) {
-            mScheduleInstallmentResult.loanTotalCost = loanTotalCost;
+            mSchedule.loanTotalCost = loanTotalCost;
             return this;
         }
 
         public void validate() throws IllegalStateException {
 
-            if(mScheduleInstallmentResult.scheduleConfiguration == null
-                    || mScheduleInstallmentResult.installmentList == null
-                    || mScheduleInstallmentResult.loanPaidOutAmount == null
-                    || mScheduleInstallmentResult.commissionAmount == null
-                    || mScheduleInstallmentResult.insuranceTotalAmount == null
-                    || mScheduleInstallmentResult.loanTotalCost == null)
+            if(mSchedule.scheduleConfiguration == null
+                    || mSchedule.installmentList == null
+                    || mSchedule.loanPaidOutAmount == null
+                    || mSchedule.commissionAmount == null
+                    || mSchedule.insuranceTotalAmount == null
+                    || mSchedule.loanTotalCost == null)
                 throw new IllegalStateException("Not all parameters specified");
 
         }
 
-        public ScheduleInstallmentResult build(){
-            return mScheduleInstallmentResult;
+        public Schedule build(){
+            return mSchedule;
         }
 
     }
@@ -121,7 +121,7 @@ public class ScheduleInstallmentResult {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ScheduleInstallmentResult that = (ScheduleInstallmentResult) o;
+        Schedule that = (Schedule) o;
         return getScheduleConfiguration().equals(that.getScheduleConfiguration())
                 && getInstallmentList().equals(that.getInstallmentList())
                 && getLoanPaidOutAmount().equals(that.getLoanPaidOutAmount())
