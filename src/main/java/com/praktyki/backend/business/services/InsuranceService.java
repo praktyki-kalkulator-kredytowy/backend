@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class InsuranceService {
+
     public List<InsurancePremium> calculateInsurancePremium(ScheduleConfiguration scheduleConfiguration) {
 
         return null;
@@ -18,4 +19,5 @@ public class InsuranceService {
                 .map(InsurancePremium::getInsurancePremiumValue)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
+
 }
