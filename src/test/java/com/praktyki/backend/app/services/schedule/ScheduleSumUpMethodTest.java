@@ -2,7 +2,7 @@ package com.praktyki.backend.app.services.schedule;
 
 import com.praktyki.backend.business.entities.InstallmentType;
 import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
-import com.praktyki.backend.business.services.schedule.ScheduleService;
+import com.praktyki.backend.business.services.InstallmentScheduleService;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -14,13 +14,13 @@ import java.math.RoundingMode;
 import java.time.LocalDate;
 
 @SpringBootTest(classes = {
-        ScheduleService.class,
+        InstallmentScheduleService.class,
         MonthlyDateScheduleCalculator.class
 })
 public class ScheduleSumUpMethodTest {
 
     @Autowired
-    private ScheduleService mScheduleService;
+    private InstallmentScheduleService mInstallmentScheduleService;
 
     @Test
     public void testInterestInstallmentSumUp() {
@@ -35,8 +35,8 @@ public class ScheduleSumUpMethodTest {
                 .build();
 
         Assertions.assertEquals(
-                mScheduleService.sumUpInterestInstallment(
-                        mScheduleService.createInstallmentSchedule(scheduleConfiguration)
+                mInstallmentScheduleService.sumUpInterestInstallment(
+                        mInstallmentScheduleService.createInstallmentSchedule(scheduleConfiguration)
                 ),
                 BigDecimal.valueOf(1101.58).setScale(2, RoundingMode.HALF_UP)
                 );
@@ -51,8 +51,8 @@ public class ScheduleSumUpMethodTest {
                 .build();
 
         Assertions.assertEquals(
-                mScheduleService.sumUpInterestInstallment(
-                        mScheduleService.createInstallmentSchedule(scheduleConfiguration2)
+                mInstallmentScheduleService.sumUpInterestInstallment(
+                        mInstallmentScheduleService.createInstallmentSchedule(scheduleConfiguration2)
                 ),
                 BigDecimal.valueOf(4616.33).setScale(2, RoundingMode.HALF_UP)
         );

@@ -6,7 +6,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.praktyki.backend.business.value.Installment;
-import com.praktyki.backend.business.services.schedule.ScheduleService;
+import com.praktyki.backend.business.services.InstallmentScheduleService;
 import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -18,13 +18,13 @@ import java.io.IOException;
 import java.util.List;
 
 @SpringBootTest(classes = {
-        ScheduleService.class,
+        InstallmentScheduleService.class,
         MonthlyDateScheduleCalculator.class
 })
 public class ScheduleTests {
 
     @Autowired
-    private ScheduleService mScheduleService;
+    private InstallmentScheduleService mInstallmentScheduleService;
 
     private ObjectMapper mObjectMapper = new ObjectMapper().registerModule(new JavaTimeModule())
             .setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
@@ -41,7 +41,7 @@ public class ScheduleTests {
     }
 
     public void testSingleTestCase(ScheduleTestCase testCase) {
-        List<Installment> installments = mScheduleService.createInstallmentSchedule(testCase.configuration);
+        List<Installment> installments = mInstallmentScheduleService.createInstallmentSchedule(testCase.configuration);
 
         Assertions.assertEquals(installments.size(), testCase.installments.size());
 

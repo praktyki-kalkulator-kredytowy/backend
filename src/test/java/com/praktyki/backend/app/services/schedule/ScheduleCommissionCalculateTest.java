@@ -2,7 +2,7 @@ package com.praktyki.backend.app.services.schedule;
 
 import com.praktyki.backend.business.entities.InstallmentType;
 import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
-import com.praktyki.backend.business.services.schedule.ScheduleService;
+import com.praktyki.backend.business.services.InstallmentScheduleService;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -14,13 +14,13 @@ import java.math.RoundingMode;
 import java.time.LocalDate;
 
 @SpringBootTest(classes = {
-        ScheduleService.class,
+        InstallmentScheduleService.class,
         MonthlyDateScheduleCalculator.class
 })
 public class ScheduleCommissionCalculateTest {
 
     @Autowired
-    private ScheduleService mScheduleService;
+    private InstallmentScheduleService mInstallmentScheduleService;
 
     @Test
     public void testCommissionCalculate() {
@@ -37,7 +37,7 @@ public class ScheduleCommissionCalculateTest {
                 .build();
 
         Assertions.assertEquals(
-                mScheduleService.calculateCommission(scheduleConfiguration),
+                mInstallmentScheduleService.calculateCommission(scheduleConfiguration),
                 BigDecimal.valueOf(4000).setScale(2, RoundingMode.HALF_UP)
         );
 
@@ -51,7 +51,7 @@ public class ScheduleCommissionCalculateTest {
                 .build();
 
         Assertions.assertEquals(
-                mScheduleService.calculateCommission(scheduleConfiguration2),
+                mInstallmentScheduleService.calculateCommission(scheduleConfiguration2),
                 BigDecimal.valueOf(50).setScale(2, RoundingMode.HALF_UP)
         );
 
@@ -65,7 +65,7 @@ public class ScheduleCommissionCalculateTest {
                 .build();
 
         Assertions.assertEquals(
-                mScheduleService.calculateCommission(scheduleConfiguration3),
+                mInstallmentScheduleService.calculateCommission(scheduleConfiguration3),
                 BigDecimal.valueOf(128000.1088).setScale(2, RoundingMode.HALF_UP)
         );
 

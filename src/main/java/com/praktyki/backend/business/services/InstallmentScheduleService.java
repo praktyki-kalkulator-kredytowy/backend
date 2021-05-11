@@ -1,4 +1,4 @@
-package com.praktyki.backend.business.services.schedule;
+package com.praktyki.backend.business.services;
 
 import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
 import com.praktyki.backend.business.value.Installment;
@@ -16,32 +16,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ScheduleService {
+public class InstallmentScheduleService {
 
     private final MonthlyDateScheduleCalculator mDateScheduleCalculator;
 
-    public ScheduleService(MonthlyDateScheduleCalculator dateScheduleCalculator) {
+    public InstallmentScheduleService(MonthlyDateScheduleCalculator dateScheduleCalculator) {
         mDateScheduleCalculator = dateScheduleCalculator;
-    }
-
-    public Schedule createSchedule(ScheduleConfiguration scheduleConfiguration) {
-
-        List<Installment> installments = createInstallmentSchedule(scheduleConfiguration);
-        List<InsurancePremium> insurancePremiumList = calculateInsurancePremium(scheduleConfiguration);
-        BigDecimal commission = calculateCommission(scheduleConfiguration);
-        BigDecimal sumUpInsurancePremium = sumUpInsurancePremium(insurancePremiumList);
-        BigDecimal sumUpInterestInstallment = sumUpInterestInstallment(installments);
-
-        return new Schedule(
-                scheduleConfiguration,
-                installments,
-                insurancePremiumList,
-                scheduleConfiguration.getCapital().subtract(commission),
-                commission,
-                sumUpInsurancePremium,
-                commission.add(sumUpInsurancePremium).add(sumUpInterestInstallment)
-        );
-
     }
 
     public List<Installment> createInstallmentSchedule(ScheduleConfiguration scheduleConfiguration) {
@@ -98,18 +78,6 @@ public class ScheduleService {
                 ? new BigDecimal("50").setScale(2, RoundingMode.HALF_UP)
                 : commission.setScale(2, RoundingMode.HALF_UP);
 
-    }
-
-    public List<InsurancePremium> calculateInsurancePremium(ScheduleConfiguration scheduleConfiguration) {
-
-        return null;
-
-    }
-
-    public BigDecimal sumUpInsurancePremium(List<InsurancePremium> insurancePremium) {
-        return insurancePremium.stream()
-                .map(InsurancePremium::getInsurancePremiumValue)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
 }
