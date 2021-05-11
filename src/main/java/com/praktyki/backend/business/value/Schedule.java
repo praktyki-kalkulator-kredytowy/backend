@@ -13,6 +13,7 @@ public class Schedule {
     private BigDecimal commissionAmount;
     private BigDecimal insuranceTotalAmount;
     private BigDecimal loanTotalCost;
+    private BigDecimal APRC;
     
     public static Builder builder(){ return new Builder(); }
 
@@ -44,10 +45,14 @@ public class Schedule {
         return loanTotalCost;
     }
 
+    public BigDecimal getAPRC() {
+        return APRC;
+    }
+
     public Schedule(
             ScheduleConfiguration scheduleConfiguration, List<Installment> installmentList,
             List<InsurancePremium> insurancePremiumList, BigDecimal loanPaidOutAmount, BigDecimal commissionAmount,
-            BigDecimal insuranceTotalAmount, BigDecimal loanTotalCost
+            BigDecimal insuranceTotalAmount, BigDecimal loanTotalCost, BigDecimal APRC
     ) {
         this.scheduleConfiguration = scheduleConfiguration;
         this.installmentList = installmentList;
@@ -56,6 +61,7 @@ public class Schedule {
         this.commissionAmount = commissionAmount;
         this.insuranceTotalAmount = insuranceTotalAmount;
         this.loanTotalCost = loanTotalCost;
+        this.APRC = APRC;
     }
     
     private Schedule(){};
@@ -99,6 +105,11 @@ public class Schedule {
             return this;
         }
 
+        public Builder setAPRC(BigDecimal APRC) {
+            mSchedule.APRC = APRC;
+            return this;
+        }
+
         public void validate() throws IllegalStateException {
 
             if(mSchedule.scheduleConfiguration == null
@@ -106,7 +117,8 @@ public class Schedule {
                     || mSchedule.loanPaidOutAmount == null
                     || mSchedule.commissionAmount == null
                     || mSchedule.insuranceTotalAmount == null
-                    || mSchedule.loanTotalCost == null)
+                    || mSchedule.loanTotalCost == null
+                    || mSchedule.APRC == null)
                 throw new IllegalStateException("Not all parameters specified");
 
         }
@@ -127,7 +139,8 @@ public class Schedule {
                 && getLoanPaidOutAmount().equals(that.getLoanPaidOutAmount())
                 && getCommissionAmount().equals(that.getCommissionAmount())
                 && getInsuranceTotalAmount().equals(that.getInsuranceTotalAmount())
-                && getLoanTotalCost().equals(that.getLoanTotalCost());
+                && getLoanTotalCost().equals(that.getLoanTotalCost())
+                && getAPRC().equals(that.getAPRC());
     }
 
     @Override
@@ -138,7 +151,8 @@ public class Schedule {
                 getLoanPaidOutAmount(),
                 getCommissionAmount(),
                 getInsuranceTotalAmount(),
-                getLoanTotalCost()
+                getLoanTotalCost(),
+                getAPRC()
         );
     }
 
@@ -151,6 +165,7 @@ public class Schedule {
                 ", commissionAmount = " + commissionAmount +
                 ", insuranceTotalAmount = " + insuranceTotalAmount +
                 ", loanTotalCost = " + loanTotalCost +
+                ", APRC = " + APRC +
                 " }";
     }
 }
