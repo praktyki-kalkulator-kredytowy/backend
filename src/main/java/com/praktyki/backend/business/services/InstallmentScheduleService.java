@@ -18,6 +18,8 @@ import java.util.stream.Collectors;
 
 public class InstallmentScheduleService {
 
+    public static final BigDecimal MIN_COMMISSION_MOUNT = new BigDecimal("50");
+
     private final MonthlyDateScheduleCalculator mDateScheduleCalculator;
 
     public InstallmentScheduleService(MonthlyDateScheduleCalculator dateScheduleCalculator) {
@@ -74,8 +76,8 @@ public class InstallmentScheduleService {
         BigDecimal commission = scheduleConfiguration.getCapital().multiply(
                 BigDecimal.valueOf(scheduleConfiguration.getCommissionRate()), MathUtils.CONTEXT);
 
-        return commission.compareTo(new BigDecimal("50")) < 0
-                ? new BigDecimal("50").setScale(2, RoundingMode.HALF_UP)
+        return commission.compareTo(MIN_COMMISSION_MOUNT) < 0
+                ? MIN_COMMISSION_MOUNT.setScale(2, RoundingMode.HALF_UP)
                 : commission.setScale(2, RoundingMode.HALF_UP);
 
     }
