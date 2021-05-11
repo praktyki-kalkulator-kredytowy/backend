@@ -13,7 +13,7 @@ public class Schedule {
     private BigDecimal commissionAmount;
     private BigDecimal insuranceTotalAmount;
     private BigDecimal loanTotalCost;
-    private BigDecimal APRC;
+    private double APRC;
     
     public static Builder builder(){ return new Builder(); }
 
@@ -45,14 +45,14 @@ public class Schedule {
         return loanTotalCost;
     }
 
-    public BigDecimal getAPRC() {
+    public double getAPRC() {
         return APRC;
     }
 
     public Schedule(
             ScheduleConfiguration scheduleConfiguration, List<Installment> installmentList,
             List<InsurancePremium> insurancePremiumList, BigDecimal loanPaidOutAmount, BigDecimal commissionAmount,
-            BigDecimal insuranceTotalAmount, BigDecimal loanTotalCost, BigDecimal APRC
+            BigDecimal insuranceTotalAmount, BigDecimal loanTotalCost, double APRC
     ) {
         this.scheduleConfiguration = scheduleConfiguration;
         this.installmentList = installmentList;
@@ -105,7 +105,7 @@ public class Schedule {
             return this;
         }
 
-        public Builder setAPRC(BigDecimal APRC) {
+        public Builder setAPRC(double APRC) {
             mSchedule.APRC = APRC;
             return this;
         }
@@ -118,7 +118,7 @@ public class Schedule {
                     || mSchedule.commissionAmount == null
                     || mSchedule.insuranceTotalAmount == null
                     || mSchedule.loanTotalCost == null
-                    || mSchedule.APRC == null)
+                    || mSchedule.APRC == 0.0)
                 throw new IllegalStateException("Not all parameters specified");
 
         }
@@ -140,7 +140,7 @@ public class Schedule {
                 && getCommissionAmount().equals(that.getCommissionAmount())
                 && getInsuranceTotalAmount().equals(that.getInsuranceTotalAmount())
                 && getLoanTotalCost().equals(that.getLoanTotalCost())
-                && getAPRC().equals(that.getAPRC());
+                && Double.compare(getAPRC(),that.getAPRC()) == 0;
     }
 
     @Override
