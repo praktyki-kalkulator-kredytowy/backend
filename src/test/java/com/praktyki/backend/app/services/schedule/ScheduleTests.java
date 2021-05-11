@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.praktyki.backend.business.value.Installment;
 import com.praktyki.backend.business.services.schedule.ScheduleService;
-import com.praktyki.backend.business.services.schedule.dates.MonthlyDateCalculator;
+import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import java.util.List;
 
 @SpringBootTest(classes = {
         ScheduleService.class,
-        MonthlyDateCalculator.class
+        MonthlyDateScheduleCalculator.class
 })
 public class ScheduleTests {
 

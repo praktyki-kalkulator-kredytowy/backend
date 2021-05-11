@@ -1,11 +1,12 @@
 package com.praktyki.backend.business.services.schedule;
 
+import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
 import com.praktyki.backend.business.value.Installment;
 import com.praktyki.backend.business.value.InsurancePremium;
 import com.praktyki.backend.business.value.Schedule;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
-import com.praktyki.backend.business.services.schedule.dates.DateSchedule;
-import com.praktyki.backend.business.services.schedule.dates.DateScheduleCalculator;
+import com.praktyki.backend.business.entities.dates.DateSchedule;
+import com.praktyki.backend.business.entities.dates.DateScheduleCalculator;
 import com.praktyki.backend.business.utils.InstallmentUtils;
 import com.praktyki.backend.business.utils.MathUtils;
 
@@ -17,9 +18,9 @@ import java.util.stream.Collectors;
 
 public class ScheduleService {
 
-    private final DateScheduleCalculator mDateScheduleCalculator;
+    private final MonthlyDateScheduleCalculator mDateScheduleCalculator;
 
-    public ScheduleService(DateScheduleCalculator dateScheduleCalculator) {
+    public ScheduleService(MonthlyDateScheduleCalculator dateScheduleCalculator) {
         mDateScheduleCalculator = dateScheduleCalculator;
     }
 
@@ -45,7 +46,7 @@ public class ScheduleService {
 
     public List<Installment> createInstallmentSchedule(ScheduleConfiguration scheduleConfiguration) {
 
-        DateSchedule dateSchedule = mDateScheduleCalculator.calculate(scheduleConfiguration.getWithdrawalDate());
+        DateSchedule dateSchedule = mDateScheduleCalculator.calculate(scheduleConfiguration.getWithdrawalDate()).shift(1);
 
         List<Installment> installmentList = new LinkedList<>();
 
