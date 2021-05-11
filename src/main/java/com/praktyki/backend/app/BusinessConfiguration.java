@@ -38,7 +38,7 @@ public class BusinessConfiguration {
 
     @Bean
     @Scope("singleton")
-    public InsuranceService getInsuranceService() {
-        return new InsuranceService();
+    public InsuranceService getInsuranceService(QuarterlyDateScheduleCalculator calculator) {
+        return new InsuranceService(calculator);
     }
 }

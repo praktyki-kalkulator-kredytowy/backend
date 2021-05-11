@@ -1,4 +1,4 @@
-package com.praktyki.backend.bussiness.entities.dates;
+package com.praktyki.backend.business.dates;
 
 import com.praktyki.backend.business.entities.dates.DateSchedule;
 import com.praktyki.backend.business.entities.dates.QuarterlyDateScheduleCalculator;

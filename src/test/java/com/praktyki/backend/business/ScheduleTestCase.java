@@ -1,4 +1,4 @@
-package com.praktyki.backend.app.services.schedule;
+package com.praktyki.backend.business;
 
 import com.praktyki.backend.business.value.Installment;
 import com.praktyki.backend.business.value.ScheduleConfiguration;

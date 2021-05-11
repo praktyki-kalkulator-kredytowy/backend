@@ -1,4 +1,4 @@
-package com.praktyki.backend.app.services.schedule;
+package com.praktyki.backend.business;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

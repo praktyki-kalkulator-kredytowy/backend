@@ -1,4 +1,4 @@
-package com.praktyki.backend.app.services.schedule;
+package com.praktyki.backend.business;
 
 import com.praktyki.backend.business.entities.InstallmentType;
 import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
