@@ -1,23 +1,48 @@
 package com.praktyki.backend.app.interactors;
 
+import com.praktyki.backend.business.services.InsuranceService;
 import com.praktyki.backend.business.value.Installment;
+import com.praktyki.backend.business.value.InsurancePremium;
 import com.praktyki.backend.business.value.Schedule;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
-import com.praktyki.backend.business.services.schedule.ScheduleService;
+import com.praktyki.backend.business.services.InstallmentScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
 public class ScheduleInteractor {
 
     @Autowired
-    private ScheduleService mScheduleService;
+    private InstallmentScheduleService mInstallmentScheduleService;
+
+    @Autowired
+    private InsuranceService mInsuranceService;
 
     public Schedule calculateSchedule(ScheduleConfiguration configuration) {
-        return mScheduleService.createSchedule(configuration);
+        return createSchedule(configuration);
     }
 
+    public Schedule createSchedule(ScheduleConfiguration scheduleConfiguration) {
+
+        List<Installment> installments = mInstallmentScheduleService.createInstallmentSchedule(scheduleConfiguration);
+        List<InsurancePremium> insurancePremiumList = mInsuranceService.calculateInsurancePremium(scheduleConfiguration);
+        BigDecimal commission = mInstallmentScheduleService.calculateCommission(scheduleConfiguration);
+        BigDecimal sumUpInsurancePremium = mInsuranceService.sumUpInsurancePremium(insurancePremiumList);
+        BigDecimal sumUpInterestInstallment = mInstallmentScheduleService.sumUpInterestInstallment(installments);
+
+        return new Schedule(
+                scheduleConfiguration,
+                installments,
+                insurancePremiumList,
+                scheduleConfiguration.getCapital().subtract(commission),
+                commission,
+                sumUpInsurancePremium,
+                commission.add(sumUpInsurancePremium).add(sumUpInterestInstallment)
+        );
+
+    }
 
 }

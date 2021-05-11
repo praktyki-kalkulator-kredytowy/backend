@@ -1,9 +1,9 @@
 package com.praktyki.backend.app;
 
 import com.praktyki.backend.business.entities.dates.QuarterlyDateScheduleCalculator;
+import com.praktyki.backend.business.services.InsuranceService;
 import com.praktyki.backend.business.services.StringService;
-import com.praktyki.backend.business.services.schedule.ScheduleService;
-import com.praktyki.backend.business.entities.dates.DateScheduleCalculator;
+import com.praktyki.backend.business.services.InstallmentScheduleService;
 import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,13 +26,19 @@ public class BusinessConfiguration {
 
     @Bean
     @Scope("singleton")
-    public ScheduleService getScheduleService(MonthlyDateScheduleCalculator calculator) {
-        return new ScheduleService(calculator);
+    public InstallmentScheduleService getScheduleService(MonthlyDateScheduleCalculator calculator) {
+        return new InstallmentScheduleService(calculator);
     }
 
     @Bean
     @Scope("singleton")
     public StringService getStringService() {
         return new StringService();
+    }
+
+    @Bean
+    @Scope("singleton")
+    public InsuranceService getInsuranceService() {
+        return new InsuranceService();
     }
 }
