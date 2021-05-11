@@ -1,8 +1,8 @@
 package com.praktyki.backend.app.services.schedule;
 
 import com.praktyki.backend.business.entities.InstallmentType;
+import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
 import com.praktyki.backend.business.services.schedule.ScheduleService;
-import com.praktyki.backend.business.services.schedule.dates.MonthlyDateCalculator;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ import java.time.LocalDate;
 
 @SpringBootTest(classes = {
         ScheduleService.class,
-        MonthlyDateCalculator.class
+        MonthlyDateScheduleCalculator.class
 })
 public class ScheduleSumUpMethodTest {
 
