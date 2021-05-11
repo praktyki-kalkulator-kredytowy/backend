@@ -5,10 +5,7 @@ import com.praktyki.backend.web.validation.ValidInstallmentType;
 import com.praktyki.backend.web.validation.ValidInsuranceRate;
 import com.praktyki.backend.web.validation.ValidInterestRate;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
+import javax.validation.constraints.*;
 import java.util.Date;
 
 public class ScheduleConfigurationModel {
@@ -20,7 +17,8 @@ public class ScheduleConfigurationModel {
     @ValidInstallmentType
     public String installmentType;
 
-    @Min(value = 2, message = "There must be at least 2 installments")
+    @Min(value = 2, message = "Minimum amount of installments not reached")
+    @Max(value = 360, message = "The maximum installment exceeded")
     public int installmentAmount;
 
     @ValidInterestRate
