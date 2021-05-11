@@ -15,7 +15,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Collections;
 import java.util.List;
 
 @SpringBootTest( classes = {
@@ -34,7 +33,7 @@ public class APCRServiceTests {
     private InsuranceService mInsuranceService;
 
     @Autowired
-    private APRCService mAPCRService;
+    private APRCService mAPRCService;
 
     @Test
     public void test() {
@@ -53,7 +52,7 @@ public class APCRServiceTests {
         List<InsurancePremium> insurancePremiums = mInsuranceService.calculateInsurancePremium(conf, installments);
 
         // TODO: Assert
-        System.out.println(mAPCRService.calculateAPRC(
+        System.out.println(mAPRCService.calculateAPRC(
                 conf,
                 installments,
                 insurancePremiums,
