@@ -47,7 +47,7 @@ public class InsuranceServiceTests {
                 .setWithdrawalDate(LocalDate.of(2021, 4, 11))
                 .build();
 
-        List<Installment> installments = mInstallmentScheduleService.createInstallmentSchedule(conf);
+            List<Installment> installments = mInstallmentScheduleService.createInstallmentSchedule(conf);
 
         List<InsurancePremium> expected = Arrays.asList(
                 new InsurancePremium(1, LocalDate.of(2021, 5, 11), BigDecimal.valueOf(250)

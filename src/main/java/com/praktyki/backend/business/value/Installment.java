@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Installment {
+public class Installment implements Payment {
 
     private int mIndex;
     private LocalDate mInstallmentDate;
@@ -49,6 +49,15 @@ public class Installment {
         mRemainingDebt = mRemainingDebt.setScale(2, BigDecimal.ROUND_HALF_UP);
     }
 
+    @Override
+    public LocalDate getDate() {
+        return getInstallmentDate();
+    }
+
+    @Override
+    public BigDecimal getAmount() {
+        return getCapitalInstallment().add(getInterestInstallment());
+    }
 
     @Override
     public boolean equals(Object o) {

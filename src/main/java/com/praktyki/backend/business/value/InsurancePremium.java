@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class InsurancePremium {
+public class InsurancePremium implements Payment {
 
     private int mIndex;
     private LocalDate mInsurancePremiumDate;
@@ -26,6 +26,16 @@ public class InsurancePremium {
         mIndex = index;
         mInsurancePremiumDate = insurancePremiumDate;
         mInsurancePremiumValue = insurancePremiumValue;
+    }
+
+    @Override
+    public LocalDate getDate() {
+        return getInsurancePremiumDate();
+    }
+
+    @Override
+    public BigDecimal getAmount() {
+        return getInsurancePremiumValue();
     }
 
     @Override
