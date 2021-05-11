@@ -40,7 +40,9 @@ public class ScheduleInteractor {
                 scheduleConfiguration.getCapital().subtract(commission),
                 commission,
                 sumUpInsurancePremium,
-                commission.add(sumUpInsurancePremium).add(sumUpInterestInstallment)
+                commission.add(sumUpInsurancePremium).add(sumUpInterestInstallment),
+                //TODO:
+                0
         );
 
     }
