@@ -1,6 +1,8 @@
 package com.praktyki.backend.business.services.schedule;
 
 import com.praktyki.backend.business.value.Installment;
+import com.praktyki.backend.business.value.InsurancePremium;
+import com.praktyki.backend.business.value.Schedule;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
 import com.praktyki.backend.business.services.schedule.dates.DateSchedule;
 import com.praktyki.backend.business.services.schedule.dates.DateScheduleCalculator;
@@ -21,7 +23,27 @@ public class ScheduleService {
         mDateScheduleCalculator = dateScheduleCalculator;
     }
 
-    public List<Installment> createSchedule(ScheduleConfiguration scheduleConfiguration) {
+    public Schedule createSchedule(ScheduleConfiguration scheduleConfiguration) {
+
+        List<Installment> installments = createInstallmentSchedule(scheduleConfiguration);
+        List<InsurancePremium> insurancePremiumList = calculateInsurancePremium(scheduleConfiguration);
+        BigDecimal commission = calculateCommission(scheduleConfiguration);
+        BigDecimal sumUpInsurancePremium = sumUpInsurancePremium(insurancePremiumList);
+        BigDecimal sumUpInterestInstallment = sumUpInterestInstallment(installments);
+
+        return new Schedule(
+                scheduleConfiguration,
+                installments,
+                insurancePremiumList,
+                scheduleConfiguration.getCapital().subtract(commission),
+                commission,
+                sumUpInsurancePremium,
+                commission.add(sumUpInsurancePremium).add(sumUpInterestInstallment)
+        );
+
+    }
+
+    public List<Installment> createInstallmentSchedule(ScheduleConfiguration scheduleConfiguration) {
 
         DateSchedule dateSchedule = mDateScheduleCalculator.calculate(scheduleConfiguration.getWithdrawalDate());
 
@@ -60,6 +82,12 @@ public class ScheduleService {
 
     }
 
+    public BigDecimal sumUpInterestInstallment(List<Installment> installments) {
+        return installments.stream()
+                .map(Installment::getInterestInstallment)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
     public BigDecimal calculateCommission(ScheduleConfiguration scheduleConfiguration) {
 
         BigDecimal commission = scheduleConfiguration.getCapital().multiply(
@@ -69,6 +97,18 @@ public class ScheduleService {
                 ? new BigDecimal("50").setScale(2, RoundingMode.HALF_UP)
                 : commission.setScale(2, RoundingMode.HALF_UP);
 
+    }
+
+    public List<InsurancePremium> calculateInsurancePremium(ScheduleConfiguration scheduleConfiguration) {
+
+        return null;
+
+    }
+
+    public BigDecimal sumUpInsurancePremium(List<InsurancePremium> insurancePremium) {
+        return insurancePremium.stream()
+                .map(InsurancePremium::getInsurancePremiumValue)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
 }

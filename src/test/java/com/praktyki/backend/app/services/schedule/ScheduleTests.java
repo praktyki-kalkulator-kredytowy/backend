@@ -41,7 +41,7 @@ public class ScheduleTests {
     }
 
     public void testSingleTestCase(ScheduleTestCase testCase) {
-        List<Installment> installments = mScheduleService.createSchedule(testCase.configuration);
+        List<Installment> installments = mScheduleService.createInstallmentSchedule(testCase.configuration);
 
         Assertions.assertEquals(installments.size(), testCase.installments.size());
 

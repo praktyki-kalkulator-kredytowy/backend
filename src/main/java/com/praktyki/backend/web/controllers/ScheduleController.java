@@ -3,6 +3,7 @@ package com.praktyki.backend.web.controllers;
 import com.praktyki.backend.app.interactors.ScheduleInteractor;
 import com.praktyki.backend.business.value.Installment;
 import com.praktyki.backend.business.entities.InstallmentType;
+import com.praktyki.backend.business.value.Schedule;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
 import com.praktyki.backend.web.request.models.ScheduleConfigurationModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class ScheduleController {
     private ScheduleInteractor mScheduleInteractor;
 
     @PostMapping("/api/v1/schedule")
-    public List<Installment> createScheduleConfiguration(@Valid @RequestBody ScheduleConfigurationModel scheduleConfigurationModel) {
+    public Schedule createScheduleConfiguration(@Valid @RequestBody ScheduleConfigurationModel scheduleConfigurationModel) {
         return mScheduleInteractor.calculateSchedule(convertToScheduleConfiguration(scheduleConfigurationModel));
     }
 
