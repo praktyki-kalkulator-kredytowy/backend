@@ -115,8 +115,8 @@ public class ScheduleConfiguration {
             || mScheduleConfiguration.mInstallmentAmount == 0
             || mScheduleConfiguration.mInstallmentType == null
             || mScheduleConfiguration.mCapital == null
-            || (mScheduleConfiguration.mCommissionRate >= 0 && mScheduleConfiguration.mCommissionRate <= 0.2)
-            || mScheduleConfiguration.mInsuranceRate >= 0)
+            || (mScheduleConfiguration.mCommissionRate < 0 || mScheduleConfiguration.mCommissionRate > 0.2)
+            || mScheduleConfiguration.mInsuranceRate < 0)
                 throw new IllegalStateException("Not all parameters specified");
 
         }
