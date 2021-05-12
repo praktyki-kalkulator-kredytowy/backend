@@ -9,6 +9,8 @@ import com.praktyki.backend.business.entities.dates.DateSchedule;
 import com.praktyki.backend.business.entities.dates.DateScheduleCalculator;
 import com.praktyki.backend.business.utils.InstallmentUtils;
 import com.praktyki.backend.business.utils.MathUtils;
+import com.praktyki.backend.configuration.Configuration;
+import com.praktyki.backend.configuration.ConfigurationStore;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -18,12 +20,18 @@ import java.util.stream.Collectors;
 
 public class InstallmentScheduleService {
 
-    public static final BigDecimal MIN_COMMISSION_MOUNT = new BigDecimal("50");
+    public static final String MIN_COMMISSION_AMOUNT = "MIN_COMMISSION_AMOUNT";
 
     private final MonthlyDateScheduleCalculator mDateScheduleCalculator;
 
-    public InstallmentScheduleService(MonthlyDateScheduleCalculator dateScheduleCalculator) {
+    private Configuration mConfiguration;
+
+    public InstallmentScheduleService(MonthlyDateScheduleCalculator dateScheduleCalculator,
+                                      ConfigurationStore configurationStore) {
+
         mDateScheduleCalculator = dateScheduleCalculator;
+        mConfiguration = configurationStore.getConfiguration(this.getClass());
+        mConfiguration.require(MIN_COMMISSION_AMOUNT, "50", "Minimal amount for commission");
     }
 
     public List<Installment> createInstallmentSchedule(ScheduleConfiguration scheduleConfiguration) {
@@ -73,11 +81,13 @@ public class InstallmentScheduleService {
 
     public BigDecimal calculateCommission(ScheduleConfiguration scheduleConfiguration) {
 
+        BigDecimal minimalCommissionAmount = new BigDecimal(mConfiguration.get(MIN_COMMISSION_AMOUNT));
+
         BigDecimal commission = scheduleConfiguration.getCapital().multiply(
                 BigDecimal.valueOf(scheduleConfiguration.getCommissionRate()), MathUtils.CONTEXT);
 
-        return commission.compareTo(MIN_COMMISSION_MOUNT) < 0
-                ? MIN_COMMISSION_MOUNT.setScale(2, RoundingMode.HALF_UP)
+        return commission.compareTo(minimalCommissionAmount) < 0
+                ? minimalCommissionAmount.setScale(2, RoundingMode.HALF_UP)
                 : commission.setScale(2, RoundingMode.HALF_UP);
 
     }

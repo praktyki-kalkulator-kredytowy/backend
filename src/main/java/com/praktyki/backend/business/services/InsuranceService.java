@@ -1,11 +1,15 @@
 package com.praktyki.backend.business.services;
 
+import com.praktyki.backend.business.entities.dates.CustomDateScheduleCalculator;
 import com.praktyki.backend.business.entities.dates.DateSchedule;
 import com.praktyki.backend.business.entities.dates.QuarterlyDateScheduleCalculator;
 import com.praktyki.backend.business.utils.MathUtils;
 import com.praktyki.backend.business.value.Installment;
 import com.praktyki.backend.business.value.InsurancePremium;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
+import com.praktyki.backend.configuration.Configuration;
+import com.praktyki.backend.configuration.ConfigurationGroup;
+import com.praktyki.backend.configuration.ConfigurationStore;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
@@ -16,19 +20,29 @@ import java.util.stream.Collectors;
 
 public class InsuranceService {
 
-    public static final BigDecimal MIN_PREMIUM_VALUE = BigDecimal.valueOf(10).setScale(2, RoundingMode.HALF_UP);
+    public static final String MIN_PREMIUM_VALUE = "MIN_PREMIUM_VALUE";
+    public static final String MONTH_FRAME = "MONTH_FRAME";
 
-    private QuarterlyDateScheduleCalculator mDateScheduleCalculator;
+    private CustomDateScheduleCalculator mDateScheduleCalculator;
 
-    public InsuranceService(QuarterlyDateScheduleCalculator dateScheduleCalculator) {
+    private Configuration mConfiguration;
+
+    public InsuranceService(CustomDateScheduleCalculator dateScheduleCalculator, ConfigurationStore configurationStore) {
         mDateScheduleCalculator = dateScheduleCalculator;
+        mConfiguration = configurationStore.getConfiguration(this.getClass());
+        mConfiguration.require(MIN_PREMIUM_VALUE, "10", "Minimal value for insurance premium");
+        mConfiguration.require(MONTH_FRAME, "3", "In how many months we calculate insurance premium");
+        mDateScheduleCalculator.setMonthFrame(Long.parseLong(mConfiguration.get(MONTH_FRAME)));
     }
 
     public List<InsurancePremium> calculateInsurancePremium(
             ScheduleConfiguration scheduleConfiguration,
             List<Installment> installments) {
 
+        BigDecimal minPremiumValue = new BigDecimal(mConfiguration.get(MIN_PREMIUM_VALUE));
+
         DateSchedule schedule = mDateScheduleCalculator.calculate(installments.get(0).getInstallmentDate());
+
 
         int premiumAmount = ((int) ChronoUnit.MONTHS.between(
                 installments.get(0).getInstallmentDate(),
@@ -40,7 +54,7 @@ public class InsuranceService {
                 .getCapital()
                 .multiply(BigDecimal.valueOf(scheduleConfiguration.getInsuranceRate()), MathUtils.CONTEXT);
 
-        BigDecimal premiumValue = MIN_PREMIUM_VALUE.max(
+        BigDecimal premiumValue = minPremiumValue.max(
                 totalInsurance.divide(BigDecimal.valueOf(premiumAmount), 2, RoundingMode.HALF_UP)
         );
 
@@ -52,7 +66,7 @@ public class InsuranceService {
         premiums.add(new InsurancePremium(
                 premiums.size() + 1,
                 schedule.getDateFor(premiums.size() + 1),
-                MIN_PREMIUM_VALUE.max(totalInsurance.subtract(premiums.stream()
+                minPremiumValue.max(totalInsurance.subtract(premiums.stream()
                         .map(InsurancePremium::getInsurancePremiumValue)
                         .reduce(BigDecimal.ZERO, BigDecimal::add)))
         ));
