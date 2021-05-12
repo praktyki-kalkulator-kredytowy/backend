@@ -21,17 +21,25 @@ import java.util.stream.Collectors;
 public class InstallmentScheduleService {
 
     public static final String MIN_COMMISSION_AMOUNT = "MIN_COMMISSION_AMOUNT";
+    public static final double MIN_INTEREST_RATE = 0.01;
+    public static final String MAX_INTEREST_RATE = "MAX_INTEREST_RATE";
+    public static final double MIN_COMMISSION_RATE = 0;
+    public static final String  MAX_COMMISSION_RATE = "MAX_COMMISSION_RATE";
+
+    public static double maxCommissionRate;
+    public static double maxInterestRate;
 
     private final MonthlyDateScheduleCalculator mDateScheduleCalculator;
-
     private Configuration mConfiguration;
 
-    public InstallmentScheduleService(MonthlyDateScheduleCalculator dateScheduleCalculator,
-                                      ConfigurationStore configurationStore) {
-
+    public InstallmentScheduleService(MonthlyDateScheduleCalculator dateScheduleCalculator, ConfigurationStore configurationStore) {
         mDateScheduleCalculator = dateScheduleCalculator;
         mConfiguration = configurationStore.getConfiguration(this.getClass());
         mConfiguration.require(MIN_COMMISSION_AMOUNT, "50", "Minimal amount for commission");
+        mConfiguration.require(MAX_COMMISSION_RATE, "0.2", "Max percent for commission rate");
+        mConfiguration.require(MAX_INTEREST_RATE,"1", "Max percent for interest rate");
+        maxCommissionRate = Double.parseDouble(mConfiguration.get(MAX_COMMISSION_RATE));
+        maxInterestRate = Double.parseDouble(mConfiguration.get(MAX_INTEREST_RATE));
     }
 
     public List<Installment> createInstallmentSchedule(ScheduleConfiguration scheduleConfiguration) {
