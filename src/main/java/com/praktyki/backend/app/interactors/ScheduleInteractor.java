@@ -1,5 +1,6 @@
 package com.praktyki.backend.app.interactors;
 
+import com.praktyki.backend.business.services.APRCService;
 import com.praktyki.backend.business.services.InsuranceService;
 import com.praktyki.backend.business.value.Installment;
 import com.praktyki.backend.business.value.InsurancePremium;
@@ -21,6 +22,9 @@ public class ScheduleInteractor {
     @Autowired
     private InsuranceService mInsuranceService;
 
+    @Autowired
+    private APRCService mAPRCService;
+
     public Schedule calculateSchedule(ScheduleConfiguration configuration) {
         return createSchedule(configuration);
     }
@@ -41,8 +45,8 @@ public class ScheduleInteractor {
                 commission,
                 sumUpInsurancePremium,
                 commission.add(sumUpInsurancePremium).add(sumUpInterestInstallment),
-                //TODO:
-                0
+                mAPRCService.calculateAPRC(scheduleConfiguration, installments,
+                        insurancePremiumList, commission)
         );
 
     }
