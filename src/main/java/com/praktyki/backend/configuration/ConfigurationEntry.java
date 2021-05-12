@@ -5,7 +5,4 @@ public interface ConfigurationEntry {
     String getKey();
 
     String getValue();
-
-    String defaultValue();
-
 }
