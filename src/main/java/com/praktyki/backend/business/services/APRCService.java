@@ -13,7 +13,7 @@ import java.util.function.UnaryOperator;
 public class APRCService {
 
     public static final BigDecimal RANGE_START = BigDecimal.ZERO;
-    public static final BigDecimal RANGE_END = BigDecimal.valueOf(100);
+    public static final BigDecimal RANGE_END = BigDecimal.valueOf(1000);
     public static final BigDecimal PRECISION = BigDecimal.valueOf(0.0000001);
 
     public BigDecimal calculateAPRC(
