@@ -16,6 +16,6 @@ public interface Configuration {
 
     Configuration requireGroup(String name, String description);
 
-    Configuration require(String name, String key);
+    Configuration require(String key, String defaultValue, String description);
 
 }
