@@ -4,6 +4,8 @@ public interface ConfigurationGroupKey {
 
     String getKey();
 
-    String getDescription();
+    String getDisplayName();
+
+    default String getDescription() { return getDisplayName(); };
 
 }

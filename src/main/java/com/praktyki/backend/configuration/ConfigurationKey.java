@@ -6,9 +6,11 @@ public interface ConfigurationKey {
 
     String getName();
 
+    String getDisplayName();
+
     String getDefaultValue();
 
-    String getDescription();
+    default String getDescription() { return getDisplayName(); };
 
     void validate(String value) throws ConfigurationValueValidationException;
 
