@@ -2,6 +2,7 @@ package com.praktyki.backend.app;
 
 import com.praktyki.backend.business.entities.dates.CustomDateScheduleCalculator;
 import com.praktyki.backend.business.entities.dates.QuarterlyDateScheduleCalculator;
+import com.praktyki.backend.business.services.APRCService;
 import com.praktyki.backend.business.services.InsuranceService;
 import com.praktyki.backend.business.services.StringService;
 import com.praktyki.backend.business.services.InstallmentScheduleService;
@@ -51,5 +52,11 @@ public class BusinessConfiguration {
             CustomDateScheduleCalculator calculator,
             com.praktyki.backend.configuration.Configuration configuration) {
         return new InsuranceService(calculator, configuration);
+    }
+
+    @Bean
+    @Scope("singleton")
+    public APRCService getAPRCService() {
+        return new APRCService();
     }
 }
