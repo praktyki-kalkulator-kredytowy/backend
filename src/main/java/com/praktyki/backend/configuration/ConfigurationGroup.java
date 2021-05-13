@@ -1,17 +1,17 @@
 package com.praktyki.backend.configuration;
 
+import com.praktyki.backend.configuration.exceptions.ConfigurationValueValidationException;
+
 import java.util.Collection;
 
 public interface ConfigurationGroup {
 
-    String getName();
+    ConfigurationGroupKey getGroupKey();
 
     Collection<ConfigurationEntry> getEntries();
 
-    String get(String key);
+    String get(ConfigurationKey key);
 
-    ConfigurationGroup save(String key, String value);
-
-    ConfigurationGroup require(String key, String defaultValue, String description);
+    ConfigurationGroup save(ConfigurationKey key, String value) throws ConfigurationValueValidationException;
 
 }
