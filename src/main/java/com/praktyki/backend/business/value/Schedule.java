@@ -9,6 +9,7 @@ public class Schedule {
     private ScheduleConfiguration scheduleConfiguration;
     private List<Installment> installmentList;
     private List<InsurancePremium> insurancePremiumList;
+    private BigDecimal sumUpCapitalInstallment;
     private BigDecimal loanPaidOutAmount;
     private BigDecimal commissionAmount;
     private BigDecimal insuranceTotalAmount;
@@ -27,6 +28,10 @@ public class Schedule {
 
     public List<InsurancePremium> getInsurancePremiumList() {
         return insurancePremiumList;
+    }
+
+    public BigDecimal getSumUpCapitalInstallment() {
+        return sumUpCapitalInstallment;
     }
 
     public BigDecimal getLoanPaidOutAmount() {
@@ -51,12 +56,14 @@ public class Schedule {
 
     public Schedule(
             ScheduleConfiguration scheduleConfiguration, List<Installment> installmentList,
-            List<InsurancePremium> insurancePremiumList, BigDecimal loanPaidOutAmount, BigDecimal commissionAmount,
-            BigDecimal insuranceTotalAmount, BigDecimal loanTotalCost, BigDecimal APRC
+            List<InsurancePremium> insurancePremiumList, BigDecimal sumUpCapitalInstallment,
+            BigDecimal loanPaidOutAmount, BigDecimal commissionAmount, BigDecimal insuranceTotalAmount,
+            BigDecimal loanTotalCost, BigDecimal APRC
     ) {
         this.scheduleConfiguration = scheduleConfiguration;
         this.installmentList = installmentList;
         this.insurancePremiumList = insurancePremiumList;
+        this.sumUpCapitalInstallment = sumUpCapitalInstallment;
         this.loanPaidOutAmount = loanPaidOutAmount;
         this.commissionAmount = commissionAmount;
         this.insuranceTotalAmount = insuranceTotalAmount;
@@ -82,6 +89,11 @@ public class Schedule {
 
         public Builder setInsurancePremiumList(List<InsurancePremium> insurancePremiumList) {
             mSchedule.insurancePremiumList = insurancePremiumList;
+            return this;
+        }
+
+        public Builder setSumUpCapitalInstallment(BigDecimal sumUpCapitalInstallment){
+            mSchedule.sumUpCapitalInstallment = sumUpCapitalInstallment;
             return this;
         }
 
@@ -114,6 +126,8 @@ public class Schedule {
 
             if(mSchedule.scheduleConfiguration == null
                     || mSchedule.installmentList == null
+                    || mSchedule.insurancePremiumList == null
+                    || mSchedule.sumUpCapitalInstallment == null
                     || mSchedule.loanPaidOutAmount == null
                     || mSchedule.commissionAmount == null
                     || mSchedule.insuranceTotalAmount == null
@@ -136,6 +150,8 @@ public class Schedule {
         Schedule that = (Schedule) o;
         return getScheduleConfiguration().equals(that.getScheduleConfiguration())
                 && getInstallmentList().equals(that.getInstallmentList())
+                && getInsurancePremiumList().equals(that.getInsurancePremiumList())
+                && getSumUpCapitalInstallment().equals(that.getSumUpCapitalInstallment())
                 && getLoanPaidOutAmount().equals(that.getLoanPaidOutAmount())
                 && getCommissionAmount().equals(that.getCommissionAmount())
                 && getInsuranceTotalAmount().equals(that.getInsuranceTotalAmount())
@@ -148,6 +164,8 @@ public class Schedule {
         return Objects.hash(
                 getScheduleConfiguration(),
                 getInstallmentList(),
+                getInsurancePremiumList(),
+                getSumUpCapitalInstallment(),
                 getLoanPaidOutAmount(),
                 getCommissionAmount(),
                 getInsuranceTotalAmount(),
@@ -161,6 +179,8 @@ public class Schedule {
         return "ScheduleInstallmentResult{ " +
                 "scheduleConfiguration = " + scheduleConfiguration +
                 ", installmentList = " + installmentList +
+                ", insuranceList = " + insurancePremiumList +
+                ", sumUpCapitalInstallment = " + sumUpCapitalInstallment +
                 ", loanPaidOutAmount = " + loanPaidOutAmount +
                 ", commissionAmount = " + commissionAmount +
                 ", insuranceTotalAmount = " + insuranceTotalAmount +

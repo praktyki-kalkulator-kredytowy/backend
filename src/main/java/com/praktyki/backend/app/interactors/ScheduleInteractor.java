@@ -41,6 +41,7 @@ public class ScheduleInteractor {
                 scheduleConfiguration,
                 installments,
                 insurancePremiumList,
+                mInstallmentScheduleService.sumUpCapitalInstallment(installments),
                 scheduleConfiguration.getCapital().subtract(commission),
                 commission,
                 sumUpInsurancePremium,

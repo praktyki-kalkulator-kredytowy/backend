@@ -65,6 +65,12 @@ public class InstallmentScheduleService {
 
     }
 
+    public BigDecimal sumUpCapitalInstallment(List<Installment> installments) {
+        return installments.stream()
+                .map(Installment::getCapitalInstallment)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
     public BigDecimal sumUpInterestInstallment(List<Installment> installments) {
         return installments.stream()
                 .map(Installment::getInterestInstallment)
