@@ -6,10 +6,9 @@ import com.praktyki.backend.business.services.InsuranceService;
 import com.praktyki.backend.business.services.StringService;
 import com.praktyki.backend.business.services.InstallmentScheduleService;
 import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
-import com.praktyki.backend.configuration.ConfigurationStore;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class BusinessConfiguration {
@@ -36,8 +35,8 @@ public class BusinessConfiguration {
     @Scope("singleton")
     public InstallmentScheduleService getScheduleService(
             MonthlyDateScheduleCalculator calculator,
-            ConfigurationStore configurationStore) {
-        return new InstallmentScheduleService(calculator, configurationStore );
+            com.praktyki.backend.configuration.Configuration configuration) {
+        return new InstallmentScheduleService(calculator, configuration );
     }
 
     @Bean
@@ -50,7 +49,7 @@ public class BusinessConfiguration {
     @Scope("singleton")
     public InsuranceService getInsuranceService(
             CustomDateScheduleCalculator calculator,
-            ConfigurationStore configurationStore) {
-        return new InsuranceService(calculator, configurationStore);
+            com.praktyki.backend.configuration.Configuration configuration) {
+        return new InsuranceService(calculator, configuration);
     }
 }

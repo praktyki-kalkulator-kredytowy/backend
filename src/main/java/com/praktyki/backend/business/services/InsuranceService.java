@@ -1,5 +1,6 @@
 package com.praktyki.backend.business.services;
 
+import com.praktyki.backend.app.configuration.ConfigurationKeys;
 import com.praktyki.backend.business.entities.dates.CustomDateScheduleCalculator;
 import com.praktyki.backend.business.entities.dates.DateSchedule;
 import com.praktyki.backend.business.entities.dates.QuarterlyDateScheduleCalculator;
@@ -9,7 +10,6 @@ import com.praktyki.backend.business.value.InsurancePremium;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
 import com.praktyki.backend.configuration.Configuration;
 import com.praktyki.backend.configuration.ConfigurationGroup;
-import com.praktyki.backend.configuration.ConfigurationStore;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
@@ -20,26 +20,21 @@ import java.util.stream.Collectors;
 
 public class InsuranceService {
 
-    public static final String MIN_PREMIUM_VALUE = "MIN_PREMIUM_VALUE";
-    public static final String MONTH_FRAME = "MONTH_FRAME";
-
     private CustomDateScheduleCalculator mDateScheduleCalculator;
 
     private Configuration mConfiguration;
 
-    public InsuranceService(CustomDateScheduleCalculator dateScheduleCalculator, ConfigurationStore configurationStore) {
+    public InsuranceService(CustomDateScheduleCalculator dateScheduleCalculator, Configuration configuration) {
         mDateScheduleCalculator = dateScheduleCalculator;
-        mConfiguration = configurationStore.getConfiguration(this.getClass());
-        mConfiguration.require(MIN_PREMIUM_VALUE, "10", "Minimal value for insurance premium");
-        mConfiguration.require(MONTH_FRAME, "3", "In how many months we calculate insurance premium");
-        mDateScheduleCalculator.setMonthFrame(Long.parseLong(mConfiguration.get(MONTH_FRAME)));
+        mConfiguration = configuration;
+        mDateScheduleCalculator.setMonthFrame(Long.parseLong(mConfiguration.get(ConfigurationKeys.MONTH_FRAME)));
     }
 
     public List<InsurancePremium> calculateInsurancePremium(
             ScheduleConfiguration scheduleConfiguration,
             List<Installment> installments) {
 
-        BigDecimal minPremiumValue = new BigDecimal(mConfiguration.get(MIN_PREMIUM_VALUE));
+        BigDecimal minPremiumValue = new BigDecimal(mConfiguration.get(ConfigurationKeys.MIN_PREMIUM_VALUE));
 
         DateSchedule schedule = mDateScheduleCalculator.calculate(installments.get(0).getInstallmentDate());
 
