@@ -39,7 +39,10 @@ public class ConfigurationGroupImpl implements ConfigurationGroup {
 
     @Override
     public String get(ConfigurationKey key) {
-        return mEntries.get(key).getValue();
+        if(mEntries.containsKey(key))
+            return mEntries.get(key).getValue();
+
+        return key.getDefaultValue();
     }
 
     @Override
