@@ -9,6 +9,8 @@ import com.praktyki.backend.business.entities.dates.DateSchedule;
 import com.praktyki.backend.business.entities.dates.DateScheduleCalculator;
 import com.praktyki.backend.business.utils.InstallmentUtils;
 import com.praktyki.backend.business.utils.MathUtils;
+import com.praktyki.backend.configuration.Configuration;
+import com.praktyki.backend.configuration.ConfigurationStore;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -18,12 +20,26 @@ import java.util.stream.Collectors;
 
 public class InstallmentScheduleService {
 
-    public static final BigDecimal MIN_COMMISSION_MOUNT = new BigDecimal("50");
+    public static final String MIN_COMMISSION_AMOUNT = "MIN_COMMISSION_AMOUNT";
+    public static final double MIN_INTEREST_RATE = 0.01;
+    public static final String MAX_INTEREST_RATE = "MAX_INTEREST_RATE";
+    public static final double MIN_COMMISSION_RATE = 0;
+    public static final String  MAX_COMMISSION_RATE = "MAX_COMMISSION_RATE";
+
+    public static double maxCommissionRate;
+    public static double maxInterestRate;
 
     private final MonthlyDateScheduleCalculator mDateScheduleCalculator;
+    private Configuration mConfiguration;
 
-    public InstallmentScheduleService(MonthlyDateScheduleCalculator dateScheduleCalculator) {
+    public InstallmentScheduleService(MonthlyDateScheduleCalculator dateScheduleCalculator, ConfigurationStore configurationStore) {
         mDateScheduleCalculator = dateScheduleCalculator;
+        mConfiguration = configurationStore.getConfiguration(this.getClass());
+        mConfiguration.require(MIN_COMMISSION_AMOUNT, "50", "Minimal amount for commission");
+        mConfiguration.require(MAX_COMMISSION_RATE, "0.2", "Max percent for commission rate");
+        mConfiguration.require(MAX_INTEREST_RATE,"1", "Max percent for interest rate");
+        maxCommissionRate = Double.parseDouble(mConfiguration.get(MAX_COMMISSION_RATE));
+        maxInterestRate = Double.parseDouble(mConfiguration.get(MAX_INTEREST_RATE));
     }
 
     public List<Installment> createInstallmentSchedule(ScheduleConfiguration scheduleConfiguration) {
@@ -73,11 +89,13 @@ public class InstallmentScheduleService {
 
     public BigDecimal calculateCommission(ScheduleConfiguration scheduleConfiguration) {
 
+        BigDecimal minimalCommissionAmount = new BigDecimal(mConfiguration.get(MIN_COMMISSION_AMOUNT));
+
         BigDecimal commission = scheduleConfiguration.getCapital().multiply(
                 BigDecimal.valueOf(scheduleConfiguration.getCommissionRate()), MathUtils.CONTEXT);
 
-        return commission.compareTo(MIN_COMMISSION_MOUNT) < 0
-                ? MIN_COMMISSION_MOUNT.setScale(2, RoundingMode.HALF_UP)
+        return commission.compareTo(minimalCommissionAmount) < 0
+                ? minimalCommissionAmount.setScale(2, RoundingMode.HALF_UP)
                 : commission.setScale(2, RoundingMode.HALF_UP);
 
     }

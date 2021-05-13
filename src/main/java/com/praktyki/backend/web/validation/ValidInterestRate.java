@@ -1,5 +1,6 @@
 package com.praktyki.backend.web.validation;
 
+import com.praktyki.backend.business.services.InstallmentScheduleService;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
 
 import javax.validation.Constraint;
@@ -13,9 +14,9 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = ValidInterestRateValidator.class)
 public @interface ValidInterestRate {
-    String message() default "Interest rate must be between "
-            + ScheduleConfiguration.MIN_INTEREST_RATE + " and "
-            + ScheduleConfiguration.MAX_INTEREST_RATE;
+    //TODO: add upper bound (max)
+    String message() default "Interest rate must be higher than "
+            + InstallmentScheduleService.MIN_INTEREST_RATE;
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
