@@ -2,13 +2,14 @@ package com.praktyki.backend.web.response.models;
 
 import com.praktyki.backend.app.configuration.ConfigurationGroupKeys;
 import com.praktyki.backend.app.configuration.ConfigurationKeys;
-import com.praktyki.backend.configuration.ConfigurationGroup;
 import com.praktyki.backend.configuration.ConfigurationGroupKey;
 import com.praktyki.backend.configuration.ConfigurationKey;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Component
 public class ConfigurationSchemaResponseModel {
 
     public List<ConfigurationGroupSchema> groups = new LinkedList<>();
