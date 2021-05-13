@@ -8,4 +8,6 @@ public interface ConfigurationGroupKey {
 
     default String getDescription() { return getDisplayName(); };
 
+    ConfigurationKey createKey(String key, String value);
+
 }
