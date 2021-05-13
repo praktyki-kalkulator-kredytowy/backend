@@ -8,7 +8,7 @@ public enum ConfigurationGroupKeys implements ConfigurationGroupKey {
 
     DEFAULT {
         @Override
-        public ConfigurationKey createKey(String key, String value) {
+        public ConfigurationKey createKey(String key) {
 
             try {
                 return ConfigurationKeys.valueOf(key);
@@ -57,7 +57,7 @@ public enum ConfigurationGroupKeys implements ConfigurationGroupKey {
 
     INSURANCE_GROUPS {
         @Override
-        public ConfigurationKey createKey(String key, String value) {
+        public ConfigurationKey createKey(String key) {
             return new ConfigurationKey() {
                 @Override
                 public String getName() {
