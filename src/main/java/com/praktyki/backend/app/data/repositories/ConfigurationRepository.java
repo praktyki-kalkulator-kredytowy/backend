@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ConfigurationRepository extends CrudRepository<ConfigurationEntryEntity, Integer> {
 
-    @Query(value = "SELECT * FROM configuration WHERE group = :group", nativeQuery = true)
+    @Query(value = "SELECT * FROM configuration WHERE `group` = :group", nativeQuery = true)
     Iterable<ConfigurationEntryEntity> findEntriesForGroup(String group);
 
 }
