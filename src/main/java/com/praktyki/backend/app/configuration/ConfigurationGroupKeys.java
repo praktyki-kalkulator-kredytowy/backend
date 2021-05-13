@@ -11,6 +11,10 @@ public enum ConfigurationGroupKeys implements ConfigurationGroupKey {
         }
     };
 
+    INSURANCE_GROUPS {
+
+    }
+
 
     @Override
     public String getKey() {
