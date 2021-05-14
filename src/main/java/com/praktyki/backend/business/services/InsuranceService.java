@@ -82,12 +82,10 @@ public class InsuranceService {
         return premiums;
     }
 
-    public BigDecimal calculateTotalInsuranceCost(ScheduleConfiguration conf) throws NoInsuranceRateForAgeException {
-        return conf.getCapital()
-                .multiply(
-                        BigDecimal.valueOf(mInstallmentRateConfiguration.getRateForAge(conf.getAge())), MathUtils.CONTEXT
-                )
-                .setScale(2, RoundingMode.HALF_UP);
+    public BigDecimal calculateTotalInsuranceCost(List<InsurancePremium> insurancePremiumList) {
+        return insurancePremiumList.stream()
+                .map(InsurancePremium::getInsurancePremiumValue)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
 
