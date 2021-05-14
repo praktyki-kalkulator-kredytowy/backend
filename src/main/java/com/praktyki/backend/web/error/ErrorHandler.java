@@ -1,6 +1,7 @@
 package com.praktyki.backend.web.error;
 
 import com.praktyki.backend.app.data.exceptions.EntityNotFoundException;
+import com.praktyki.backend.business.services.exceptions.NoInsuranceRateForAgeException;
 import com.praktyki.backend.configuration.exceptions.ConfigurationGroupValidationException;
 import com.praktyki.backend.configuration.exceptions.ConfigurationValueValidationException;
 import com.praktyki.backend.web.exception.ConfigurationNotFound;
@@ -105,6 +106,16 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
                 .setStatus(HttpStatus.BAD_REQUEST)
                 .setMessage(ex.getMessage())
                 .setSuggestedAction("Please contact the system administrator")
+                .build()
+        );
+    }
+
+    @ExceptionHandler(NoInsuranceRateForAgeException.class)
+    public ResponseEntity<Object> handleNoInsuranceRateForAgeException(NoInsuranceRateForAgeException ex) {
+        return createResponseEntity(ApiError.builder()
+                .setStatus(HttpStatus.NOT_FOUND)
+                .setMessage(ex.getMessage())
+                .setSuggestedAction("Configure insurance rate")
                 .build()
         );
     }

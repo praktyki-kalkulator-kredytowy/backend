@@ -1,10 +1,8 @@
 package com.praktyki.backend.business.services;
 
-import com.praktyki.backend.app.configuration.ConfigurationGroupKeys;
 import com.praktyki.backend.app.configuration.ConfigurationKeys;
 import com.praktyki.backend.business.entities.InstallmentRateConfiguration;
 import com.praktyki.backend.business.entities.dates.ConfiguredDateScheduleCalculator;
-import com.praktyki.backend.business.entities.dates.CustomDateScheduleCalculator;
 import com.praktyki.backend.business.entities.dates.DateSchedule;
 import com.praktyki.backend.business.services.exceptions.NoInsuranceRateForAgeException;
 import com.praktyki.backend.business.utils.MathUtils;
@@ -16,7 +14,6 @@ import com.praktyki.backend.configuration.Configuration;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.temporal.ChronoUnit;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 

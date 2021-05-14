@@ -14,7 +14,7 @@ public class ScheduleConfiguration {
     private double mInterestRate;
     private LocalDate mWithdrawalDate;
     private double mCommissionRate;
-    private double mAge;
+    private int mAge;
 
     public static Builder builder(){
         return new Builder();
@@ -51,7 +51,7 @@ public class ScheduleConfiguration {
     public ScheduleConfiguration(
             BigDecimal capital, InstallmentType installmentType,
             int installmentAmount, double interestRate,
-            LocalDate withdrawalDate, double commissionRate, double age
+            LocalDate withdrawalDate, double commissionRate, int age
     ) {
         mCapital = capital;
         mInstallmentType = installmentType;
@@ -98,8 +98,8 @@ public class ScheduleConfiguration {
             return this;
         }
 
-        public Builder setInsuranceRate(double insuranceRate) {
-            mScheduleConfiguration.mAge = insuranceRate;
+        public Builder setAge(int age) {
+            mScheduleConfiguration.mAge = age;
             return this;
         }
 

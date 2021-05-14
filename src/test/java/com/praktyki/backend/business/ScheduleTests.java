@@ -5,11 +5,14 @@ import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.praktyki.backend.app.configuration.ConfigurationGroupKeys;
 import com.praktyki.backend.app.configuration.ConfigurationImpl;
 import com.praktyki.backend.app.data.repositories.ConfigurationRepository;
 import com.praktyki.backend.business.value.Installment;
 import com.praktyki.backend.business.services.InstallmentScheduleService;
 import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
+import com.praktyki.backend.configuration.Configuration;
+import com.praktyki.backend.configuration.exceptions.ConfigurationValueValidationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +26,7 @@ import java.util.List;
 @SpringBootTest(classes = {
         InstallmentScheduleService.class,
         MonthlyDateScheduleCalculator.class,
-        ConfigurationImpl.class
+        ConfigurationImpl.class,
 })
 public class ScheduleTests {
 
@@ -33,11 +36,19 @@ public class ScheduleTests {
     @Autowired
     private InstallmentScheduleService mInstallmentScheduleService;
 
+    @Autowired
+    private Configuration mConfiguration;
+
+
     private ObjectMapper mObjectMapper = new ObjectMapper().registerModule(new JavaTimeModule())
             .setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
 
     @Test
-    public void test() throws IOException {
+    public void test() throws IOException, ConfigurationValueValidationException {
+
+        mConfiguration.getGroup(ConfigurationGroupKeys.INSURANCE_GROUPS)
+                .save(ConfigurationGroupKeys.INSURANCE_GROUPS.createKey("0"), "0.1");
+
         List<ScheduleTestCase> testCases = mObjectMapper
                 .readValue(
                         new File("src/test/resources/ScheduleTests.json"),

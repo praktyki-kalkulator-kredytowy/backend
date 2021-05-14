@@ -6,6 +6,7 @@ import com.praktyki.backend.business.entities.InstallmentType;
 import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
 import com.praktyki.backend.business.services.InstallmentScheduleService;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
+import com.praktyki.backend.configuration.Configuration;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ import java.time.LocalDate;
 @SpringBootTest(classes = {
         InstallmentScheduleService.class,
         MonthlyDateScheduleCalculator.class,
-        ConfigurationImpl.class
+        ConfigurationImpl.class,
 })
 public class ScheduleSumUpMethodTest {
 
@@ -28,6 +29,9 @@ public class ScheduleSumUpMethodTest {
 
     @Autowired
     private InstallmentScheduleService mInstallmentScheduleService;
+
+    @Autowired
+    private Configuration mConfiguration;
 
     @Test
     public void testInterestInstallmentSumUp() {

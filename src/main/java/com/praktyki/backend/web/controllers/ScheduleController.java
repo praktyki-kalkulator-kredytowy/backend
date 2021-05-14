@@ -38,7 +38,7 @@ public class ScheduleController {
                 scheduleConfigurationModel.interestRate,
                 new Date(scheduleConfigurationModel.withdrawalDate.getTime()).toLocalDate(),
                 scheduleConfigurationModel.commissionRate,
-                scheduleConfigurationModel.insuranceRate
+                scheduleConfigurationModel.age
         );
     }
 }

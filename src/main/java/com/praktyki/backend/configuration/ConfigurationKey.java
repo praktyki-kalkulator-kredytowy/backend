@@ -14,4 +14,10 @@ public interface ConfigurationKey {
 
     void validate(String value) throws ConfigurationValueValidationException;
 
+    @Override
+    boolean equals(Object obj);
+
+    @Override
+    int hashCode();
+
 }

@@ -10,4 +10,10 @@ public interface ConfigurationGroupKey {
 
     ConfigurationKey createKey(String key);
 
+    @Override
+    boolean equals(Object obj);
+
+    @Override
+    int hashCode();
+
 }

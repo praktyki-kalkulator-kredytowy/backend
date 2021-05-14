@@ -15,7 +15,7 @@ public enum ConfigurationGroupKeys implements ConfigurationGroupKey {
             }
             catch (IllegalArgumentException ex) { }
 
-            return new ConfigurationKey() {
+            return new BaseConfigurationKey() {
                 @Override
                 public String getName() {
                     return key;
@@ -58,7 +58,7 @@ public enum ConfigurationGroupKeys implements ConfigurationGroupKey {
     INSURANCE_GROUPS {
         @Override
         public ConfigurationKey createKey(String key) {
-            return new ConfigurationKey() {
+            return new BaseConfigurationKey() {
                 @Override
                 public String getName() {
                     return key;
@@ -77,10 +77,10 @@ public enum ConfigurationGroupKeys implements ConfigurationGroupKey {
                 @Override
                 public void validate(String value) throws ConfigurationValueValidationException {
                     try {
-                        Double.parseDouble(value);
+                        Integer.parseInt(key);
                     } catch (NumberFormatException e) {
                         throw new ConfigurationValueValidationException(
-                                "keys in " + INSURANCE_GROUPS.getDisplayName() + " group must be numbers " +
+                                "keys in " + INSURANCE_GROUPS.getDisplayName() + " group must be whole numbers " +
                                         "representing age",
                                 getKey(),
                                 this
@@ -89,7 +89,10 @@ public enum ConfigurationGroupKeys implements ConfigurationGroupKey {
 
                     ConfigurationValidationUtils.number(this, value);
                 }
+
             };
+
+
         }
 
         @Override
@@ -108,4 +111,6 @@ public enum ConfigurationGroupKeys implements ConfigurationGroupKey {
     public String getKey() {
         return this.name();
     }
+
+
 }
