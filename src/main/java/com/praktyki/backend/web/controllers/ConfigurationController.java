@@ -7,7 +7,6 @@ import com.praktyki.backend.app.data.repositories.ConfigurationRepository;
 import com.praktyki.backend.configuration.*;
 import com.praktyki.backend.configuration.exceptions.ConfigurationValueValidationException;
 import com.praktyki.backend.web.request.models.ConfigurationEntryModel;
-import com.praktyki.backend.web.response.models.ConfigurationResponseModel;
 import com.praktyki.backend.web.response.models.ConfigurationSchemaResponseModel;
 import com.praktyki.backend.web.response.models.ScheduleConfigurationConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
