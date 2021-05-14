@@ -1,6 +1,9 @@
 package com.praktyki.backend.business;
 
+import com.praktyki.backend.app.configuration.ConfigurationImpl;
+import com.praktyki.backend.app.data.repositories.ConfigurationRepository;
 import com.praktyki.backend.business.entities.InstallmentType;
+import com.praktyki.backend.business.entities.dates.ConfiguredDateScheduleCalculator;
 import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
 import com.praktyki.backend.business.entities.dates.QuarterlyDateScheduleCalculator;
 import com.praktyki.backend.business.services.InstallmentScheduleService;
@@ -13,6 +16,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -24,9 +28,14 @@ import java.util.List;
         InstallmentScheduleService.class,
         InsuranceService.class,
         MonthlyDateScheduleCalculator.class,
-        QuarterlyDateScheduleCalculator.class
+        QuarterlyDateScheduleCalculator.class,
+        ConfiguredDateScheduleCalculator.class,
+        ConfigurationImpl.class
 })
 public class InsuranceServiceTests {
+
+    @MockBean
+    private ConfigurationRepository mConfigurationRepository;
 
     @Autowired
     private InstallmentScheduleService mInstallmentScheduleService;
