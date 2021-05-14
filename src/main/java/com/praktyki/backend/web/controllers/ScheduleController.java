@@ -1,6 +1,7 @@
 package com.praktyki.backend.web.controllers;
 
 import com.praktyki.backend.app.interactors.ScheduleInteractor;
+import com.praktyki.backend.business.services.exceptions.NoInsuranceRateForAgeException;
 import com.praktyki.backend.business.value.Installment;
 import com.praktyki.backend.business.entities.InstallmentType;
 import com.praktyki.backend.business.value.Schedule;
@@ -25,7 +26,7 @@ public class ScheduleController {
     private ScheduleInteractor mScheduleInteractor;
 
     @PostMapping("/api/v1/schedule")
-    public Schedule createScheduleConfiguration(@Valid @RequestBody ScheduleConfigurationModel scheduleConfigurationModel) {
+    public Schedule createScheduleConfiguration(@Valid @RequestBody ScheduleConfigurationModel scheduleConfigurationModel) throws NoInsuranceRateForAgeException {
         return mScheduleInteractor.calculateSchedule(convertToScheduleConfiguration(scheduleConfigurationModel));
     }
 
