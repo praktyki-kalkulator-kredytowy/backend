@@ -2,12 +2,15 @@ package com.praktyki.backend.business.entities.dates;
 
 import java.time.LocalDate;
 
-public class CustomDateScheduleCalculator implements DateScheduleCalculator {
+public class ConfiguredDateScheduleCalculator implements DateScheduleCalculator {
 
     private long monthFrame;
 
     public void setMonthFrame(long monthFrame) {
         this.monthFrame = monthFrame;
+    }
+
+    public ConfiguredDateScheduleCalculator() {
     }
 
     @Override
