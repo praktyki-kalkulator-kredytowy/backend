@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.praktyki.backend.app.configuration.ConfigurationImpl;
+import com.praktyki.backend.app.data.repositories.ConfigurationRepository;
 import com.praktyki.backend.business.value.Installment;
 import com.praktyki.backend.business.services.InstallmentScheduleService;
 import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
@@ -12,6 +14,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,9 +22,13 @@ import java.util.List;
 
 @SpringBootTest(classes = {
         InstallmentScheduleService.class,
-        MonthlyDateScheduleCalculator.class
+        MonthlyDateScheduleCalculator.class,
+        ConfigurationImpl.class
 })
 public class ScheduleTests {
+
+    @MockBean
+    private ConfigurationRepository mConfigurationRepository;
 
     @Autowired
     private InstallmentScheduleService mInstallmentScheduleService;
