@@ -112,6 +112,23 @@ public enum ConfigurationKeys implements ConfigurationKey {
         }
     },
 
+    DEFAULT_COMMISSION_RATE {
+        @Override
+        public String getDisplayName() {
+            return "Default value for commission rate";
+        }
+
+        @Override
+        public String getDefaultValue() {
+            return "0.5";
+        }
+
+        @Override
+        public void validate(String value) throws ConfigurationValueValidationException {
+            ConfigurationValidationUtils.within(this, value, 0, 1);
+        }
+    },
+
     MONTH_FRAME {
         @Override
         public String getDisplayName() {
