@@ -1,16 +1,13 @@
 package com.praktyki.backend.business.services;
 
 import com.praktyki.backend.app.configuration.ConfigurationKeys;
-import com.praktyki.backend.business.entities.dates.CustomDateScheduleCalculator;
+import com.praktyki.backend.business.entities.dates.ConfiguredDateScheduleCalculator;
 import com.praktyki.backend.business.entities.dates.DateSchedule;
-import com.praktyki.backend.business.entities.dates.QuarterlyDateScheduleCalculator;
 import com.praktyki.backend.business.utils.MathUtils;
 import com.praktyki.backend.business.value.Installment;
 import com.praktyki.backend.business.value.InsurancePremium;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
 import com.praktyki.backend.configuration.Configuration;
-import com.praktyki.backend.configuration.ConfigurationGroup;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -20,21 +17,23 @@ import java.util.stream.Collectors;
 
 public class InsuranceService {
 
-    private CustomDateScheduleCalculator mDateScheduleCalculator;
+    private ConfiguredDateScheduleCalculator mDateScheduleCalculator;
 
     private Configuration mConfiguration;
 
-    public InsuranceService(CustomDateScheduleCalculator dateScheduleCalculator, Configuration configuration) {
+    public InsuranceService(ConfiguredDateScheduleCalculator dateScheduleCalculator, Configuration configuration) {
         mDateScheduleCalculator = dateScheduleCalculator;
         mConfiguration = configuration;
-        mDateScheduleCalculator.setMonthFrame(Long.parseLong(mConfiguration.get(ConfigurationKeys.MONTH_FRAME)));
     }
 
     public List<InsurancePremium> calculateInsurancePremium(
             ScheduleConfiguration scheduleConfiguration,
             List<Installment> installments) {
 
-        BigDecimal minPremiumValue = new BigDecimal(mConfiguration.get(ConfigurationKeys.MIN_PREMIUM_VALUE));
+        BigDecimal minPremiumValue = new BigDecimal(mConfiguration.get(ConfigurationKeys.MIN_PREMIUM_VALUE))
+                .setScale(2, RoundingMode.HALF_UP);
+
+        mDateScheduleCalculator.setMonthFrame(Long.parseLong(mConfiguration.get(ConfigurationKeys.MONTH_FRAME)));
 
         DateSchedule schedule = mDateScheduleCalculator.calculate(installments.get(0).getInstallmentDate());
 
