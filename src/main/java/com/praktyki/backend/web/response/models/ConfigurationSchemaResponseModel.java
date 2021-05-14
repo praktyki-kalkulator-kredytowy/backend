@@ -50,7 +50,7 @@ public class ConfigurationSchemaResponseModel {
         public String description;
 
         public ConfigurationKeySchema(ConfigurationKey key) {
-            this.name = key.getName();
+            this.name = key.getKey();
             this.displayName = key.getDisplayName();
             this.defaultValue = key.getDefaultValue();
             this.description = key.getDescription();

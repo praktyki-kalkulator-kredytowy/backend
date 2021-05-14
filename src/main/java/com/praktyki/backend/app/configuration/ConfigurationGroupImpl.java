@@ -50,7 +50,7 @@ public class ConfigurationGroupImpl implements ConfigurationGroup {
     public ConfigurationGroup save(ConfigurationKey key, String value) throws ConfigurationValueValidationException {
         key.validate(value);
 
-        mConfigurationRepository.save(new ConfigurationEntryEntity(0, key.getName(), value, mGroupKey.getKey()));
+        mConfigurationRepository.save(new ConfigurationEntryEntity(0, key.getKey(), value, mGroupKey.getKey()));
         mEntries.put(key, new ConfigurationEntryImpl(key, value));
         return this;
     }
@@ -60,7 +60,7 @@ public class ConfigurationGroupImpl implements ConfigurationGroup {
         if(!mGroupKey.isMutable())
             throw new ConfigurationKeyDeletionException(key, "Group '" + mGroupKey.getDisplayName() + "' is not mutable");
 
-        mConfigurationRepository.removeKey(mGroupKey.getKey(), key.getName());
+        mConfigurationRepository.removeKey(mGroupKey.getKey(), key.getKey());
 
         return this;
     }

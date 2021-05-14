@@ -6,7 +6,7 @@ public abstract class BaseConfigurationKey implements ConfigurationKey {
 
     @Override
     public int hashCode() {
-        return getName().hashCode();
+        return getKey().hashCode();
     }
 
     @Override
@@ -14,6 +14,6 @@ public abstract class BaseConfigurationKey implements ConfigurationKey {
         if(!(obj instanceof ConfigurationKey))
             return false;
         
-        return ((ConfigurationKey) obj).getName().equals(getName());
+        return ((ConfigurationKey) obj).getKey().equals(getKey());
     }
 }

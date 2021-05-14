@@ -5,7 +5,6 @@ import com.praktyki.backend.business.services.exceptions.NoInsuranceRateForAgeEx
 import com.praktyki.backend.configuration.Configuration;
 import com.praktyki.backend.configuration.ConfigurationEntry;
 import com.praktyki.backend.configuration.ConfigurationKey;
-import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 
@@ -25,7 +24,7 @@ public class InstallmentRateConfigurationImpl implements InstallmentRateConfigur
 
         int key = entries.stream()
                 .map(ConfigurationEntry::getKey)
-                .map(ConfigurationKey::getName)
+                .map(ConfigurationKey::getKey)
                 .map(Integer::parseInt)
                 .filter(k -> k <= age)
                 .max(Integer::compare)

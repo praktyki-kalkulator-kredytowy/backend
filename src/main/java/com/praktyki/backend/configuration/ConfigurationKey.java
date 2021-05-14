@@ -4,7 +4,7 @@ import com.praktyki.backend.configuration.exceptions.ConfigurationValueValidatio
 
 public interface ConfigurationKey {
 
-    String getName();
+    String getKey();
 
     String getDisplayName();
 

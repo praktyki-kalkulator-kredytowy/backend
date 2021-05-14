@@ -22,7 +22,7 @@ public enum ConfigurationGroupKeys implements ConfigurationGroupKey {
 
             return new BaseConfigurationKey() {
                 @Override
-                public String getName() {
+                public String getKey() {
                     return key;
                 }
 
@@ -71,7 +71,7 @@ public enum ConfigurationGroupKeys implements ConfigurationGroupKey {
         public ConfigurationKey createKey(String key) {
             return new BaseConfigurationKey() {
                 @Override
-                public String getName() {
+                public String getKey() {
                     return key;
                 }
 

@@ -155,7 +155,7 @@ public enum ConfigurationKeys implements ConfigurationKey {
 
 
     @Override
-    public String getName() {
+    public String getKey() {
         return this.name();
     }
 }
