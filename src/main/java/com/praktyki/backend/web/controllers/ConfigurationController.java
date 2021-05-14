@@ -30,12 +30,12 @@ public class ConfigurationController {
     @Autowired
     private ConfigurationSchemaResponseModel mConfigurationSchemaResponseModel;
 
-    @GetMapping("/api/v1/schedule/configuration/default")
+    @GetMapping("/api/v1/schedule/configuration/schema")
     public ConfigurationSchemaResponseModel getConfigurationSchema() {
         return mConfigurationSchemaResponseModel;
     }
 
-    @PostMapping("/api/v1/schedule/configuration/setConfiguration")
+    @PostMapping("/api/v1/schedule/configuration/set")
     public void setValue(@Valid @RequestBody ConfigurationEntryModel configurationEntryModel)
             throws ConfigurationValueValidationException {
         ConfigurationGroupKeys groupKey = ConfigurationGroupKeys.valueOf(configurationEntryModel.group);
