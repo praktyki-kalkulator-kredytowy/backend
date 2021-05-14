@@ -6,6 +6,7 @@ import com.praktyki.backend.configuration.ConfigurationEntry;
 import com.praktyki.backend.configuration.ConfigurationGroup;
 import com.praktyki.backend.configuration.ConfigurationGroupKey;
 import com.praktyki.backend.configuration.ConfigurationKey;
+import com.praktyki.backend.configuration.exceptions.ConfigurationKeyDeletionException;
 import com.praktyki.backend.configuration.exceptions.ConfigurationValueValidationException;
 
 import java.util.*;
@@ -51,6 +52,16 @@ public class ConfigurationGroupImpl implements ConfigurationGroup {
 
         mConfigurationRepository.save(new ConfigurationEntryEntity(0, key.getName(), value, mGroupKey.getKey()));
         mEntries.put(key, new ConfigurationEntryImpl(key, value));
+        return this;
+    }
+
+    @Override
+    public ConfigurationGroup remove(ConfigurationKey key) throws ConfigurationKeyDeletionException {
+        if(!mGroupKey.isMutable())
+            throw new ConfigurationKeyDeletionException(key, "Group '" + mGroupKey.getDisplayName() + "' is not mutable");
+
+        mConfigurationRepository.removeKey(mGroupKey.getKey(), key.getName());
+
         return this;
     }
 

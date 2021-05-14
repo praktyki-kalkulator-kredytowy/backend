@@ -8,6 +8,11 @@ public enum ConfigurationGroupKeys implements ConfigurationGroupKey {
 
     DEFAULT {
         @Override
+        public boolean isMutable() {
+            return false;
+        }
+
+        @Override
         public ConfigurationKey createKey(String key) {
 
             try {
@@ -53,9 +58,15 @@ public enum ConfigurationGroupKeys implements ConfigurationGroupKey {
         public String getDescription() {
             return "Default group for configuration values";
         }
+
     },
 
     INSURANCE_GROUPS {
+        @Override
+        public boolean isMutable() {
+            return true;
+        }
+
         @Override
         public ConfigurationKey createKey(String key) {
             return new BaseConfigurationKey() {
