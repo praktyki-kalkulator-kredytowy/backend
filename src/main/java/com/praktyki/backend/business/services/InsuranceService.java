@@ -3,6 +3,7 @@ package com.praktyki.backend.business.services;
 import com.praktyki.backend.app.configuration.ConfigurationGroupKeys;
 import com.praktyki.backend.app.configuration.ConfigurationKeys;
 import com.praktyki.backend.business.entities.InstallmentRateConfiguration;
+import com.praktyki.backend.business.entities.dates.ConfiguredDateScheduleCalculator;
 import com.praktyki.backend.business.entities.dates.CustomDateScheduleCalculator;
 import com.praktyki.backend.business.entities.dates.DateSchedule;
 import com.praktyki.backend.business.services.exceptions.NoInsuranceRateForAgeException;
@@ -11,8 +12,6 @@ import com.praktyki.backend.business.value.Installment;
 import com.praktyki.backend.business.value.InsurancePremium;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
 import com.praktyki.backend.configuration.Configuration;
-import com.praktyki.backend.configuration.ConfigurationEntry;
-import com.praktyki.backend.configuration.ConfigurationKey;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -23,14 +22,14 @@ import java.util.stream.Collectors;
 
 public class InsuranceService {
 
-    private CustomDateScheduleCalculator mDateScheduleCalculator;
+    private ConfiguredDateScheduleCalculator mDateScheduleCalculator;
 
     private Configuration mConfiguration;
 
     private InstallmentRateConfiguration mInstallmentRateConfiguration;
 
     public InsuranceService(
-            CustomDateScheduleCalculator dateScheduleCalculator,
+            ConfiguredDateScheduleCalculator dateScheduleCalculator,
             Configuration configuration,
             InstallmentRateConfiguration installmentDateConfiguration) {
 
@@ -44,7 +43,10 @@ public class InsuranceService {
             ScheduleConfiguration scheduleConfiguration,
             List<Installment> installments) throws NoInsuranceRateForAgeException {
 
-        BigDecimal minPremiumValue = new BigDecimal(mConfiguration.get(ConfigurationKeys.MIN_PREMIUM_VALUE));
+        BigDecimal minPremiumValue = new BigDecimal(mConfiguration.get(ConfigurationKeys.MIN_PREMIUM_VALUE))
+                .setScale(2, RoundingMode.HALF_UP);
+
+        mDateScheduleCalculator.setMonthFrame(Long.parseLong(mConfiguration.get(ConfigurationKeys.MONTH_FRAME)));
 
         DateSchedule schedule = mDateScheduleCalculator.calculate(installments.get(0).getInstallmentDate());
 

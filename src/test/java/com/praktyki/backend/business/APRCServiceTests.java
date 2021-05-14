@@ -1,6 +1,9 @@
 package com.praktyki.backend.business;
 
+import com.praktyki.backend.app.configuration.ConfigurationImpl;
+import com.praktyki.backend.app.data.repositories.ConfigurationRepository;
 import com.praktyki.backend.business.entities.InstallmentType;
+import com.praktyki.backend.business.entities.dates.ConfiguredDateScheduleCalculator;
 import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
 import com.praktyki.backend.business.entities.dates.QuarterlyDateScheduleCalculator;
 import com.praktyki.backend.business.services.APRCService;
@@ -9,9 +12,11 @@ import com.praktyki.backend.business.services.InsuranceService;
 import com.praktyki.backend.business.value.Installment;
 import com.praktyki.backend.business.value.InsurancePremium;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
+import com.praktyki.backend.configuration.Configuration;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -22,9 +27,14 @@ import java.util.List;
         InsuranceService.class,
         MonthlyDateScheduleCalculator.class,
         QuarterlyDateScheduleCalculator.class,
+        ConfiguredDateScheduleCalculator.class,
         APRCService.class,
+        ConfigurationImpl.class
 })
-public class APCRServiceTests {
+public class APRCServiceTests {
+
+    @MockBean
+    private ConfigurationRepository mConfigurationRepository;
 
     @Autowired
     private InstallmentScheduleService mInstallmentScheduleService;
