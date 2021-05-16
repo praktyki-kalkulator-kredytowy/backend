@@ -2,8 +2,8 @@ package com.praktyki.backend.business.services;
 
 import com.praktyki.backend.app.configuration.ConfigurationKeys;
 import com.praktyki.backend.business.entities.InstallmentRateConfiguration;
-import com.praktyki.backend.business.entities.dates.ConfiguredDateScheduleCalculator;
 import com.praktyki.backend.business.entities.dates.DateSchedule;
+import com.praktyki.backend.business.entities.dates.InsurancePremiumDateCalculator;
 import com.praktyki.backend.business.services.exceptions.NoInsuranceRateForAgeException;
 import com.praktyki.backend.business.utils.MathUtils;
 import com.praktyki.backend.business.value.Installment;
@@ -19,20 +19,19 @@ import java.util.stream.Collectors;
 
 public class InsuranceService {
 
-    private ConfiguredDateScheduleCalculator mDateScheduleCalculator;
+    private InsurancePremiumDateCalculator mDateScheduleCalculator;
 
     private Configuration mConfiguration;
 
     private InstallmentRateConfiguration mInstallmentRateConfiguration;
 
     public InsuranceService(
-            ConfiguredDateScheduleCalculator dateScheduleCalculator,
+            InsurancePremiumDateCalculator dateScheduleCalculator,
             Configuration configuration,
             InstallmentRateConfiguration installmentDateConfiguration) {
 
         mDateScheduleCalculator = dateScheduleCalculator;
         mConfiguration = configuration;
-        mDateScheduleCalculator.setMonthFrame(Long.parseLong(mConfiguration.get(ConfigurationKeys.MONTH_FRAME)));
         mInstallmentRateConfiguration = installmentDateConfiguration;
     }
 
@@ -42,8 +41,6 @@ public class InsuranceService {
 
         BigDecimal minPremiumValue = new BigDecimal(mConfiguration.get(ConfigurationKeys.MIN_PREMIUM_VALUE))
                 .setScale(2, RoundingMode.HALF_UP);
-
-        mDateScheduleCalculator.setMonthFrame(Long.parseLong(mConfiguration.get(ConfigurationKeys.MONTH_FRAME)));
 
         DateSchedule schedule = mDateScheduleCalculator.calculate(installments.get(0).getInstallmentDate());
 

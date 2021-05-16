@@ -6,9 +6,8 @@ import com.praktyki.backend.app.configuration.ConfigurationKeys;
 import com.praktyki.backend.app.data.repositories.ConfigurationRepository;
 import com.praktyki.backend.business.entities.InstallmentRateConfigurationImpl;
 import com.praktyki.backend.business.entities.InstallmentType;
-import com.praktyki.backend.business.entities.dates.ConfiguredDateScheduleCalculator;
+import com.praktyki.backend.business.entities.dates.InsurancePremiumDateCalculator;
 import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
-import com.praktyki.backend.business.entities.dates.QuarterlyDateScheduleCalculator;
 import com.praktyki.backend.business.services.InstallmentScheduleService;
 import com.praktyki.backend.business.services.InsuranceService;
 import com.praktyki.backend.business.services.exceptions.NoInsuranceRateForAgeException;
@@ -33,8 +32,7 @@ import java.util.List;
         InstallmentScheduleService.class,
         InsuranceService.class,
         MonthlyDateScheduleCalculator.class,
-        QuarterlyDateScheduleCalculator.class,
-        ConfiguredDateScheduleCalculator.class,
+        InsurancePremiumDateCalculator.class,
         ConfigurationImpl.class,
         InstallmentRateConfigurationImpl.class,
 })

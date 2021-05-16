@@ -2,9 +2,8 @@ package com.praktyki.backend.app;
 
 import com.praktyki.backend.business.entities.InstallmentRateConfiguration;
 import com.praktyki.backend.business.entities.InstallmentRateConfigurationImpl;
-import com.praktyki.backend.business.entities.dates.ConfiguredDateScheduleCalculator;
+import com.praktyki.backend.business.entities.dates.InsurancePremiumDateCalculator;
 import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
-import com.praktyki.backend.business.entities.dates.QuarterlyDateScheduleCalculator;
 import com.praktyki.backend.business.services.APRCService;
 import com.praktyki.backend.business.services.InstallmentScheduleService;
 import com.praktyki.backend.business.services.InsuranceService;
@@ -24,14 +23,9 @@ public class BusinessConfiguration {
 
     @Bean
     @Scope("singleton")
-    public QuarterlyDateScheduleCalculator getQuarterlyDateScheduleCalculator() {
-        return new QuarterlyDateScheduleCalculator();
-    }
-
-    @Bean
-    @Scope("singleton")
-    public ConfiguredDateScheduleCalculator getConfiguredDateScheduleCalculator() {
-        return new ConfiguredDateScheduleCalculator();
+    public InsurancePremiumDateCalculator getConfiguredDateScheduleCalculator(
+            com.praktyki.backend.configuration.Configuration configuration) {
+        return new InsurancePremiumDateCalculator(configuration);
     }
 
     @Bean
@@ -51,7 +45,7 @@ public class BusinessConfiguration {
     @Bean
     @Scope("singleton")
     public InsuranceService getInsuranceService(
-            ConfiguredDateScheduleCalculator calculator,
+            InsurancePremiumDateCalculator calculator,
             com.praktyki.backend.configuration.Configuration configuration,
             InstallmentRateConfiguration installmentRateConfiguration
     ) {

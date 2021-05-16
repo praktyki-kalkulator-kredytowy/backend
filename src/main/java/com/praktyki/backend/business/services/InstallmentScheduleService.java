@@ -76,6 +76,7 @@ public class InstallmentScheduleService {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
+    // TODO: should this be somewhere else?
     public BigDecimal calculateCommission(ScheduleConfiguration scheduleConfiguration) {
 
         BigDecimal minimalCommissionAmount = new BigDecimal(mConfiguration.get(ConfigurationKeys.MIN_COMMISSION_AMOUNT));
