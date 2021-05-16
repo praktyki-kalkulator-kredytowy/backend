@@ -11,13 +11,13 @@ public class ConfigurationEntryEntity {
     @Column(name = "configuration_id")
     public int id;
 
-    @Column(name = "key")
+    @Column(name = "configuration_key")
     public String key;
 
-    @Column(name = "value")
+    @Column(name = "configuration_value")
     public String value;
 
-    @Column(name = "group")
+    @Column(name = "configuration_group")
     public String group;
 
     public ConfigurationEntryEntity() {}

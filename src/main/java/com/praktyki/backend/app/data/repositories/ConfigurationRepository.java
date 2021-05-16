@@ -8,10 +8,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ConfigurationRepository extends CrudRepository<ConfigurationEntryEntity, Integer> {
 
-    @Query(value = "SELECT * FROM configuration WHERE `group` = :group", nativeQuery = true)
+    @Query(value = "SELECT * FROM configuration WHERE configuration_group = :group", nativeQuery = true)
     Iterable<ConfigurationEntryEntity> findEntriesForGroup(String group);
 
-    @Query(value = "DELETE FROM configuration WHERE `group` = :group and `key` = :key", nativeQuery = true)
+    @Query(value = "DELETE FROM configuration WHERE configuration_group = :group and configuration_key = :key",
+            nativeQuery = true
+    )
     boolean removeKey(String group, String key);
 
 }
