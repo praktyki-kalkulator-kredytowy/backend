@@ -40,21 +40,28 @@ public class InsuranceService {
                 .getCapital()
                 .multiply(BigDecimal.valueOf(scheduleConfiguration.getInsuranceRate()), MathUtils.CONTEXT);
 
-        BigDecimal premiumValue = MIN_PREMIUM_VALUE.max(
-                totalInsurance.divide(BigDecimal.valueOf(premiumAmount), 2, RoundingMode.HALF_UP)
+        BigDecimal dividedPremiumValue = totalInsurance.divide(
+                BigDecimal.valueOf(premiumAmount), 2, RoundingMode.HALF_UP
         );
+
+        BigDecimal premiumValue = dividedPremiumValue.equals(new BigDecimal("0.00"))
+                || dividedPremiumValue.compareTo(MIN_PREMIUM_VALUE) > 0
+                ? dividedPremiumValue : MIN_PREMIUM_VALUE;
 
         List<InsurancePremium> premiums = schedule.stream()
                 .limit(premiumAmount - 1)
                 .map(d -> new InsurancePremium(d.getIndex(), d.getDate(), premiumValue))
                 .collect(Collectors.toList());
 
+        BigDecimal lastPremiumValue = totalInsurance.subtract(premiums.stream()
+                .map(InsurancePremium::getInsurancePremiumValue)
+                .reduce(BigDecimal.ZERO, BigDecimal::add));
+
         premiums.add(new InsurancePremium(
                 premiums.size() + 1,
                 schedule.getDateFor(premiums.size() + 1),
-                MIN_PREMIUM_VALUE.max(totalInsurance.subtract(premiums.stream()
-                        .map(InsurancePremium::getInsurancePremiumValue)
-                        .reduce(BigDecimal.ZERO, BigDecimal::add)))
+                lastPremiumValue.equals(new BigDecimal("0.00")) || lastPremiumValue.compareTo(MIN_PREMIUM_VALUE) > 0
+                ? lastPremiumValue : MIN_PREMIUM_VALUE
         ));
 
         return premiums;
