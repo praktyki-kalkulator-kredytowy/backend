@@ -1,11 +1,15 @@
 package com.praktyki.backend.business;
 
+import com.praktyki.backend.app.configuration.ConfigurationGroupKeys;
 import com.praktyki.backend.app.configuration.ConfigurationImpl;
+import com.praktyki.backend.app.configuration.ConfigurationKeys;
 import com.praktyki.backend.app.data.repositories.ConfigurationRepository;
 import com.praktyki.backend.business.entities.InstallmentType;
 import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
 import com.praktyki.backend.business.services.InstallmentScheduleService;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
+import com.praktyki.backend.configuration.Configuration;
+import com.praktyki.backend.configuration.exceptions.ConfigurationValueValidationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +33,20 @@ public class ScheduleCommissionCalculateTest {
     @Autowired
     private InstallmentScheduleService mInstallmentScheduleService;
 
+    @Autowired
+    private Configuration mConfiguration;
+
+    public void repositorySetUp() throws ConfigurationValueValidationException {
+
+        mConfiguration.save(ConfigurationKeys.MIN_COMMISSION_AMOUNT,
+                ConfigurationKeys.MIN_COMMISSION_AMOUNT.getDefaultValue());
+
+    }
+
     @Test
-    public void testCommissionCalculate() {
+    public void testCommissionCalculate() throws ConfigurationValueValidationException {
 
-
+        repositorySetUp();
 
         ScheduleConfiguration scheduleConfiguration = ScheduleConfiguration.builder()
                 .setCapital(BigDecimal.valueOf(20000))

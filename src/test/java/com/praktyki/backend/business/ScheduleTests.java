@@ -7,11 +7,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.praktyki.backend.app.configuration.ConfigurationGroupKeys;
 import com.praktyki.backend.app.configuration.ConfigurationImpl;
+import com.praktyki.backend.app.configuration.ConfigurationKeys;
 import com.praktyki.backend.app.data.repositories.ConfigurationRepository;
 import com.praktyki.backend.business.value.Installment;
 import com.praktyki.backend.business.services.InstallmentScheduleService;
 import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
 import com.praktyki.backend.configuration.Configuration;
+import com.praktyki.backend.configuration.exceptions.ConfigurationKeyDeletionException;
 import com.praktyki.backend.configuration.exceptions.ConfigurationValueValidationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -43,11 +45,26 @@ public class ScheduleTests {
     private ObjectMapper mObjectMapper = new ObjectMapper().registerModule(new JavaTimeModule())
             .setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
 
-    @Test
-    public void test() throws IOException, ConfigurationValueValidationException {
+    public void repositorySetUp() throws ConfigurationValueValidationException {
+
+        mConfiguration.save(ConfigurationKeys.MIN_COMMISSION_AMOUNT,
+                ConfigurationKeys.MIN_COMMISSION_AMOUNT.getDefaultValue());
 
         mConfiguration.getGroup(ConfigurationGroupKeys.INSURANCE_GROUPS)
                 .save(ConfigurationGroupKeys.INSURANCE_GROUPS.createKey("0"), "0.1");
+
+        mConfiguration.save(ConfigurationKeys.MONTH_FRAME,
+                ConfigurationKeys.MONTH_FRAME.getDefaultValue());
+
+        mConfiguration.save(ConfigurationKeys.MIN_PREMIUM_VALUE,
+                ConfigurationKeys.MIN_PREMIUM_VALUE.getDefaultValue());
+
+    }
+
+    @Test
+    public void test() throws IOException, ConfigurationValueValidationException, ConfigurationKeyDeletionException {
+
+        repositorySetUp();
 
         List<ScheduleTestCase> testCases = mObjectMapper
                 .readValue(
@@ -56,6 +73,10 @@ public class ScheduleTests {
                 );
 
         testCases.forEach(this::testSingleTestCase);
+
+        mConfiguration.getGroup(ConfigurationGroupKeys.INSURANCE_GROUPS).remove(
+                ConfigurationGroupKeys.INSURANCE_GROUPS.createKey("0")
+        );
     }
 
     public void testSingleTestCase(ScheduleTestCase testCase) {

@@ -2,6 +2,7 @@ package com.praktyki.backend.business;
 
 import com.praktyki.backend.app.configuration.ConfigurationGroupKeys;
 import com.praktyki.backend.app.configuration.ConfigurationImpl;
+import com.praktyki.backend.app.configuration.ConfigurationKeys;
 import com.praktyki.backend.app.data.repositories.ConfigurationRepository;
 import com.praktyki.backend.business.entities.InstallmentRateConfigurationImpl;
 import com.praktyki.backend.business.entities.InstallmentType;
@@ -15,6 +16,7 @@ import com.praktyki.backend.business.value.Installment;
 import com.praktyki.backend.business.value.InsurancePremium;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
 import com.praktyki.backend.configuration.Configuration;
+import com.praktyki.backend.configuration.exceptions.ConfigurationKeyDeletionException;
 import com.praktyki.backend.configuration.exceptions.ConfigurationValueValidationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -51,8 +53,20 @@ public class InsuranceServiceTests {
     @Autowired
     private Configuration mConfiguration;
 
+    public void repositorySetUp() throws ConfigurationValueValidationException {
+
+        mConfiguration.save(ConfigurationKeys.MONTH_FRAME,
+                ConfigurationKeys.MONTH_FRAME.getDefaultValue());
+
+        mConfiguration.getGroup(ConfigurationGroupKeys.INSURANCE_GROUPS)
+                .save(ConfigurationGroupKeys.INSURANCE_GROUPS.createKey("0"), "0.1");
+
+    }
+
     @Test
-    public void testInsuranceService() throws NoInsuranceRateForAgeException {
+    public void testInsuranceService() throws NoInsuranceRateForAgeException, ConfigurationValueValidationException {
+
+        repositorySetUp();
 
         ScheduleConfiguration conf = ScheduleConfiguration.builder()
                 .setInstallmentType(InstallmentType.CONSTANT)
@@ -84,9 +98,9 @@ public class InsuranceServiceTests {
     }
 
     @Test
-    public void testInsuranceServiceMinValue() throws NoInsuranceRateForAgeException, ConfigurationValueValidationException {
-        mConfiguration.getGroup(ConfigurationGroupKeys.INSURANCE_GROUPS)
-                .save(ConfigurationGroupKeys.INSURANCE_GROUPS.createKey("0"), "0.1");
+    public void testInsuranceServiceMinValue() throws NoInsuranceRateForAgeException, ConfigurationValueValidationException, ConfigurationKeyDeletionException {
+
+        repositorySetUp();
 
         ScheduleConfiguration conf = ScheduleConfiguration.builder()
                 .setInstallmentType(InstallmentType.CONSTANT)
@@ -116,6 +130,9 @@ public class InsuranceServiceTests {
 
         Assertions.assertEquals(expected, actual);
 
+        mConfiguration.getGroup(ConfigurationGroupKeys.INSURANCE_GROUPS).remove(
+                ConfigurationGroupKeys.INSURANCE_GROUPS.createKey("0")
+        );
 
     }
 

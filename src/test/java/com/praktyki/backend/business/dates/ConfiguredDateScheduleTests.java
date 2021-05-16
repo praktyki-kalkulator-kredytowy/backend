@@ -57,8 +57,18 @@ public class ConfiguredDateScheduleTests {
             LocalDate.of(2022, 3, 31)
 
     );
+
+    public void repositorySetUp() throws ConfigurationValueValidationException {
+
+        mConfiguration.save(ConfigurationKeys.MONTH_FRAME,
+                ConfigurationKeys.MONTH_FRAME.getDefaultValue());
+
+    }
+
     @Test
     public void testCustomDateSchedule() throws ConfigurationValueValidationException {
+
+        repositorySetUp();
 
         ConfiguredDateScheduleCalculator dateScheduleCalculator = new ConfiguredDateScheduleCalculator();
 
@@ -92,7 +102,7 @@ public class ConfiguredDateScheduleTests {
     @Test
     public void testCustomDateScheduleWithShift() throws ConfigurationValueValidationException {
 
-        mConfiguration.save(ConfigurationKeys.MONTH_FRAME, "3");
+        repositorySetUp();
 
         ConfiguredDateScheduleCalculator dateScheduleCalculator = new ConfiguredDateScheduleCalculator();
 
@@ -121,5 +131,7 @@ public class ConfiguredDateScheduleTests {
 
         for(int i = 1; i <= expectedTwoMonth.size() - 1; i++)
             Assertions.assertEquals(expectedTwoMonth.get(i), schedule.getDateFor(i));
+
+        mConfiguration.save(ConfigurationKeys.MONTH_FRAME, "3");
     }
 }
