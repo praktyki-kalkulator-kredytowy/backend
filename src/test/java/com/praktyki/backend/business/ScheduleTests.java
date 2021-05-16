@@ -13,7 +13,6 @@ import com.praktyki.backend.business.value.Installment;
 import com.praktyki.backend.business.services.InstallmentScheduleService;
 import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
 import com.praktyki.backend.configuration.Configuration;
-import com.praktyki.backend.configuration.exceptions.ConfigurationKeyDeletionException;
 import com.praktyki.backend.configuration.exceptions.ConfigurationValueValidationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -62,7 +61,7 @@ public class ScheduleTests {
     }
 
     @Test
-    public void test() throws IOException, ConfigurationValueValidationException, ConfigurationKeyDeletionException {
+    public void test() throws IOException, ConfigurationValueValidationException {
 
         repositorySetUp();
 

@@ -17,7 +17,6 @@ import com.praktyki.backend.business.value.Installment;
 import com.praktyki.backend.business.value.InsurancePremium;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
 import com.praktyki.backend.configuration.Configuration;
-import com.praktyki.backend.configuration.exceptions.ConfigurationKeyDeletionException;
 import com.praktyki.backend.configuration.exceptions.ConfigurationValueValidationException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +68,7 @@ public class APRCServiceTests {
     }
 
     @Test
-    public void test() throws NoInsuranceRateForAgeException, ConfigurationValueValidationException, ConfigurationKeyDeletionException {
+    public void test() throws NoInsuranceRateForAgeException, ConfigurationValueValidationException {
 
         repositorySetUp();
 

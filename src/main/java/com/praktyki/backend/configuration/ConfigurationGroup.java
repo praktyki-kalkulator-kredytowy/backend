@@ -1,6 +1,5 @@
 package com.praktyki.backend.configuration;
 
-import com.praktyki.backend.configuration.exceptions.ConfigurationKeyDeletionException;
 import com.praktyki.backend.configuration.exceptions.ConfigurationValueValidationException;
 
 import java.util.Collection;
@@ -15,6 +14,6 @@ public interface ConfigurationGroup {
 
     ConfigurationGroup save(ConfigurationKey key, String value) throws ConfigurationValueValidationException;
 
-    ConfigurationGroup remove(ConfigurationKey key) throws ConfigurationKeyDeletionException;
+    ConfigurationGroup remove(ConfigurationKey key);
 
 }

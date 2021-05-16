@@ -8,8 +8,6 @@ public interface ConfigurationGroupKey {
 
     default String getDescription() { return getDisplayName(); };
 
-    boolean isMutable();
-
     ConfigurationKey createKey(String key);
 
     @Override

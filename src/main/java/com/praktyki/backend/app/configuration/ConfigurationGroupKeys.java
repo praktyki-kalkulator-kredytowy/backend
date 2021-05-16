@@ -7,10 +7,6 @@ import com.praktyki.backend.configuration.exceptions.ConfigurationValueValidatio
 public enum ConfigurationGroupKeys implements ConfigurationGroupKey {
 
     DEFAULT {
-        @Override
-        public boolean isMutable() {
-            return false;
-        }
 
         @Override
         public ConfigurationKey createKey(String key) {
@@ -62,10 +58,6 @@ public enum ConfigurationGroupKeys implements ConfigurationGroupKey {
     },
 
     INSURANCE_GROUPS {
-        @Override
-        public boolean isMutable() {
-            return true;
-        }
 
         @Override
         public ConfigurationKey createKey(String key) {
@@ -109,7 +101,6 @@ public enum ConfigurationGroupKeys implements ConfigurationGroupKey {
                 }
 
             };
-
 
         }
 

@@ -9,10 +9,12 @@ import com.praktyki.backend.configuration.exceptions.ConfigurationValueValidatio
 import com.praktyki.backend.web.request.models.ConfigurationEntryModel;
 import com.praktyki.backend.web.response.models.ConfigurationSchemaResponseModel;
 import com.praktyki.backend.web.response.models.ScheduleConfigurationConfiguration;
+import com.praktyki.backend.web.validation.ValidConfigurationGroupKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -47,6 +49,12 @@ public class ConfigurationController {
     @GetMapping("/api/v1/schedule/configuration/scheduleConfiguration")
     public ScheduleConfigurationConfiguration getScheduleConfigurationConfiguration() {
         return new ScheduleConfigurationConfiguration(mConfiguration);
+    }
+
+    @DeleteMapping("/api/v1/schedule/configuration/set")
+    public void removeKey(@Valid @NotBlank String key, @Valid @ValidConfigurationGroupKey String groupKey) {
+        ConfigurationGroupKey group = ConfigurationGroupKeys.valueOf(groupKey);
+        mConfiguration.getGroup(group).remove(group.createKey(key));
     }
 
 
