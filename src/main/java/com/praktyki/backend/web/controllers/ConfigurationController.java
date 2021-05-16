@@ -41,7 +41,7 @@ public class ConfigurationController {
         return mConfigurationSchemaResponseModel;
     }
 
-    @PostMapping("/api/v1/schedule/configuration/set")
+    @PostMapping("/api/v1/schedule/configuration")
     public void setValue(@Valid @RequestBody ConfigurationEntryModel configurationEntryModel)
             throws ConfigurationValueValidationException {
         ConfigurationGroupKeys groupKey = ConfigurationGroupKeys.valueOf(configurationEntryModel.group);
@@ -49,16 +49,17 @@ public class ConfigurationController {
         mConfiguration.getGroup(groupKey).save(key, configurationEntryModel.value);
     }
 
+    @DeleteMapping("/api/v1/schedule/configuration")
+    public void removeKey(@Valid @RequestBody DeleteConfigurationEntryModel model) {
+        ConfigurationGroupKey group = ConfigurationGroupKeys.valueOf(model.groupKey);
+        mConfiguration.getGroup(group).remove(group.createKey(model.key));
+    }
+
     @GetMapping("/api/v1/schedule/configuration/scheduleConfiguration")
     public ScheduleConfigurationConfiguration getScheduleConfigurationConfiguration() {
         return new ScheduleConfigurationConfiguration(mConfiguration);
     }
 
-    @DeleteMapping("/api/v1/schedule/configuration/delete")
-    public void removeKey(@Valid @RequestBody DeleteConfigurationEntryModel model) {
-        ConfigurationGroupKey group = ConfigurationGroupKeys.valueOf(model.groupKey);
-        mConfiguration.getGroup(group).remove(group.createKey(model.key));
-    }
 
 
 }
