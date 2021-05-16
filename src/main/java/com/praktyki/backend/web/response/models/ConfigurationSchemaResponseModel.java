@@ -6,7 +6,10 @@ import com.praktyki.backend.configuration.ConfigurationGroupKey;
 import com.praktyki.backend.configuration.ConfigurationKey;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Component

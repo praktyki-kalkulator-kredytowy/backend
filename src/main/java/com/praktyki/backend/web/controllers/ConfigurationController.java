@@ -1,26 +1,20 @@
 package com.praktyki.backend.web.controllers;
 
-import com.praktyki.backend.app.configuration.ConfigurationEntryImpl;
 import com.praktyki.backend.app.configuration.ConfigurationGroupKeys;
-import com.praktyki.backend.app.configuration.ConfigurationKeys;
 import com.praktyki.backend.app.data.repositories.ConfigurationRepository;
-import com.praktyki.backend.configuration.*;
+import com.praktyki.backend.configuration.Configuration;
+import com.praktyki.backend.configuration.ConfigurationGroupKey;
+import com.praktyki.backend.configuration.ConfigurationKey;
 import com.praktyki.backend.configuration.exceptions.ConfigurationValueValidationException;
 import com.praktyki.backend.web.request.models.ConfigurationEntryModel;
 import com.praktyki.backend.web.request.models.DeleteConfigurationEntryModel;
 import com.praktyki.backend.web.response.models.ConfigurationSchemaResponseModel;
 import com.praktyki.backend.web.response.models.ScheduleConfigurationConfiguration;
-import com.praktyki.backend.web.validation.ValidConfigurationGroupKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @CrossOrigin
 @RestController

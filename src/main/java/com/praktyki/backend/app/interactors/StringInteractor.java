@@ -1,11 +1,10 @@
 package com.praktyki.backend.app.interactors;
 
 import com.praktyki.backend.app.data.entities.StringEntity;
+import com.praktyki.backend.app.data.exceptions.EntityNotFoundException;
 import com.praktyki.backend.app.data.repositories.StringRepository;
 import com.praktyki.backend.business.services.StringService;
-import com.praktyki.backend.app.data.exceptions.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.Iterator;

@@ -1,17 +1,13 @@
 package com.praktyki.backend.business.services;
 
 import com.praktyki.backend.app.configuration.ConfigurationKeys;
-import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
-import com.praktyki.backend.business.value.Installment;
-import com.praktyki.backend.business.value.InsurancePremium;
-import com.praktyki.backend.business.value.Schedule;
-import com.praktyki.backend.business.value.ScheduleConfiguration;
 import com.praktyki.backend.business.entities.dates.DateSchedule;
-import com.praktyki.backend.business.entities.dates.DateScheduleCalculator;
+import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
 import com.praktyki.backend.business.utils.InstallmentUtils;
 import com.praktyki.backend.business.utils.MathUtils;
+import com.praktyki.backend.business.value.Installment;
+import com.praktyki.backend.business.value.ScheduleConfiguration;
 import com.praktyki.backend.configuration.Configuration;
-
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

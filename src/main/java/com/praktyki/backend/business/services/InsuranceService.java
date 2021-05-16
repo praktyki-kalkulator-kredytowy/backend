@@ -14,7 +14,6 @@ import com.praktyki.backend.configuration.Configuration;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.temporal.ChronoUnit;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 

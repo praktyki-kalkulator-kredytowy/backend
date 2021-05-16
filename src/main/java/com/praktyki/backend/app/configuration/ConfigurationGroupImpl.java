@@ -8,7 +8,10 @@ import com.praktyki.backend.configuration.ConfigurationGroupKey;
 import com.praktyki.backend.configuration.ConfigurationKey;
 import com.praktyki.backend.configuration.exceptions.ConfigurationValueValidationException;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ConfigurationGroupImpl implements ConfigurationGroup {
 

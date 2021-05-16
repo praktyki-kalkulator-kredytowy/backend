@@ -1,6 +1,5 @@
 package com.praktyki.backend.business;
 
-import com.praktyki.backend.app.configuration.ConfigurationGroupKeys;
 import com.praktyki.backend.app.configuration.ConfigurationImpl;
 import com.praktyki.backend.app.configuration.ConfigurationKeys;
 import com.praktyki.backend.app.data.repositories.ConfigurationRepository;

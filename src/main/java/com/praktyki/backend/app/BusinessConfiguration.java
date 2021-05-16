@@ -3,15 +3,15 @@ package com.praktyki.backend.app;
 import com.praktyki.backend.business.entities.InstallmentRateConfiguration;
 import com.praktyki.backend.business.entities.InstallmentRateConfigurationImpl;
 import com.praktyki.backend.business.entities.dates.ConfiguredDateScheduleCalculator;
+import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
 import com.praktyki.backend.business.entities.dates.QuarterlyDateScheduleCalculator;
 import com.praktyki.backend.business.services.APRCService;
+import com.praktyki.backend.business.services.InstallmentScheduleService;
 import com.praktyki.backend.business.services.InsuranceService;
 import com.praktyki.backend.business.services.StringService;
-import com.praktyki.backend.business.services.InstallmentScheduleService;
-import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 @Configuration
 public class BusinessConfiguration {

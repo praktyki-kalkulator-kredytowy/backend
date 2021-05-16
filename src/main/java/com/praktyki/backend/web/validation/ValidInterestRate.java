@@ -1,9 +1,5 @@
 package com.praktyki.backend.web.validation;
 
-import com.praktyki.backend.app.configuration.ConfigurationKeys;
-import com.praktyki.backend.business.services.InstallmentScheduleService;
-import com.praktyki.backend.business.value.ScheduleConfiguration;
-
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.ElementType;

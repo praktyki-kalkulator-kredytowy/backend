@@ -1,13 +1,13 @@
 package com.praktyki.backend.app.interactors;
 
 import com.praktyki.backend.business.services.APRCService;
+import com.praktyki.backend.business.services.InstallmentScheduleService;
 import com.praktyki.backend.business.services.InsuranceService;
 import com.praktyki.backend.business.services.exceptions.NoInsuranceRateForAgeException;
 import com.praktyki.backend.business.value.Installment;
 import com.praktyki.backend.business.value.InsurancePremium;
 import com.praktyki.backend.business.value.Schedule;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
-import com.praktyki.backend.business.services.InstallmentScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

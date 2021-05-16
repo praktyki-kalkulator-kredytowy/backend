@@ -1,8 +1,6 @@
 package com.praktyki.backend.web.validation;
 
 import com.praktyki.backend.app.configuration.ConfigurationKeys;
-import com.praktyki.backend.business.services.InstallmentScheduleService;
-import com.praktyki.backend.business.value.ScheduleConfiguration;
 import com.praktyki.backend.configuration.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 

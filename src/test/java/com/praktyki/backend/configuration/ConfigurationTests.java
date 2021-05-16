@@ -3,17 +3,12 @@ package com.praktyki.backend.configuration;
 import com.praktyki.backend.app.configuration.ConfigurationImpl;
 import com.praktyki.backend.app.configuration.ConfigurationKeys;
 import com.praktyki.backend.app.data.repositories.ConfigurationRepository;
-import org.aspectj.lang.annotation.Before;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.ApplicationContext;
-
-import java.util.Arrays;
-import java.util.Collections;
-
-import static org.mockito.Mockito.*;
 
 
 @SpringBootTest(classes = {
