@@ -34,7 +34,7 @@ public class ScheduleInteractor {
         List<Installment> installments = mInstallmentScheduleService.createInstallmentSchedule(scheduleConfiguration);
         List<InsurancePremium> insurancePremiumList = mInsuranceService.calculateInsurancePremium(scheduleConfiguration, installments);
         BigDecimal commission = mInstallmentScheduleService.calculateCommission(scheduleConfiguration);
-        BigDecimal sumUpInsurancePremium = mInsuranceService.calculateTotalInsuranceCost(scheduleConfiguration);
+        BigDecimal sumUpInsurancePremium = mInsuranceService.calculateTotalInsuranceCost(insurancePremiumList);
         BigDecimal sumUpInterestInstallment = mInstallmentScheduleService.sumUpInterestInstallment(installments);
 
         return new Schedule(

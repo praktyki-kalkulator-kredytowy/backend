@@ -36,7 +36,7 @@ public class InsuranceService {
                 installments.get(installments.size() - 1).getInstallmentDate()
         ) + 1) / 3;
 
-        if(premiumAmount == 0) return Collections.emptyList();
+        if(premiumAmount == 0) premiumAmount = 1;
 
 
         BigDecimal totalInsurance = scheduleConfiguration
@@ -70,10 +70,10 @@ public class InsuranceService {
         return premiums;
     }
 
-    public BigDecimal calculateTotalInsuranceCost(ScheduleConfiguration conf) {
-        return conf.getCapital()
-                .multiply(BigDecimal.valueOf(conf.getInsuranceRate()), MathUtils.CONTEXT)
-                .setScale(2, RoundingMode.HALF_UP);
+    public BigDecimal calculateTotalInsuranceCost(List<InsurancePremium> insurancePremiumList) {
+        return insurancePremiumList.stream()
+                .map(InsurancePremium::getInsurancePremiumValue)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
 }
