@@ -50,6 +50,12 @@ public class ConfigurationGroupImpl implements ConfigurationGroup {
     public ConfigurationGroup save(ConfigurationKey key, String value) throws ConfigurationValueValidationException {
         key.validate(value);
 
+        if(mEntries.containsKey(key)) {
+            mEntries.remove(key);
+            mConfigurationRepository.removeKey(mGroupKey.getKey(), key.getKey());
+        }
+
+
         mConfigurationRepository.save(new ConfigurationEntryEntity(0, key.getKey(), value, mGroupKey.getKey()));
         mEntries.put(key, new ConfigurationEntryImpl(key, value));
         return this;
