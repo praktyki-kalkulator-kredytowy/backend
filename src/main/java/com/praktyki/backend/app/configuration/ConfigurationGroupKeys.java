@@ -90,7 +90,7 @@ public enum ConfigurationGroupKeys implements ConfigurationGroupKey {
                     try {
                         int v = Integer.parseInt(key);
 
-                        if(v >= 0) throw new ConfigurationValueValidationException(
+                        if(v < 0) throw new ConfigurationValueValidationException(
                                 "keys in " + INSURANCE_GROUPS.getDisplayName() + " group must be positive whole numbers " +
                                         "representing age",
                                 getKey(),
