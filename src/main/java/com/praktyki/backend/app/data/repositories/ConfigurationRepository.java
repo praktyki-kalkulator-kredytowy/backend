@@ -14,6 +14,6 @@ public interface ConfigurationRepository extends CrudRepository<ConfigurationEnt
     @Query(value = "DELETE FROM configuration WHERE configuration_group = :group and configuration_key = :key",
             nativeQuery = true
     )
-    boolean removeKey(String group, String key);
+    void removeKey(String group, String key);
 
 }
