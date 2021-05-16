@@ -88,10 +88,17 @@ public enum ConfigurationGroupKeys implements ConfigurationGroupKey {
                 @Override
                 public void validate(String value) throws ConfigurationValueValidationException {
                     try {
-                        Integer.parseInt(key);
+                        int v = Integer.parseInt(key);
+
+                        if(v >= 0) throw new ConfigurationValueValidationException(
+                                "keys in " + INSURANCE_GROUPS.getDisplayName() + " group must be positive whole numbers " +
+                                        "representing age",
+                                getKey(),
+                                this
+                        );
                     } catch (NumberFormatException e) {
                         throw new ConfigurationValueValidationException(
-                                "keys in " + INSURANCE_GROUPS.getDisplayName() + " group must be whole numbers " +
+                                "keys in " + INSURANCE_GROUPS.getDisplayName() + " group must be positive whole numbers " +
                                         "representing age",
                                 getKey(),
                                 this
