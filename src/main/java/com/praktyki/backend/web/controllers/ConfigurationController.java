@@ -7,10 +7,12 @@ import com.praktyki.backend.app.data.repositories.ConfigurationRepository;
 import com.praktyki.backend.configuration.*;
 import com.praktyki.backend.configuration.exceptions.ConfigurationValueValidationException;
 import com.praktyki.backend.web.request.models.ConfigurationEntryModel;
+import com.praktyki.backend.web.request.models.DeleteConfigurationEntryModel;
 import com.praktyki.backend.web.response.models.ConfigurationSchemaResponseModel;
 import com.praktyki.backend.web.response.models.ScheduleConfigurationConfiguration;
 import com.praktyki.backend.web.validation.ValidConfigurationGroupKey;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -22,6 +24,7 @@ import java.util.Map;
 
 @CrossOrigin
 @RestController
+@Validated
 public class ConfigurationController {
 
     @Autowired
@@ -51,10 +54,10 @@ public class ConfigurationController {
         return new ScheduleConfigurationConfiguration(mConfiguration);
     }
 
-    @DeleteMapping("/api/v1/schedule/configuration/set")
-    public void removeKey(@Valid @NotBlank String key, @Valid @ValidConfigurationGroupKey String groupKey) {
-        ConfigurationGroupKey group = ConfigurationGroupKeys.valueOf(groupKey);
-        mConfiguration.getGroup(group).remove(group.createKey(key));
+    @DeleteMapping("/api/v1/schedule/configuration/delete")
+    public void removeKey(@Valid @RequestBody DeleteConfigurationEntryModel model) {
+        ConfigurationGroupKey group = ConfigurationGroupKeys.valueOf(model.groupKey);
+        mConfiguration.getGroup(group).remove(group.createKey(model.key));
     }
 
 
