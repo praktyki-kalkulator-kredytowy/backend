@@ -11,7 +11,7 @@ public interface ConfigurationRepository extends CrudRepository<ConfigurationEnt
     @Query(value = "SELECT * FROM configuration WHERE `group` = :group", nativeQuery = true)
     Iterable<ConfigurationEntryEntity> findEntriesForGroup(String group);
 
-    @Query(value = "DELETE FROM configuration WHERE `group` = :group and `key` = :key")
+    @Query(value = "DELETE FROM configuration WHERE `group` = :group and `key` = :key", nativeQuery = true)
     boolean removeKey(String group, String key);
 
 }
