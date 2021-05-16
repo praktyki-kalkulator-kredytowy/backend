@@ -2,10 +2,8 @@ package com.praktyki.backend.configuration;
 
 public interface ConfigurationEntry {
 
-    String getKey();
+    ConfigurationKey getKey();
 
     String getValue();
-
-    String defaultValue();
 
 }

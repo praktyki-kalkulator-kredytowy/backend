@@ -8,18 +8,13 @@ import java.util.Objects;
 
 public class ScheduleConfiguration {
 
-    public static final double MIN_INTEREST_RATE = 0.01;
-    public static final double MAX_INTEREST_RATE = 1;
-    public static final double MIN_COMMISSION_RATE = 0;
-    public static final double MAX_COMMISSION_RATE = 0.2;
-
     private BigDecimal mCapital;
     private InstallmentType mInstallmentType;
     private int mInstallmentAmount;
     private double mInterestRate;
     private LocalDate mWithdrawalDate;
     private double mCommissionRate;
-    private double mInsuranceRate;
+    private int mAge;
 
     public static Builder builder(){
         return new Builder();
@@ -49,14 +44,14 @@ public class ScheduleConfiguration {
         return mCommissionRate;
     }
 
-    public double getInsuranceRate() {
-        return mInsuranceRate;
+    public double getAge() {
+        return mAge;
     }
 
     public ScheduleConfiguration(
             BigDecimal capital, InstallmentType installmentType,
             int installmentAmount, double interestRate,
-            LocalDate withdrawalDate, double commissionRate, double insuranceRate
+            LocalDate withdrawalDate, double commissionRate, int age
     ) {
         mCapital = capital;
         mInstallmentType = installmentType;
@@ -64,7 +59,7 @@ public class ScheduleConfiguration {
         mInterestRate = interestRate;
         mWithdrawalDate = withdrawalDate;
         mCommissionRate = commissionRate;
-        mInsuranceRate = insuranceRate;
+        mAge = age;
     }
 
     private ScheduleConfiguration() {}
@@ -103,8 +98,8 @@ public class ScheduleConfiguration {
             return this;
         }
 
-        public Builder setInsuranceRate(double insuranceRate) {
-            mScheduleConfiguration.mInsuranceRate = insuranceRate;
+        public Builder setAge(int age) {
+            mScheduleConfiguration.mAge = age;
             return this;
         }
 
@@ -116,7 +111,7 @@ public class ScheduleConfiguration {
             || mScheduleConfiguration.mInstallmentType == null
             || mScheduleConfiguration.mCapital == null
             || (mScheduleConfiguration.mCommissionRate < 0 || mScheduleConfiguration.mCommissionRate > 0.2)
-            || mScheduleConfiguration.mInsuranceRate < 0)
+            || mScheduleConfiguration.mAge < 0)
                 throw new IllegalStateException("Not all parameters specified");
 
         }
@@ -138,7 +133,7 @@ public class ScheduleConfiguration {
                 && getCapital().equals(that.getCapital()) && getInstallmentType() == that.getInstallmentType()
                 && getWithdrawalDate().equals(that.getWithdrawalDate())
                 && Double.compare(that.getCommissionRate(), getCommissionRate()) == 0
-                && Double.compare(that.getInsuranceRate(), getInsuranceRate()) == 0;
+                && Double.compare(that.getAge(), getAge()) == 0;
     }
 
     @Override
@@ -150,7 +145,7 @@ public class ScheduleConfiguration {
                 getInterestRate(),
                 getWithdrawalDate(),
                 getCommissionRate(),
-                getInsuranceRate());
+                getAge());
     }
 
     @Override
@@ -162,7 +157,7 @@ public class ScheduleConfiguration {
                 ", InterestRate = " + mInterestRate +
                 ", WithdrawalDate = " + mWithdrawalDate +
                 ", CommissionRate = " + mCommissionRate +
-                ", InsuranceRate = " + mInsuranceRate +
+                ", InsuranceRate = " + mAge +
                 " }";
     }
 }

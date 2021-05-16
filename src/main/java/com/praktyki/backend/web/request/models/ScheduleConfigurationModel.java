@@ -2,7 +2,6 @@ package com.praktyki.backend.web.request.models;
 
 import com.praktyki.backend.web.validation.ValidCommissionRate;
 import com.praktyki.backend.web.validation.ValidInstallmentType;
-import com.praktyki.backend.web.validation.ValidInsuranceRate;
 import com.praktyki.backend.web.validation.ValidInterestRate;
 
 import javax.validation.constraints.*;
@@ -30,6 +29,6 @@ public class ScheduleConfigurationModel {
     @ValidCommissionRate
     public double commissionRate;
 
-    @ValidInsuranceRate
-    public double insuranceRate;
+    @Min(value = 0, message = "Age must be positive")
+    public int age;
 }

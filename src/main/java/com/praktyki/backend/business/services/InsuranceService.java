@@ -1,12 +1,15 @@
 package com.praktyki.backend.business.services;
 
+import com.praktyki.backend.app.configuration.ConfigurationKeys;
+import com.praktyki.backend.business.entities.InstallmentRateConfiguration;
+import com.praktyki.backend.business.entities.dates.ConfiguredDateScheduleCalculator;
 import com.praktyki.backend.business.entities.dates.DateSchedule;
-import com.praktyki.backend.business.entities.dates.QuarterlyDateScheduleCalculator;
+import com.praktyki.backend.business.services.exceptions.NoInsuranceRateForAgeException;
 import com.praktyki.backend.business.utils.MathUtils;
 import com.praktyki.backend.business.value.Installment;
 import com.praktyki.backend.business.value.InsurancePremium;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.praktyki.backend.configuration.Configuration;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -17,39 +20,58 @@ import java.util.stream.Collectors;
 
 public class InsuranceService {
 
-    public static final BigDecimal MIN_PREMIUM_VALUE = BigDecimal.valueOf(10).setScale(2, RoundingMode.HALF_UP);
+    private ConfiguredDateScheduleCalculator mDateScheduleCalculator;
 
-    private QuarterlyDateScheduleCalculator mDateScheduleCalculator;
+    private Configuration mConfiguration;
 
-    public InsuranceService(QuarterlyDateScheduleCalculator dateScheduleCalculator) {
+    private InstallmentRateConfiguration mInstallmentRateConfiguration;
+
+    public InsuranceService(
+            ConfiguredDateScheduleCalculator dateScheduleCalculator,
+            Configuration configuration,
+            InstallmentRateConfiguration installmentDateConfiguration) {
+
         mDateScheduleCalculator = dateScheduleCalculator;
+        mConfiguration = configuration;
+        mDateScheduleCalculator.setMonthFrame(Long.parseLong(mConfiguration.get(ConfigurationKeys.MONTH_FRAME)));
+        mInstallmentRateConfiguration = installmentDateConfiguration;
     }
 
     public List<InsurancePremium> calculateInsurancePremium(
             ScheduleConfiguration scheduleConfiguration,
-            List<Installment> installments) {
+            List<Installment> installments) throws NoInsuranceRateForAgeException {
+
+        BigDecimal minPremiumValue = new BigDecimal(mConfiguration.get(ConfigurationKeys.MIN_PREMIUM_VALUE))
+                .setScale(2, RoundingMode.HALF_UP);
+
+        mDateScheduleCalculator.setMonthFrame(Long.parseLong(mConfiguration.get(ConfigurationKeys.MONTH_FRAME)));
 
         DateSchedule schedule = mDateScheduleCalculator.calculate(installments.get(0).getInstallmentDate());
+
+        BigDecimal insuranceRate = BigDecimal.valueOf(
+                mInstallmentRateConfiguration.getRateForAge(scheduleConfiguration.getAge())
+        );
+
 
         int premiumAmount = ((int) ChronoUnit.MONTHS.between(
                 installments.get(0).getInstallmentDate(),
                 installments.get(installments.size() - 1).getInstallmentDate()
-        ) + 1) / 3;
+        ) + 1) / Integer.parseInt(mConfiguration.get(ConfigurationKeys.MONTH_FRAME));
 
         if(premiumAmount == 0) premiumAmount = 1;
 
 
         BigDecimal totalInsurance = scheduleConfiguration
                 .getCapital()
-                .multiply(BigDecimal.valueOf(scheduleConfiguration.getInsuranceRate()), MathUtils.CONTEXT);
+                .multiply(insuranceRate, MathUtils.CONTEXT);
 
         BigDecimal dividedPremiumValue = totalInsurance.divide(
                 BigDecimal.valueOf(premiumAmount), 2, RoundingMode.HALF_UP
         );
 
         BigDecimal premiumValue = dividedPremiumValue.equals(new BigDecimal("0.00"))
-                || dividedPremiumValue.compareTo(MIN_PREMIUM_VALUE) > 0
-                ? dividedPremiumValue : MIN_PREMIUM_VALUE;
+                || dividedPremiumValue.compareTo(minPremiumValue) > 0
+                ? dividedPremiumValue : minPremiumValue;
 
         List<InsurancePremium> premiums = schedule.stream()
                 .limit(premiumAmount - 1)
@@ -63,8 +85,8 @@ public class InsuranceService {
         premiums.add(new InsurancePremium(
                 premiums.size() + 1,
                 schedule.getDateFor(premiums.size() + 1),
-                lastPremiumValue.equals(new BigDecimal("0.00")) || lastPremiumValue.compareTo(MIN_PREMIUM_VALUE) > 0
-                ? lastPremiumValue : MIN_PREMIUM_VALUE
+                lastPremiumValue.equals(new BigDecimal("0.00")) || lastPremiumValue.compareTo(minPremiumValue) > 0
+                ? lastPremiumValue : minPremiumValue
         ));
 
         return premiums;
@@ -75,5 +97,6 @@ public class InsuranceService {
                 .map(InsurancePremium::getInsurancePremiumValue)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
+
 
 }

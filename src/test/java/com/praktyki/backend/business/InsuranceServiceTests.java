@@ -1,18 +1,27 @@
 package com.praktyki.backend.business;
 
+import com.praktyki.backend.app.configuration.ConfigurationGroupKeys;
+import com.praktyki.backend.app.configuration.ConfigurationImpl;
+import com.praktyki.backend.app.configuration.ConfigurationKeys;
+import com.praktyki.backend.app.data.repositories.ConfigurationRepository;
+import com.praktyki.backend.business.entities.InstallmentRateConfigurationImpl;
 import com.praktyki.backend.business.entities.InstallmentType;
+import com.praktyki.backend.business.entities.dates.ConfiguredDateScheduleCalculator;
 import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
 import com.praktyki.backend.business.entities.dates.QuarterlyDateScheduleCalculator;
 import com.praktyki.backend.business.services.InstallmentScheduleService;
 import com.praktyki.backend.business.services.InsuranceService;
-import com.praktyki.backend.business.utils.MathUtils;
+import com.praktyki.backend.business.services.exceptions.NoInsuranceRateForAgeException;
 import com.praktyki.backend.business.value.Installment;
 import com.praktyki.backend.business.value.InsurancePremium;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
+import com.praktyki.backend.configuration.Configuration;
+import com.praktyki.backend.configuration.exceptions.ConfigurationValueValidationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -24,9 +33,15 @@ import java.util.List;
         InstallmentScheduleService.class,
         InsuranceService.class,
         MonthlyDateScheduleCalculator.class,
-        QuarterlyDateScheduleCalculator.class
+        QuarterlyDateScheduleCalculator.class,
+        ConfiguredDateScheduleCalculator.class,
+        ConfigurationImpl.class,
+        InstallmentRateConfigurationImpl.class,
 })
 public class InsuranceServiceTests {
+
+    @MockBean
+    private ConfigurationRepository mConfigurationRepository;
 
     @Autowired
     private InstallmentScheduleService mInstallmentScheduleService;
@@ -34,8 +49,23 @@ public class InsuranceServiceTests {
     @Autowired
     private InsuranceService mInsuranceService;
 
+    @Autowired
+    private Configuration mConfiguration;
+
+    public void repositorySetUp() throws ConfigurationValueValidationException {
+
+        mConfiguration.save(ConfigurationKeys.MONTH_FRAME,
+                ConfigurationKeys.MONTH_FRAME.getDefaultValue());
+
+        mConfiguration.getGroup(ConfigurationGroupKeys.INSURANCE_GROUPS)
+                .save(ConfigurationGroupKeys.INSURANCE_GROUPS.createKey("0"), "0.1");
+
+    }
+
     @Test
-    public void testInsuranceService() {
+    public void testInsuranceService() throws NoInsuranceRateForAgeException, ConfigurationValueValidationException {
+
+        repositorySetUp();
 
         ScheduleConfiguration conf = ScheduleConfiguration.builder()
                 .setInstallmentType(InstallmentType.CONSTANT)
@@ -43,7 +73,7 @@ public class InsuranceServiceTests {
                 .setCapital(BigDecimal.valueOf(10000))
                 .setInstallmentAmount(12)
                 .setCommissionRate(0.05)
-                .setInsuranceRate(0.1)
+                .setAge(30)
                 .setWithdrawalDate(LocalDate.of(2021, 4, 11))
                 .build();
 
@@ -67,14 +97,17 @@ public class InsuranceServiceTests {
     }
 
     @Test
-    public void testInsuranceServiceMinValue() {
+    public void testInsuranceServiceMinValue() throws NoInsuranceRateForAgeException, ConfigurationValueValidationException {
+
+        repositorySetUp();
+
         ScheduleConfiguration conf = ScheduleConfiguration.builder()
                 .setInstallmentType(InstallmentType.CONSTANT)
                 .setInterestRate(0.1)
                 .setCapital(BigDecimal.valueOf(100))
                 .setInstallmentAmount(12)
                 .setCommissionRate(0.05)
-                .setInsuranceRate(0.1)
+                .setAge(30)
                 .setWithdrawalDate(LocalDate.of(2021, 4, 11))
                 .build();
 
@@ -96,6 +129,9 @@ public class InsuranceServiceTests {
 
         Assertions.assertEquals(expected, actual);
 
+        mConfiguration.getGroup(ConfigurationGroupKeys.INSURANCE_GROUPS).remove(
+                ConfigurationGroupKeys.INSURANCE_GROUPS.createKey("0")
+        );
 
     }
 

@@ -1,6 +1,9 @@
 package com.praktyki.backend.web.error;
 
 import com.praktyki.backend.app.data.exceptions.EntityNotFoundException;
+import com.praktyki.backend.business.services.exceptions.NoInsuranceRateForAgeException;
+import com.praktyki.backend.configuration.exceptions.ConfigurationGroupValidationException;
+import com.praktyki.backend.configuration.exceptions.ConfigurationValueValidationException;
 import com.praktyki.backend.web.exception.ConfigurationNotFound;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -56,17 +59,6 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
 
     }
 
-    @ExceptionHandler(ConfigurationNotFound.class)
-    public ResponseEntity<Object> handleConfigurationNotFoundException(ConfigurationNotFound ex) {
-        ApiError error = ApiError.builder()
-                .setMessage("No configuration was found")
-                .setSuggestedAction("Please insert date for configuration before creating schedule")
-                .setStatus(HttpStatus.NOT_FOUND)
-                .build();
-
-        return createResponseEntity(error);
-
-    }
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -96,6 +88,36 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
                 .setSuggestedAction("See validation errors for more info")
                 .setStatus(HttpStatus.BAD_REQUEST)
                 .build());
+    }
+
+    @ExceptionHandler(ConfigurationValueValidationException.class)
+    public ResponseEntity<Object> handleConfigurationValueValidationException(ConfigurationValueValidationException ex) {
+        return createResponseEntity(ApiError.builder()
+                .setStatus(HttpStatus.BAD_REQUEST)
+                .setMessage(ex.getMessage())
+                .setSuggestedAction("Please fix the configuration and try again")
+                .build()
+        );
+    }
+
+    @ExceptionHandler(ConfigurationGroupValidationException.class)
+    public ResponseEntity<Object> handleConfigurationGroupValidationException(ConfigurationValueValidationException ex) {
+        return createResponseEntity(ApiError.builder()
+                .setStatus(HttpStatus.BAD_REQUEST)
+                .setMessage(ex.getMessage())
+                .setSuggestedAction("Please contact the system administrator")
+                .build()
+        );
+    }
+
+    @ExceptionHandler(NoInsuranceRateForAgeException.class)
+    public ResponseEntity<Object> handleNoInsuranceRateForAgeException(NoInsuranceRateForAgeException ex) {
+        return createResponseEntity(ApiError.builder()
+                .setStatus(HttpStatus.NOT_FOUND)
+                .setMessage(ex.getMessage())
+                .setSuggestedAction("Configure insurance rate")
+                .build()
+        );
     }
 
     @ExceptionHandler(Exception.class)

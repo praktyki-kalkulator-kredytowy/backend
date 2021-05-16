@@ -2,6 +2,7 @@ package com.praktyki.backend.app.interactors;
 
 import com.praktyki.backend.business.services.APRCService;
 import com.praktyki.backend.business.services.InsuranceService;
+import com.praktyki.backend.business.services.exceptions.NoInsuranceRateForAgeException;
 import com.praktyki.backend.business.value.Installment;
 import com.praktyki.backend.business.value.InsurancePremium;
 import com.praktyki.backend.business.value.Schedule;
@@ -25,11 +26,11 @@ public class ScheduleInteractor {
     @Autowired
     private APRCService mAPRCService;
 
-    public Schedule calculateSchedule(ScheduleConfiguration configuration) {
+    public Schedule calculateSchedule(ScheduleConfiguration configuration) throws NoInsuranceRateForAgeException {
         return createSchedule(configuration);
     }
 
-    public Schedule createSchedule(ScheduleConfiguration scheduleConfiguration) {
+    public Schedule createSchedule(ScheduleConfiguration scheduleConfiguration) throws NoInsuranceRateForAgeException {
 
         List<Installment> installments = mInstallmentScheduleService.createInstallmentSchedule(scheduleConfiguration);
         List<InsurancePremium> insurancePremiumList = mInsuranceService.calculateInsurancePremium(scheduleConfiguration, installments);
