@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.temporal.ChronoUnit;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,6 +35,8 @@ public class InsuranceService {
                 installments.get(0).getInstallmentDate(),
                 installments.get(installments.size() - 1).getInstallmentDate()
         ) + 1) / 3;
+
+        if(premiumAmount == 0) return Collections.emptyList();
 
 
         BigDecimal totalInsurance = scheduleConfiguration
