@@ -33,7 +33,7 @@ public class ConfigurationSchemaResponseModel {
         public String groupKey;
         public String displayName;
         public String description;
-        List<ConfigurationKeySchema> entries;
+        public List<ConfigurationKeySchema> entries;
 
         public ConfigurationGroupSchema(ConfigurationGroupKey key, List<ConfigurationKeySchema> entries) {
             this.groupKey = key.getKey();
