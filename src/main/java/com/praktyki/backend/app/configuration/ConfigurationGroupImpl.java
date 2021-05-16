@@ -70,7 +70,7 @@ public class ConfigurationGroupImpl implements ConfigurationGroup {
         return this;
     }
 
-    private static ConfigurationEntry mapToEntry(ConfigurationEntryEntity entity) {
-        return new ConfigurationEntryImpl(ConfigurationKeys.valueOf(entity.key), entity.value);
+    private ConfigurationEntry mapToEntry(ConfigurationEntryEntity entity) {
+        return new ConfigurationEntryImpl(mGroupKey.createKey(entity.key), entity.value);
     }
 }
