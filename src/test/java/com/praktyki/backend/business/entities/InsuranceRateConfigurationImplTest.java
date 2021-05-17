@@ -3,10 +3,11 @@ package com.praktyki.backend.business.entities;
 import com.praktyki.backend.app.configuration.ConfigurationGroupKeys;
 import com.praktyki.backend.app.configuration.ConfigurationImpl;
 import com.praktyki.backend.app.data.repositories.ConfigurationRepository;
+import com.praktyki.backend.app.mocks.data.repositories.MockupConfigurationRepositoryImpl;
 import com.praktyki.backend.business.services.exceptions.NoInsuranceRateForAgeException;
-import com.praktyki.backend.configuration.Configuration;
-import com.praktyki.backend.configuration.ConfigurationGroupKey;
-import com.praktyki.backend.configuration.exceptions.ConfigurationValueValidationException;
+import com.praktyki.backend.app.configuration.Configuration;
+import com.praktyki.backend.app.configuration.ConfigurationGroupKey;
+import com.praktyki.backend.app.configuration.exceptions.ConfigurationValueValidationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +16,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 @SpringBootTest(classes = {
         ConfigurationImpl.class,
+        MockupConfigurationRepositoryImpl.class,
 })
 class InsuranceRateConfigurationImplTest {
-
-    @MockBean
-    private ConfigurationRepository mConfigurationRepository;
 
     @Autowired
     private Configuration mConfiguration;
@@ -42,7 +41,7 @@ class InsuranceRateConfigurationImplTest {
 
             Assertions.assertEquals(0.2, rateConfiguration.getRateForAge(25));
 
-            Assertions.assertEquals(0.4, rateConfiguration.getRateForAge(40));
+            Assertions.assertEquals(0.2, rateConfiguration.getRateForAge(40));
 
             Assertions.assertEquals(0.7, rateConfiguration.getRateForAge(99));
 

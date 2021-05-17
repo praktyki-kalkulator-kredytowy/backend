@@ -1,7 +1,5 @@
-package com.praktyki.backend.configuration;
+package com.praktyki.backend.app.configuration;
 
-
-import com.praktyki.backend.configuration.exceptions.ConfigurationValueValidationException;
 
 import java.util.Collection;
 

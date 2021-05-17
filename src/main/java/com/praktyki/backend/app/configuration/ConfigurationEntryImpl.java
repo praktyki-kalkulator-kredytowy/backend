@@ -1,8 +1,5 @@
 package com.praktyki.backend.app.configuration;
 
-import com.praktyki.backend.configuration.ConfigurationEntry;
-import com.praktyki.backend.configuration.ConfigurationKey;
-
 public class ConfigurationEntryImpl implements ConfigurationEntry {
     private final ConfigurationKey mKey;
     private final String mValue;

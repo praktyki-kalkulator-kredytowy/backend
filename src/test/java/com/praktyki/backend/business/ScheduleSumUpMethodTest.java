@@ -2,11 +2,12 @@ package com.praktyki.backend.business;
 
 import com.praktyki.backend.app.configuration.ConfigurationImpl;
 import com.praktyki.backend.app.data.repositories.ConfigurationRepository;
+import com.praktyki.backend.app.mocks.data.repositories.MockupConfigurationRepositoryImpl;
 import com.praktyki.backend.business.entities.InstallmentType;
 import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
 import com.praktyki.backend.business.services.InstallmentScheduleService;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
-import com.praktyki.backend.configuration.Configuration;
+import com.praktyki.backend.app.configuration.Configuration;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,9 @@ import java.time.LocalDate;
         InstallmentScheduleService.class,
         MonthlyDateScheduleCalculator.class,
         ConfigurationImpl.class,
+        MockupConfigurationRepositoryImpl.class,
 })
 public class ScheduleSumUpMethodTest {
-
-    @MockBean
-    private ConfigurationRepository mConfigurationRepository;
 
     @Autowired
     private InstallmentScheduleService mInstallmentScheduleService;

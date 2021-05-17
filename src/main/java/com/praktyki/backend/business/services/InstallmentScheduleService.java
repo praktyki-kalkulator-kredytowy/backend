@@ -7,7 +7,7 @@ import com.praktyki.backend.business.utils.InstallmentUtils;
 import com.praktyki.backend.business.utils.MathUtils;
 import com.praktyki.backend.business.value.Installment;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
-import com.praktyki.backend.configuration.Configuration;
+import com.praktyki.backend.app.configuration.Configuration;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

@@ -1,7 +1,5 @@
-package com.praktyki.backend.configuration;
+package com.praktyki.backend.app.configuration;
 
-import com.praktyki.backend.app.configuration.ConfigurationImpl;
-import com.praktyki.backend.app.configuration.ConfigurationKeys;
 import com.praktyki.backend.app.data.repositories.ConfigurationRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

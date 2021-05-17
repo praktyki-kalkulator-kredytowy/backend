@@ -1,4 +1,4 @@
-package com.praktyki.backend.configuration.exceptions;
+package com.praktyki.backend.app.configuration.exceptions;
 
 public class ConfigurationException extends Exception {
 

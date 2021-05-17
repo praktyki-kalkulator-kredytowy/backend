@@ -1,7 +1,7 @@
 package com.praktyki.backend.business.entities.dates;
 
 import com.praktyki.backend.app.configuration.ConfigurationKeys;
-import com.praktyki.backend.configuration.Configuration;
+import com.praktyki.backend.app.configuration.Configuration;
 
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalUnit;

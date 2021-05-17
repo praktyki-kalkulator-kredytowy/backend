@@ -1,7 +1,6 @@
 package com.praktyki.backend.app.configuration;
 
-import com.praktyki.backend.configuration.ConfigurationKey;
-import com.praktyki.backend.configuration.exceptions.ConfigurationValueValidationException;
+import com.praktyki.backend.app.configuration.exceptions.ConfigurationValueValidationException;
 
 public class ConfigurationValidationUtils {
 

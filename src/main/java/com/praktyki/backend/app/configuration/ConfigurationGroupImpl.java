@@ -2,33 +2,20 @@ package com.praktyki.backend.app.configuration;
 
 import com.praktyki.backend.app.data.entities.ConfigurationEntryEntity;
 import com.praktyki.backend.app.data.repositories.ConfigurationRepository;
-import com.praktyki.backend.configuration.ConfigurationEntry;
-import com.praktyki.backend.configuration.ConfigurationGroup;
-import com.praktyki.backend.configuration.ConfigurationGroupKey;
-import com.praktyki.backend.configuration.ConfigurationKey;
-import com.praktyki.backend.configuration.exceptions.ConfigurationValueValidationException;
+import com.praktyki.backend.app.configuration.exceptions.ConfigurationValueValidationException;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 public class ConfigurationGroupImpl implements ConfigurationGroup {
 
     private ConfigurationGroupKey mGroupKey;
     private ConfigurationRepository mConfigurationRepository;
-    // TODO: not a good idea
-    private Map<ConfigurationKey, ConfigurationEntry> mEntries = new HashMap<>();
 
     public ConfigurationGroupImpl(ConfigurationGroupKey groupKey, ConfigurationRepository configurationRepository) {
         mGroupKey = groupKey;
         mConfigurationRepository = configurationRepository;
-
-        for(ConfigurationEntryEntity entity : configurationRepository.findEntriesForGroup(mGroupKey.getKey())) {
-            ConfigurationEntry entry = mapToEntry(entity);
-            mEntries.put(entry.getKey(), entry);
-        }
-
     }
 
     @Override
@@ -38,37 +25,35 @@ public class ConfigurationGroupImpl implements ConfigurationGroup {
 
     @Override
     public Collection<ConfigurationEntry> getEntries() {
-        return new ArrayList<>(mEntries.values());
+        return StreamSupport
+                .stream(
+                        mConfigurationRepository.findEntriesForGroup(mGroupKey.getKey()).spliterator(),
+                        false
+                )
+                .map(this::mapToEntry)
+                .collect(Collectors.toList());
     }
 
     @Override
     public String get(ConfigurationKey key) {
-        if(mEntries.containsKey(key))
-            return mEntries.get(key).getValue();
-
-        return key.getDefaultValue();
+        return mConfigurationRepository.find(mGroupKey.getKey(), key.getKey())
+                .map(e -> e.value)
+                .orElseGet(key::getDefaultValue);
     }
 
     @Override
     public ConfigurationGroup save(ConfigurationKey key, String value) throws ConfigurationValueValidationException {
         key.validate(value);
 
-        if(mEntries.containsKey(key)) {
-            mConfigurationRepository.removeKey(mGroupKey.getKey(), key.getKey());
-            mEntries.remove(key);
-        }
-
+        mConfigurationRepository.removeKey(mGroupKey.getKey(), key.getKey());
 
         mConfigurationRepository.save(new ConfigurationEntryEntity(0, key.getKey(), value, mGroupKey.getKey()));
-        mEntries.put(key, new ConfigurationEntryImpl(key, value));
         return this;
     }
 
     @Override
     public ConfigurationGroup remove(ConfigurationKey key) {
         mConfigurationRepository.removeKey(mGroupKey.getKey(), key.getKey());
-        mEntries.remove(key);
-
         return this;
     }
 

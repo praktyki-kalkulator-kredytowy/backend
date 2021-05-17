@@ -2,9 +2,9 @@ package com.praktyki.backend.business.entities;
 
 import com.praktyki.backend.app.configuration.ConfigurationGroupKeys;
 import com.praktyki.backend.business.services.exceptions.NoInsuranceRateForAgeException;
-import com.praktyki.backend.configuration.Configuration;
-import com.praktyki.backend.configuration.ConfigurationEntry;
-import com.praktyki.backend.configuration.ConfigurationKey;
+import com.praktyki.backend.app.configuration.Configuration;
+import com.praktyki.backend.app.configuration.ConfigurationEntry;
+import com.praktyki.backend.app.configuration.ConfigurationKey;
 
 import java.util.Collection;
 

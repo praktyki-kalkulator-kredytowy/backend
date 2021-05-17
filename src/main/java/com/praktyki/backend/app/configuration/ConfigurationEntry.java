@@ -1,4 +1,4 @@
-package com.praktyki.backend.configuration;
+package com.praktyki.backend.app.configuration;
 
 public interface ConfigurationEntry {
 

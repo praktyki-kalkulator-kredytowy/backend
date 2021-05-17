@@ -1,6 +1,6 @@
-package com.praktyki.backend.configuration.exceptions;
+package com.praktyki.backend.app.configuration.exceptions;
 
-import com.praktyki.backend.configuration.ConfigurationKey;
+import com.praktyki.backend.app.configuration.ConfigurationKey;
 
 public class ConfigurationValueValidationException extends ConfigurationException {
 

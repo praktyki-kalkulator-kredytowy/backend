@@ -2,10 +2,10 @@ package com.praktyki.backend.web.controllers;
 
 import com.praktyki.backend.app.configuration.ConfigurationGroupKeys;
 import com.praktyki.backend.app.data.repositories.ConfigurationRepository;
-import com.praktyki.backend.configuration.Configuration;
-import com.praktyki.backend.configuration.ConfigurationGroupKey;
-import com.praktyki.backend.configuration.ConfigurationKey;
-import com.praktyki.backend.configuration.exceptions.ConfigurationValueValidationException;
+import com.praktyki.backend.app.configuration.Configuration;
+import com.praktyki.backend.app.configuration.ConfigurationGroupKey;
+import com.praktyki.backend.app.configuration.ConfigurationKey;
+import com.praktyki.backend.app.configuration.exceptions.ConfigurationValueValidationException;
 import com.praktyki.backend.web.request.models.ConfigurationEntryModel;
 import com.praktyki.backend.web.request.models.DeleteConfigurationEntryModel;
 import com.praktyki.backend.web.response.models.ConfigurationSchemaResponseModel;

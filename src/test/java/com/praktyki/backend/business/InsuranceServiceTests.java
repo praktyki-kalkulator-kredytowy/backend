@@ -4,6 +4,7 @@ import com.praktyki.backend.app.configuration.ConfigurationGroupKeys;
 import com.praktyki.backend.app.configuration.ConfigurationImpl;
 import com.praktyki.backend.app.configuration.ConfigurationKeys;
 import com.praktyki.backend.app.data.repositories.ConfigurationRepository;
+import com.praktyki.backend.app.mocks.data.repositories.MockupConfigurationRepositoryImpl;
 import com.praktyki.backend.business.entities.InsuranceRateConfigurationImpl;
 import com.praktyki.backend.business.entities.InstallmentType;
 import com.praktyki.backend.business.entities.dates.InsurancePremiumDateCalculator;
@@ -14,8 +15,8 @@ import com.praktyki.backend.business.services.exceptions.NoInsuranceRateForAgeEx
 import com.praktyki.backend.business.value.Installment;
 import com.praktyki.backend.business.value.InsurancePremium;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
-import com.praktyki.backend.configuration.Configuration;
-import com.praktyki.backend.configuration.exceptions.ConfigurationValueValidationException;
+import com.praktyki.backend.app.configuration.Configuration;
+import com.praktyki.backend.app.configuration.exceptions.ConfigurationValueValidationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,11 +36,9 @@ import java.util.List;
         InsurancePremiumDateCalculator.class,
         ConfigurationImpl.class,
         InsuranceRateConfigurationImpl.class,
+        MockupConfigurationRepositoryImpl.class,
 })
 public class InsuranceServiceTests {
-
-    @MockBean
-    private ConfigurationRepository mConfigurationRepository;
 
     @Autowired
     private InstallmentScheduleService mInstallmentScheduleService;

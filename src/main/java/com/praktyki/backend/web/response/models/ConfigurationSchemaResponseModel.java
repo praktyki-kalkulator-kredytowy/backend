@@ -2,8 +2,8 @@ package com.praktyki.backend.web.response.models;
 
 import com.praktyki.backend.app.configuration.ConfigurationGroupKeys;
 import com.praktyki.backend.app.configuration.ConfigurationKeys;
-import com.praktyki.backend.configuration.ConfigurationGroupKey;
-import com.praktyki.backend.configuration.ConfigurationKey;
+import com.praktyki.backend.app.configuration.ConfigurationGroupKey;
+import com.praktyki.backend.app.configuration.ConfigurationKey;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;

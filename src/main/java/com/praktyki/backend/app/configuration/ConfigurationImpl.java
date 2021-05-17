@@ -1,8 +1,7 @@
 package com.praktyki.backend.app.configuration;
 
 import com.praktyki.backend.app.data.repositories.ConfigurationRepository;
-import com.praktyki.backend.configuration.*;
-import com.praktyki.backend.configuration.exceptions.ConfigurationValueValidationException;
+import com.praktyki.backend.app.configuration.exceptions.ConfigurationValueValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

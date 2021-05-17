@@ -1,7 +1,7 @@
 package com.praktyki.backend.web.validation;
 
 import com.praktyki.backend.app.configuration.ConfigurationKeys;
-import com.praktyki.backend.configuration.Configuration;
+import com.praktyki.backend.app.configuration.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.ConstraintValidator;
