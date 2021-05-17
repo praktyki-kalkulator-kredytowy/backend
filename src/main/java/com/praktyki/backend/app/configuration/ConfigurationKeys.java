@@ -52,7 +52,7 @@ public enum ConfigurationKeys implements ConfigurationKey {
 
         @Override
         public String getDefaultValue() {
-            return "0.01";
+            return "0.00";
         }
 
         @Override

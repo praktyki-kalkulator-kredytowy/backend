@@ -8,11 +8,11 @@ import com.praktyki.backend.configuration.ConfigurationKey;
 
 import java.util.Collection;
 
-public class InstallmentRateConfigurationImpl implements InstallmentRateConfiguration {
+public class InsuranceRateConfigurationImpl implements InsuranceRateConfiguration {
 
     private Configuration mConfiguration;
 
-    public InstallmentRateConfigurationImpl(Configuration configuration) {
+    public InsuranceRateConfigurationImpl(Configuration configuration) {
         mConfiguration = configuration;
     }
 
@@ -26,7 +26,7 @@ public class InstallmentRateConfigurationImpl implements InstallmentRateConfigur
                 .map(ConfigurationEntry::getKey)
                 .map(ConfigurationKey::getKey)
                 .map(Integer::parseInt)
-                .filter(k -> k <= age)
+                .filter(k -> k < age)
                 .max(Integer::compare)
                 .orElseThrow(() -> new NoInsuranceRateForAgeException(age));
 

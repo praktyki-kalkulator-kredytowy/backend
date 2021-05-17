@@ -1,7 +1,7 @@
 package com.praktyki.backend.app;
 
-import com.praktyki.backend.business.entities.InstallmentRateConfiguration;
-import com.praktyki.backend.business.entities.InstallmentRateConfigurationImpl;
+import com.praktyki.backend.business.entities.InsuranceRateConfiguration;
+import com.praktyki.backend.business.entities.InsuranceRateConfigurationImpl;
 import com.praktyki.backend.business.entities.dates.InsurancePremiumDateCalculator;
 import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
 import com.praktyki.backend.business.services.APRCService;
@@ -47,9 +47,9 @@ public class BusinessConfiguration {
     public InsuranceService getInsuranceService(
             InsurancePremiumDateCalculator calculator,
             com.praktyki.backend.configuration.Configuration configuration,
-            InstallmentRateConfiguration installmentRateConfiguration
+            InsuranceRateConfiguration insuranceRateConfiguration
     ) {
-        return new InsuranceService(calculator, configuration, installmentRateConfiguration);
+        return new InsuranceService(calculator, configuration, insuranceRateConfiguration);
     }
 
     @Bean
@@ -60,9 +60,9 @@ public class BusinessConfiguration {
 
     @Bean
     @Scope("singleton")
-    public InstallmentRateConfiguration getInstallmentRateConfiguration(
+    public InsuranceRateConfiguration getInstallmentRateConfiguration(
             com.praktyki.backend.configuration.Configuration configuration
     ) {
-        return new InstallmentRateConfigurationImpl(configuration);
+        return new InsuranceRateConfigurationImpl(configuration);
     }
 }

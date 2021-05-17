@@ -84,7 +84,7 @@ public class InstallmentScheduleService {
         BigDecimal commission = scheduleConfiguration.getCapital().multiply(
                 BigDecimal.valueOf(scheduleConfiguration.getCommissionRate()), MathUtils.CONTEXT);
 
-        return commission.compareTo(minimalCommissionAmount) > 0 || commission.equals(BigDecimal.ZERO)
+        return commission.compareTo(minimalCommissionAmount) > 0 || commission.equals(new BigDecimal("0.00"))
                 ? commission.setScale(2, RoundingMode.HALF_UP)
                 : minimalCommissionAmount.setScale(2, RoundingMode.HALF_UP);
 

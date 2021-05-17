@@ -1,7 +1,7 @@
 package com.praktyki.backend.business.services;
 
 import com.praktyki.backend.app.configuration.ConfigurationKeys;
-import com.praktyki.backend.business.entities.InstallmentRateConfiguration;
+import com.praktyki.backend.business.entities.InsuranceRateConfiguration;
 import com.praktyki.backend.business.entities.dates.DateSchedule;
 import com.praktyki.backend.business.entities.dates.InsurancePremiumDateCalculator;
 import com.praktyki.backend.business.services.exceptions.NoInsuranceRateForAgeException;
@@ -23,16 +23,16 @@ public class InsuranceService {
 
     private Configuration mConfiguration;
 
-    private InstallmentRateConfiguration mInstallmentRateConfiguration;
+    private InsuranceRateConfiguration mInsuranceRateConfiguration;
 
     public InsuranceService(
             InsurancePremiumDateCalculator dateScheduleCalculator,
             Configuration configuration,
-            InstallmentRateConfiguration installmentDateConfiguration) {
+            InsuranceRateConfiguration installmentDateConfiguration) {
 
         mDateScheduleCalculator = dateScheduleCalculator;
         mConfiguration = configuration;
-        mInstallmentRateConfiguration = installmentDateConfiguration;
+        mInsuranceRateConfiguration = installmentDateConfiguration;
     }
 
     public List<InsurancePremium> calculateInsurancePremium(
@@ -45,7 +45,7 @@ public class InsuranceService {
         DateSchedule schedule = mDateScheduleCalculator.calculate(installments.get(0).getInstallmentDate());
 
         BigDecimal insuranceRate = BigDecimal.valueOf(
-                mInstallmentRateConfiguration.getRateForAge(scheduleConfiguration.getAge())
+                mInsuranceRateConfiguration.getRateForAge(scheduleConfiguration.getAge())
         );
 
 

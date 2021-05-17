@@ -4,7 +4,7 @@ import com.praktyki.backend.app.configuration.ConfigurationGroupKeys;
 import com.praktyki.backend.app.configuration.ConfigurationImpl;
 import com.praktyki.backend.app.configuration.ConfigurationKeys;
 import com.praktyki.backend.app.data.repositories.ConfigurationRepository;
-import com.praktyki.backend.business.entities.InstallmentRateConfigurationImpl;
+import com.praktyki.backend.business.entities.InsuranceRateConfigurationImpl;
 import com.praktyki.backend.business.entities.InstallmentType;
 import com.praktyki.backend.business.entities.dates.InsurancePremiumDateCalculator;
 import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
@@ -34,7 +34,7 @@ import java.util.List;
         MonthlyDateScheduleCalculator.class,
         InsurancePremiumDateCalculator.class,
         ConfigurationImpl.class,
-        InstallmentRateConfigurationImpl.class,
+        InsuranceRateConfigurationImpl.class,
 })
 public class InsuranceServiceTests {
 

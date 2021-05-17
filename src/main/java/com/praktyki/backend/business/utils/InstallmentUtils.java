@@ -11,8 +11,15 @@ import java.time.temporal.ChronoUnit;
 public class InstallmentUtils {
 
     public static BigDecimal calculateTotalConstantInstallment(ScheduleConfiguration conf) {
+
+        if(conf.getInterestRate() == 0)
+            return conf.getCapital().divide(
+                    BigDecimal.valueOf(conf.getInstallmentAmount()),2, RoundingMode.HALF_UP
+            );
+
         BigDecimal c = conf.getCapital();
         BigDecimal r = BigDecimal.valueOf(conf.getInterestRate());
+        //TODO: k - how much rates in year
         BigDecimal k = BigDecimal.valueOf(12);
         BigDecimal n = BigDecimal.valueOf(conf.getInstallmentAmount());
 

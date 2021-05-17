@@ -16,7 +16,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 @SpringBootTest(classes = {
         ConfigurationImpl.class,
 })
-class InstallmentRateConfigurationImplTest {
+class InsuranceRateConfigurationImplTest {
 
     @MockBean
     private ConfigurationRepository mConfigurationRepository;
@@ -26,7 +26,7 @@ class InstallmentRateConfigurationImplTest {
 
     @Test
     void getRateForAge() throws ConfigurationValueValidationException {
-        InstallmentRateConfiguration rateConfiguration = new InstallmentRateConfigurationImpl(mConfiguration);
+        InsuranceRateConfiguration rateConfiguration = new InsuranceRateConfigurationImpl(mConfiguration);
 
         ConfigurationGroupKey group = ConfigurationGroupKeys.INSURANCE_GROUPS;
         mConfiguration.getGroup(group)
