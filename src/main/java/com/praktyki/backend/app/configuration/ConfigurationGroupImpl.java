@@ -66,6 +66,7 @@ public class ConfigurationGroupImpl implements ConfigurationGroup {
     @Override
     public ConfigurationGroup remove(ConfigurationKey key) {
         mConfigurationRepository.removeKey(mGroupKey.getKey(), key.getKey());
+        mEntries.remove(key);
 
         return this;
     }
