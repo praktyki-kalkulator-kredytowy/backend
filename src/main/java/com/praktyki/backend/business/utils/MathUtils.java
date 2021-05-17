@@ -1,6 +1,5 @@
 package com.praktyki.backend.business.utils;
 
-import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.function.UnaryOperator;
@@ -9,27 +8,28 @@ public class MathUtils {
 
     public static final MathContext CONTEXT = new MathContext(32, RoundingMode.HALF_UP);
 
-    public static BigDecimal solveForZeroWithBisection(
-            UnaryOperator<BigDecimal> f,
-            BigDecimal start,
-            BigDecimal end,
-            BigDecimal precision) {
 
-        BigDecimal startValue = f.apply(start);
-        BigDecimal endValue = f.apply(end);
+    public static double solveForZeroWithBisection(
+            UnaryOperator<Double> f,
+            double start,
+            double end,
+            double precision) {
 
-        while(start.subtract(end).abs().compareTo(precision) >= 0) {
-            BigDecimal x = start.add(end).divide(BigDecimal.valueOf(2), CONTEXT);
-            BigDecimal xValue = f.apply(x);
+        double startValue = f.apply(start);
+        double endValue = f.apply(end);
 
-            if(xValue.equals(BigDecimal.ZERO)) return x;
+        while(Math.abs(start - end) > precision) {
+            double x = (start + end) / 2;
+            double xValue = f.apply(x);
 
-            if(startValue.signum() * xValue.signum() < 0)
+            if(xValue == 0) return x;
+
+            if(startValue * xValue < 0)
                 end = x;
             else
                 start = x;
         }
-        return start.add(end).divide(BigDecimal.valueOf(2), CONTEXT);
+        return (start + end) / 2;
     }
 
 }

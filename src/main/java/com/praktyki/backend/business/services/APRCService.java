@@ -4,6 +4,7 @@ import com.praktyki.backend.business.utils.MathUtils;
 import com.praktyki.backend.business.value.*;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.LinkedList;
@@ -12,9 +13,9 @@ import java.util.function.UnaryOperator;
 
 public class APRCService {
 
-    public static final BigDecimal RANGE_START = BigDecimal.ZERO;
-    public static final BigDecimal RANGE_END = BigDecimal.valueOf(1000);
-    public static final BigDecimal PRECISION = BigDecimal.valueOf(0.0000001);
+    public static final double RANGE_START = 0;
+    public static final double RANGE_END = 1000;
+    public static final double PRECISION = 0.0000001;
 
     public BigDecimal calculateAPRC(
             ScheduleConfiguration conf,
@@ -32,42 +33,39 @@ public class APRCService {
         ));
 
 
-        UnaryOperator<BigDecimal> APRCFunction = createAPRCFunction(
+        UnaryOperator<Double> APRCFunction = createAPRCFunction(
                 conf.getCapital(),
                 payments,
                 conf.getWithdrawalDate()
         );
 
-        return MathUtils.solveForZeroWithBisection(
+        if(APRCFunction.apply(0D) == 0)
+            return BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP);
+
+        return BigDecimal.valueOf(MathUtils.solveForZeroWithBisection(
                 APRCFunction,
                 RANGE_START,
                 RANGE_END,
                 PRECISION
-        );
+        )).setScale(2, RoundingMode.HALF_UP);
     }
 
-    private UnaryOperator<BigDecimal> createAPRCFunction(
+    private UnaryOperator<Double> createAPRCFunction(
             BigDecimal capital,
             List<Payment> payments,
             LocalDate withdrawalDate) { return x -> {
 
-        BigDecimal sum = BigDecimal.ZERO;
+        double sum = 0;
 
         for(Payment p : payments) {
-            double yearProgress =
-                    BigDecimal.valueOf(ChronoUnit.DAYS.between(withdrawalDate, p.getDate()))
-                    .divide(BigDecimal.valueOf(p.getDate().lengthOfYear()), MathUtils.CONTEXT)
-                    .doubleValue();
+            double yearProgress = (double) ChronoUnit.DAYS.between(withdrawalDate, p.getDate())
+                    / p.getDate().lengthOfYear();
 
-            sum = sum.add(
-                    p.getAmount().divide(
-                            BigDecimal.valueOf(Math.pow(1 + x.doubleValue(), yearProgress)),
-                            MathUtils.CONTEXT
-                    )
-            );
+             sum +=
+                    p.getAmount().doubleValue() / Math.pow(1 + x, yearProgress);
         }
 
-        return capital.subtract(sum);
+        return capital.doubleValue() - sum;
     };}
 
 

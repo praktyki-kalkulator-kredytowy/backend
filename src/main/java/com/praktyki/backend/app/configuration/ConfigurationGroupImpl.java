@@ -17,6 +17,7 @@ public class ConfigurationGroupImpl implements ConfigurationGroup {
 
     private ConfigurationGroupKey mGroupKey;
     private ConfigurationRepository mConfigurationRepository;
+    // TODO: not a good idea
     private Map<ConfigurationKey, ConfigurationEntry> mEntries = new HashMap<>();
 
     public ConfigurationGroupImpl(ConfigurationGroupKey groupKey, ConfigurationRepository configurationRepository) {
