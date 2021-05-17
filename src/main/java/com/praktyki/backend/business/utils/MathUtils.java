@@ -32,8 +32,4 @@ public class MathUtils {
         return start.add(end).divide(BigDecimal.valueOf(2), CONTEXT);
     }
 
-    public static boolean isEqual(double d, BigDecimal bd) {
-        return BigDecimal.valueOf(d).compareTo(bd) == 0;
-    }
-
 }
