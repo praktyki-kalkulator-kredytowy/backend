@@ -120,7 +120,7 @@ public enum ConfigurationKeys implements ConfigurationKey {
 
         @Override
         public String getDefaultValue() {
-            return "0.5";
+            return "0.1";
         }
 
         @Override
