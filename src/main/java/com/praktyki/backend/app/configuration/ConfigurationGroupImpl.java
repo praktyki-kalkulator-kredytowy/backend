@@ -53,8 +53,8 @@ public class ConfigurationGroupImpl implements ConfigurationGroup {
         key.validate(value);
 
         if(mEntries.containsKey(key)) {
-            mEntries.remove(key);
             mConfigurationRepository.removeKey(mGroupKey.getKey(), key.getKey());
+            mEntries.remove(key);
         }
 
 
