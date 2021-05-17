@@ -30,6 +30,7 @@ public class ScheduleConfigurationModel {
     public double commissionRate;
 
     @Min(value = 0, message = "Age must be positive")
+    @Max(value = 150, message = "Maximum age value is 150")
     public int age;
 
     public boolean insurance;
