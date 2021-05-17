@@ -1,10 +1,7 @@
 package com.praktyki.backend.app.configuration;
 
 import com.praktyki.backend.app.data.repositories.ConfigurationRepository;
-import com.praktyki.backend.configuration.Configuration;
-import com.praktyki.backend.configuration.ConfigurationGroup;
-import com.praktyki.backend.configuration.ConfigurationGroupKey;
-import com.praktyki.backend.configuration.ConfigurationKey;
+import com.praktyki.backend.configuration.*;
 import com.praktyki.backend.configuration.exceptions.ConfigurationValueValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -28,8 +25,6 @@ public class ConfigurationImpl implements Configuration {
         ));
     }
 
-
-
     @Override
     public String get(ConfigurationKey key) {
         return mGroups.get(ConfigurationGroupKeys.DEFAULT).get(key);
@@ -38,6 +33,22 @@ public class ConfigurationImpl implements Configuration {
     @Override
     public Configuration save(ConfigurationKey key, String value) throws ConfigurationValueValidationException {
         mGroups.get(ConfigurationGroupKeys.DEFAULT).save(key, value);
+        return this;
+    }
+
+    @Override
+    public ConfigurationGroupKey getGroupKey() {
+        return mGroups.get(ConfigurationGroupKeys.DEFAULT).getGroupKey();
+    }
+
+    @Override
+    public Collection<ConfigurationEntry> getEntries() {
+        return mGroups.get(ConfigurationGroupKeys.DEFAULT).getEntries();
+    }
+
+    @Override
+    public ConfigurationGroup remove(ConfigurationKey key) {
+        mGroups.get(ConfigurationGroupKeys.DEFAULT).remove(key);
         return this;
     }
 

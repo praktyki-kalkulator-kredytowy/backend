@@ -5,11 +5,7 @@ import com.praktyki.backend.configuration.exceptions.ConfigurationValueValidatio
 
 import java.util.Collection;
 
-public interface Configuration {
-
-    String get(ConfigurationKey key);
-
-    Configuration save(ConfigurationKey key, String value) throws ConfigurationValueValidationException;
+public interface Configuration extends ConfigurationGroup{
 
     Collection<ConfigurationGroup> getGroups();
 
