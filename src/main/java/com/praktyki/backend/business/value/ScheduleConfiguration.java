@@ -14,6 +14,7 @@ public class ScheduleConfiguration {
     private double mInterestRate;
     private LocalDate mWithdrawalDate;
     private double mCommissionRate;
+    private boolean mInsurance;
     private int mAge;
 
     public static Builder builder(){
@@ -48,10 +49,19 @@ public class ScheduleConfiguration {
         return mAge;
     }
 
+    public boolean isInsurance() {
+        return mInsurance;
+    }
+
     public ScheduleConfiguration(
-            BigDecimal capital, InstallmentType installmentType,
-            int installmentAmount, double interestRate,
-            LocalDate withdrawalDate, double commissionRate, int age
+            BigDecimal capital,
+            InstallmentType installmentType,
+            int installmentAmount,
+            double interestRate,
+            LocalDate withdrawalDate,
+            double commissionRate,
+            boolean insurance,
+            int age
     ) {
         mCapital = capital;
         mInstallmentType = installmentType;
@@ -59,6 +69,7 @@ public class ScheduleConfiguration {
         mInterestRate = interestRate;
         mWithdrawalDate = withdrawalDate;
         mCommissionRate = commissionRate;
+        mInsurance = insurance;
         mAge = age;
     }
 
@@ -95,6 +106,11 @@ public class ScheduleConfiguration {
 
         public Builder setCommissionRate(double commissionRate) {
             mScheduleConfiguration.mCommissionRate = commissionRate;
+            return this;
+        }
+
+        public Builder setInsurance(boolean insurance) {
+            mScheduleConfiguration.mInsurance = insurance;
             return this;
         }
 

@@ -42,6 +42,7 @@ public class ScheduleSumUpMethodTest {
                 .setInstallmentType(InstallmentType.CONSTANT)
                 .setInterestRate(0.1)
                 .setCommissionRate(0.2)
+                .setInsurance(false)
                 .setWithdrawalDate(LocalDate.of(2021,5,31))
                 .build();
 
@@ -58,6 +59,7 @@ public class ScheduleSumUpMethodTest {
                 .setInstallmentType(InstallmentType.DECREASING)
                 .setInterestRate(0.21)
                 .setCommissionRate(0.2)
+                .setInsurance(false)
                 .setWithdrawalDate(LocalDate.of(2019,4,3))
                 .build();
 

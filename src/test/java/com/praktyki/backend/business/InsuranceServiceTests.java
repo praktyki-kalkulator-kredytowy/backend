@@ -71,6 +71,7 @@ public class InsuranceServiceTests {
                 .setCapital(BigDecimal.valueOf(10000))
                 .setInstallmentAmount(12)
                 .setCommissionRate(0.05)
+                .setInsurance(true)
                 .setAge(30)
                 .setWithdrawalDate(LocalDate.of(2021, 4, 11))
                 .build();
@@ -105,6 +106,7 @@ public class InsuranceServiceTests {
                 .setCapital(BigDecimal.valueOf(100))
                 .setInstallmentAmount(12)
                 .setCommissionRate(0.05)
+                .setInsurance(true)
                 .setAge(30)
                 .setWithdrawalDate(LocalDate.of(2021, 4, 11))
                 .build();

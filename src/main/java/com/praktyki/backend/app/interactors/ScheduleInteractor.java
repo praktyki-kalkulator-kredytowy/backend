@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -33,7 +34,9 @@ public class ScheduleInteractor {
     public Schedule createSchedule(ScheduleConfiguration scheduleConfiguration) throws NoInsuranceRateForAgeException {
 
         List<Installment> installments = mInstallmentScheduleService.createInstallmentSchedule(scheduleConfiguration);
-        List<InsurancePremium> insurancePremiumList = mInsuranceService.calculateInsurancePremium(scheduleConfiguration, installments);
+        List<InsurancePremium> insurancePremiumList = scheduleConfiguration.isInsurance()
+                ? mInsuranceService.calculateInsurancePremium(scheduleConfiguration, installments)
+                : Collections.emptyList();
         BigDecimal commission = mInstallmentScheduleService.calculateCommission(scheduleConfiguration);
         BigDecimal sumUpInsurancePremium = mInsuranceService.calculateTotalInsuranceCost(insurancePremiumList);
         BigDecimal sumUpInterestInstallment = mInstallmentScheduleService.sumUpInterestInstallment(installments);

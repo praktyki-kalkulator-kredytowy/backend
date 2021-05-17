@@ -53,6 +53,7 @@ public class ScheduleCommissionCalculateTest {
                 .setInstallmentType(InstallmentType.CONSTANT)
                 .setInterestRate(0.1)
                 .setCommissionRate(0.2)
+                .setInsurance(false)
                 .setWithdrawalDate(LocalDate.now())
                 .build();
 
@@ -67,6 +68,7 @@ public class ScheduleCommissionCalculateTest {
                 .setInstallmentType(InstallmentType.CONSTANT)
                 .setInterestRate(0.1)
                 .setCommissionRate(0.01)
+                .setInsurance(false)
                 .setWithdrawalDate(LocalDate.now())
                 .build();
 
@@ -81,6 +83,7 @@ public class ScheduleCommissionCalculateTest {
                 .setInstallmentType(InstallmentType.CONSTANT)
                 .setInterestRate(0.1)
                 .setCommissionRate(0.16)
+                .setInsurance(false)
                 .setWithdrawalDate(LocalDate.now())
                 .build();
 

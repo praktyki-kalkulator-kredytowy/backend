@@ -31,4 +31,6 @@ public class ScheduleConfigurationModel {
 
     @Min(value = 0, message = "Age must be positive")
     public int age;
+
+    public boolean insurance;
 }
