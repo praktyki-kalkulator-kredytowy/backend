@@ -69,7 +69,7 @@ public enum ConfigurationGroupKeys implements ConfigurationGroupKey {
 
                 @Override
                 public String getDisplayName() {
-                    return "For " + key + "years old and less";
+                    return "Insurance rate for " + key + "years old and more";
                 }
 
                 @Override
