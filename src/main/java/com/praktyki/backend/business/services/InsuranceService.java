@@ -13,6 +13,7 @@ import com.praktyki.backend.app.configuration.Configuration;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,7 +43,8 @@ public class InsuranceService {
         BigDecimal minPremiumValue = new BigDecimal(mConfiguration.get(ConfigurationKeys.MIN_PREMIUM_VALUE))
                 .setScale(2, RoundingMode.HALF_UP);
 
-        DateSchedule schedule = mDateScheduleCalculator.calculate(installments.get(0).getInstallmentDate());
+        DateSchedule schedule = mDateScheduleCalculator.calculate(scheduleConfiguration.getWithdrawalDate())
+                .shift(Period.ofMonths(1));
 
         BigDecimal insuranceRate = BigDecimal.valueOf(
                 mInsuranceRateConfiguration.getRateForAge(scheduleConfiguration.getAge())
@@ -76,7 +78,8 @@ public class InsuranceService {
 
         BigDecimal lastPremiumValue = totalInsurance.subtract(premiums.stream()
                 .map(InsurancePremium::getInsurancePremiumValue)
-                .reduce(BigDecimal.ZERO, BigDecimal::add));
+                .reduce(BigDecimal.ZERO, BigDecimal::add))
+                .setScale(2, RoundingMode.HALF_UP);
 
         premiums.add(new InsurancePremium(
                 premiums.size() + 1,
