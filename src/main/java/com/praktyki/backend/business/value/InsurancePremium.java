@@ -28,6 +28,8 @@ public class InsurancePremium implements Payment {
         mInsurancePremiumValue = insurancePremiumValue;
     }
 
+    private InsurancePremium() {}
+
     @Override
     public LocalDate getDate() {
         return getInsurancePremiumDate();
