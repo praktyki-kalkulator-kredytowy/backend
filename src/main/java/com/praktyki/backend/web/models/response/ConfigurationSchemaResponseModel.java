@@ -1,4 +1,4 @@
-package com.praktyki.backend.web.response.models;
+package com.praktyki.backend.web.models.response;
 
 import com.praktyki.backend.app.configuration.ConfigurationGroupKeys;
 import com.praktyki.backend.app.configuration.ConfigurationKeys;

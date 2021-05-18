@@ -1,4 +1,4 @@
-package com.praktyki.backend.web.request.models;
+package com.praktyki.backend.web.models.request;
 
 import com.praktyki.backend.web.validation.ValidCommissionRate;
 import com.praktyki.backend.web.validation.ValidInstallmentType;
