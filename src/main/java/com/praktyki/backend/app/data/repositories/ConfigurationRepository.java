@@ -18,7 +18,9 @@ public interface ConfigurationRepository extends CrudRepository<ConfigurationEnt
     )
     void removeKey(String group, String key);
 
-    @Query(value = "SELECT * FROM configuration WHERE configuration_group = :group and configuration_key = :key")
+    @Query(value = "SELECT * FROM configuration WHERE configuration_group = :group and configuration_key = :key",
+            nativeQuery = true
+    )
     Optional<ConfigurationEntryEntity> find(String group, String key);
 
 
