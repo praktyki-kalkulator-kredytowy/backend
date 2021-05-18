@@ -1,7 +1,10 @@
 package com.praktyki.backend.web.controllers;
 
+import com.praktyki.backend.app.interactors.ScheduleInteractor;
 import com.praktyki.backend.business.services.PdfService;
+import com.praktyki.backend.business.services.exceptions.NoInsuranceRateForAgeException;
 import com.praktyki.backend.business.value.Schedule;
+import com.praktyki.backend.business.value.ScheduleConfiguration;
 import com.praktyki.backend.web.models.converters.ScheduleConfigurationConverter;
 import com.praktyki.backend.web.models.request.ScheduleConfigurationModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +28,20 @@ public class PdfController {
     @Autowired
     private ScheduleConfigurationConverter mScheduleConfigurationConverter;
 
+    @Autowired
+    private ScheduleInteractor mScheduleInteractor;
+
     @GetMapping("/api/v1/schedule/pdf")
     public void transportPdfToFrontend(
             HttpServletResponse response,
             @Valid @RequestBody ScheduleConfigurationModel scheduleConfigurationModel
-    ) throws IOException {
+    ) throws IOException, NoInsuranceRateForAgeException {
+
+        ScheduleConfiguration scheduleConfiguration =
+                mScheduleConfigurationConverter.convertToScheduleConfiguration(scheduleConfigurationModel);
 
         Path outputFile = Paths.get(mPdfService.generatePdf(
-                mScheduleConfigurationConverter.convertToScheduleConfiguration(scheduleConfigurationModel)
+                mScheduleInteractor.calculateSchedule(scheduleConfiguration)
         ).getAbsoluteFile().toString());
 
         if(Files.exists(outputFile)){

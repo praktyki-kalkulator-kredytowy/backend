@@ -7,7 +7,7 @@ import java.io.File;
 
 public class PdfService {
 
-    public File generatePdf(ScheduleConfiguration scheduleConfiguration) {
+    public File generatePdf(Schedule schedule) {
 
         return null;
 
