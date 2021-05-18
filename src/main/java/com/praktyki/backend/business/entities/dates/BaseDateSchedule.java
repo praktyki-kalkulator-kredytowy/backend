@@ -1,12 +1,18 @@
 package com.praktyki.backend.business.entities.dates;
 
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.TemporalAmount;
+import java.time.temporal.TemporalUnit;
 import java.util.Iterator;
 import java.util.Objects;
 
 abstract class BaseDateSchedule implements DateSchedule {
 
     private final LocalDate mStartDate;
+
+    private Period shift = Period.ZERO;
 
     protected LocalDate getStartDate() {
         return mStartDate;
@@ -16,21 +22,45 @@ abstract class BaseDateSchedule implements DateSchedule {
         this.mStartDate = startDate;
     }
 
-    @Override
-    public DateSchedule shift(int i) {
-        BaseDateSchedule outer = this;
+    abstract TemporalAmount getAmountToAdd(int index);
 
-        return new BaseDateSchedule(null) {
-            @Override
-            public LocalDate getDateFor(int index) {
-                return outer.getDateFor(index + i);
-            }
-        };
+    @Override
+    public LocalDate getDateFor(int installmentIndex) {
+        return mStartDate.plus(shift.plus(getAmountToAdd(installmentIndex)));
     }
 
     @Override
     public Iterator<Entry> iterator() {
         return new ScheduleIterator(this);
+    }
+
+    @Override
+    public DateSchedule shift(int i) {
+        BaseDateSchedule outer = this;
+        return new BaseDateSchedule(mStartDate) {
+            @Override
+            TemporalAmount getAmountToAdd(int index) {
+                return outer.getAmountToAdd(index);
+            }
+
+            @Override
+            public LocalDate getDateFor(int installmentIndex) {
+                return outer.getDateFor(installmentIndex + i);
+            }
+        };
+    }
+
+    @Override
+    public DateSchedule shift(TemporalAmount amount) {
+        BaseDateSchedule outer = this;
+        BaseDateSchedule schedule =  new BaseDateSchedule(mStartDate) {
+            @Override
+            TemporalAmount getAmountToAdd(int index) {
+                return outer.getAmountToAdd(index);
+            }
+        };
+        schedule.shift = schedule.shift.plus(amount);
+        return schedule;
     }
 
     protected static class EntryImpl implements DateSchedule.Entry {
