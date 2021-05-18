@@ -4,10 +4,7 @@ import com.praktyki.backend.business.entities.InsuranceRateConfiguration;
 import com.praktyki.backend.business.entities.InsuranceRateConfigurationImpl;
 import com.praktyki.backend.business.entities.dates.InsurancePremiumDateCalculator;
 import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
-import com.praktyki.backend.business.services.APRCService;
-import com.praktyki.backend.business.services.InstallmentScheduleService;
-import com.praktyki.backend.business.services.InsuranceService;
-import com.praktyki.backend.business.services.StringService;
+import com.praktyki.backend.business.services.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -64,5 +61,11 @@ public class BusinessConfiguration {
             com.praktyki.backend.app.configuration.Configuration configuration
     ) {
         return new InsuranceRateConfigurationImpl(configuration);
+    }
+
+    @Bean
+    @Scope("singleton")
+    public PdfService getPdfService() {
+        return new PdfService();
     }
 }
