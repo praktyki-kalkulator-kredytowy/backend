@@ -3,6 +3,7 @@ package com.praktyki.backend.business.entities.dates;
 import com.praktyki.backend.app.configuration.ConfigurationKeys;
 import com.praktyki.backend.app.configuration.Configuration;
 
+import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalUnit;
 
@@ -15,12 +16,7 @@ public class InsurancePremiumDateCalculator extends BaseDateScheduleCalculator {
     }
 
     @Override
-    public long getInterval() {
-        return Long.parseLong(mConfiguration.get(ConfigurationKeys.MONTH_FRAME));
-    }
-
-    @Override
-    public TemporalUnit getUnit() {
-        return ChronoUnit.MONTHS;
+    public Period getPeriod() {
+        return Period.ofMonths( (int) Long.parseLong(mConfiguration.get(ConfigurationKeys.MONTH_FRAME)));
     }
 }

@@ -6,52 +6,52 @@ import java.util.Objects;
 
 public class Schedule {
 
-    private ScheduleConfiguration scheduleConfiguration;
-    private List<Installment> installmentList;
-    private List<InsurancePremium> insurancePremiumList;
-    private BigDecimal sumUpCapitalInstallment;
-    private BigDecimal loanPaidOutAmount;
-    private BigDecimal commissionAmount;
-    private BigDecimal insuranceTotalAmount;
-    private BigDecimal loanTotalCost;
-    private BigDecimal APRC;
+    private ScheduleConfiguration mScheduleConfiguration;
+    private List<Installment> mInstallmentList;
+    private List<InsurancePremium> mInsurancePremiumList;
+    private BigDecimal mSumUpCapitalInstallment;
+    private BigDecimal mLoanPaidOutAmount;
+    private BigDecimal mCommissionAmount;
+    private BigDecimal mInsuranceTotalAmount;
+    private BigDecimal mLoanTotalCost;
+    private BigDecimal mAPRC;
     
     public static Builder builder(){ return new Builder(); }
 
     public ScheduleConfiguration getScheduleConfiguration() {
-        return scheduleConfiguration;
+        return mScheduleConfiguration;
     }
 
     public List<Installment> getInstallmentList() {
-        return installmentList;
+        return mInstallmentList;
     }
 
     public List<InsurancePremium> getInsurancePremiumList() {
-        return insurancePremiumList;
+        return mInsurancePremiumList;
     }
 
     public BigDecimal getSumUpCapitalInstallment() {
-        return sumUpCapitalInstallment;
+        return mSumUpCapitalInstallment;
     }
 
     public BigDecimal getLoanPaidOutAmount() {
-        return loanPaidOutAmount;
+        return mLoanPaidOutAmount;
     }
 
     public BigDecimal getCommissionAmount() {
-        return commissionAmount;
+        return mCommissionAmount;
     }
 
     public BigDecimal getInsuranceTotalAmount() {
-        return insuranceTotalAmount;
+        return mInsuranceTotalAmount;
     }
 
     public BigDecimal getLoanTotalCost() {
-        return loanTotalCost;
+        return mLoanTotalCost;
     }
 
     public BigDecimal getAPRC() {
-        return APRC;
+        return mAPRC;
     }
 
     public Schedule(
@@ -60,15 +60,15 @@ public class Schedule {
             BigDecimal loanPaidOutAmount, BigDecimal commissionAmount, BigDecimal insuranceTotalAmount,
             BigDecimal loanTotalCost, BigDecimal APRC
     ) {
-        this.scheduleConfiguration = scheduleConfiguration;
-        this.installmentList = installmentList;
-        this.insurancePremiumList = insurancePremiumList;
-        this.sumUpCapitalInstallment = sumUpCapitalInstallment;
-        this.loanPaidOutAmount = loanPaidOutAmount;
-        this.commissionAmount = commissionAmount;
-        this.insuranceTotalAmount = insuranceTotalAmount;
-        this.loanTotalCost = loanTotalCost;
-        this.APRC = APRC;
+        this.mScheduleConfiguration = scheduleConfiguration;
+        this.mInstallmentList = installmentList;
+        this.mInsurancePremiumList = insurancePremiumList;
+        this.mSumUpCapitalInstallment = sumUpCapitalInstallment;
+        this.mLoanPaidOutAmount = loanPaidOutAmount;
+        this.mCommissionAmount = commissionAmount;
+        this.mInsuranceTotalAmount = insuranceTotalAmount;
+        this.mLoanTotalCost = loanTotalCost;
+        this.mAPRC = APRC;
     }
     
     private Schedule(){};
@@ -78,61 +78,61 @@ public class Schedule {
         private Schedule mSchedule = new Schedule();
 
         public Builder setScheduleConfiguration(ScheduleConfiguration scheduleConfiguration) {
-            mSchedule.scheduleConfiguration = scheduleConfiguration;
+            mSchedule.mScheduleConfiguration = scheduleConfiguration;
             return this;
         }
 
         public Builder setInstallmentList(List<Installment> installmentList) {
-            mSchedule.installmentList = installmentList;
+            mSchedule.mInstallmentList = installmentList;
             return this;
         }
 
         public Builder setInsurancePremiumList(List<InsurancePremium> insurancePremiumList) {
-            mSchedule.insurancePremiumList = insurancePremiumList;
+            mSchedule.mInsurancePremiumList = insurancePremiumList;
             return this;
         }
 
         public Builder setSumUpCapitalInstallment(BigDecimal sumUpCapitalInstallment){
-            mSchedule.sumUpCapitalInstallment = sumUpCapitalInstallment;
+            mSchedule.mSumUpCapitalInstallment = sumUpCapitalInstallment;
             return this;
         }
 
         public Builder setLoanPaidOutAmount(BigDecimal loanPaidOutAmount) {
-            mSchedule.loanPaidOutAmount = loanPaidOutAmount;
+            mSchedule.mLoanPaidOutAmount = loanPaidOutAmount;
             return this;
         }
 
         public Builder setCommissionAmount(BigDecimal commissionAmount) {
-            mSchedule.commissionAmount = commissionAmount;
+            mSchedule.mCommissionAmount = commissionAmount;
             return this;
         }
 
         public Builder setInsuranceTotalAmount(BigDecimal insuranceTotalAmount) {
-            mSchedule.insuranceTotalAmount = insuranceTotalAmount;
+            mSchedule.mInsuranceTotalAmount = insuranceTotalAmount;
             return this;
         }
 
         public Builder setLoanTotalCost(BigDecimal loanTotalCost) {
-            mSchedule.loanTotalCost = loanTotalCost;
+            mSchedule.mLoanTotalCost = loanTotalCost;
             return this;
         }
 
         public Builder setAPRC(BigDecimal APRC) {
-            mSchedule.APRC = APRC;
+            mSchedule.mAPRC = APRC;
             return this;
         }
 
         public void validate() throws IllegalStateException {
 
-            if(mSchedule.scheduleConfiguration == null
-                    || mSchedule.installmentList == null
-                    || mSchedule.insurancePremiumList == null
-                    || mSchedule.sumUpCapitalInstallment == null
-                    || mSchedule.loanPaidOutAmount == null
-                    || mSchedule.commissionAmount == null
-                    || mSchedule.insuranceTotalAmount == null
-                    || mSchedule.loanTotalCost == null
-                    || mSchedule.APRC == null)
+            if(mSchedule.mScheduleConfiguration == null
+                    || mSchedule.mInstallmentList == null
+                    || mSchedule.mInsurancePremiumList == null
+                    || mSchedule.mSumUpCapitalInstallment == null
+                    || mSchedule.mLoanPaidOutAmount == null
+                    || mSchedule.mCommissionAmount == null
+                    || mSchedule.mInsuranceTotalAmount == null
+                    || mSchedule.mLoanTotalCost == null
+                    || mSchedule.mAPRC == null)
                 throw new IllegalStateException("Not all parameters specified");
 
         }
@@ -177,15 +177,15 @@ public class Schedule {
     @Override
     public String toString() {
         return "ScheduleInstallmentResult{ " +
-                "scheduleConfiguration = " + scheduleConfiguration +
-                ", installmentList = " + installmentList +
-                ", insuranceList = " + insurancePremiumList +
-                ", sumUpCapitalInstallment = " + sumUpCapitalInstallment +
-                ", loanPaidOutAmount = " + loanPaidOutAmount +
-                ", commissionAmount = " + commissionAmount +
-                ", insuranceTotalAmount = " + insuranceTotalAmount +
-                ", loanTotalCost = " + loanTotalCost +
-                ", APRC = " + APRC +
+                "scheduleConfiguration = " + mScheduleConfiguration +
+                ", installmentList = " + mInstallmentList +
+                ", insuranceList = " + mInsurancePremiumList +
+                ", sumUpCapitalInstallment = " + mSumUpCapitalInstallment +
+                ", loanPaidOutAmount = " + mLoanPaidOutAmount +
+                ", commissionAmount = " + mCommissionAmount +
+                ", insuranceTotalAmount = " + mInsuranceTotalAmount +
+                ", loanTotalCost = " + mLoanTotalCost +
+                ", APRC = " + mAPRC +
                 " }";
     }
 }
