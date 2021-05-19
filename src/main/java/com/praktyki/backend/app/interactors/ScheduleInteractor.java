@@ -73,6 +73,8 @@ public class ScheduleInteractor {
         context.setVariable("schedule", schedule);
         context.setVariable("conf", schedule.getScheduleConfiguration());
         context.setVariable("paymentsList", createPaymentTable(schedule));
+        context.setVariable("sumUpInterest", schedule.getInstallmentList().stream());
+        context.setVariable("sumUpInstallment",null);
         String url;
 
         try {
