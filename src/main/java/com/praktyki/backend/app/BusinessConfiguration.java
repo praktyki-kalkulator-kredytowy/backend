@@ -63,9 +63,4 @@ public class BusinessConfiguration {
         return new InsuranceRateConfigurationImpl(configuration);
     }
 
-    @Bean
-    @Scope("singleton")
-    public PdfService getPdfService() {
-        return new PdfService();
-    }
 }
