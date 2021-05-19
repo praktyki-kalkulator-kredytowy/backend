@@ -18,8 +18,11 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ScheduleInteractor {
@@ -69,6 +72,7 @@ public class ScheduleInteractor {
         Context context = new Context();
         context.setVariable("schedule", schedule);
         context.setVariable("conf", schedule.getScheduleConfiguration());
+        context.setVariable("paymentsList", createPaymentTable(schedule));
         String url;
 
         try {
@@ -84,8 +88,36 @@ public class ScheduleInteractor {
                 )
                 .toStream(outputStream)
                 .run();
+    }
+
+    private List<ContextPayment> createPaymentTable(Schedule schedule) {
+        List<ContextPayment> contextPayments = new LinkedList();
+
+        for(Installment installment : schedule.getInstallmentList()) {
+            Optional<InsurancePremium> insurancePremium = schedule.getInsurancePremiumList().stream()
+                    .filter(p -> p.getDate().equals(installment.getDate()))
+                    .findFirst();
+
+            contextPayments.add(new ContextPayment(
+                    installment,
+                    insurancePremium.isPresent(),
+                    insurancePremium.orElse(null)
+            ));
+        }
+        return contextPayments;
+    }
 
 
+    private class ContextPayment {
+        public Installment installment;
+        public boolean hasInsurance;
+        public InsurancePremium insurancePremium;
+
+        public ContextPayment(Installment installment, boolean hasInsurance, InsurancePremium insurancePremium) {
+            this.installment = installment;
+            this.hasInsurance = hasInsurance;
+            this.insurancePremium = insurancePremium;
+        }
     }
 
 }
