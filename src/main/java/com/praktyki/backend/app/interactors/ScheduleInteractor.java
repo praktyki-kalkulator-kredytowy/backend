@@ -81,9 +81,12 @@ public class ScheduleInteractor {
             throw new IllegalStateException("Invalid resources path", e);
         }
 
+        String html = mITemplateEngine.process("schedule_template", context);
+        System.out.println(html);
+
         new PdfRendererBuilder()
                 .withHtmlContent(
-                        mITemplateEngine.process("schedule_template",context),
+                        html,
                         url
                 )
                 .toStream(outputStream)
@@ -91,7 +94,7 @@ public class ScheduleInteractor {
     }
 
     private List<ContextPayment> createPaymentTable(Schedule schedule) {
-        List<ContextPayment> contextPayments = new LinkedList();
+        List<ContextPayment> contextPayments = new LinkedList<>();
 
         for(Installment installment : schedule.getInstallmentList()) {
             Optional<InsurancePremium> insurancePremium = schedule.getInsurancePremiumList().stream()

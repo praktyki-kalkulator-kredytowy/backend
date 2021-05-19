@@ -18,6 +18,7 @@ public class ThymeLeafConfiguration {
         ClassLoaderTemplateResolver resolver = new ClassLoaderTemplateResolver();
         resolver.setPrefix("/templates/");
         resolver.setSuffix(".html");
+        resolver.setCharacterEncoding("UTF-8");
         resolver.setTemplateMode(TemplateMode.HTML);
         return resolver;
     }
