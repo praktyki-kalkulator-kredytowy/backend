@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl-pl" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
     <title>Harmonogram PDF</title>
     <style>
 
@@ -26,8 +26,6 @@
     .configuration-row span {
         width: 200px;
         padding: 10px;
-        border: 2px solid #758078;
-        border-radius: 7px;
     }
 
     .scheduleTable {
@@ -67,88 +65,108 @@
 <div class="configuration">
     <div class="configuration-row">
         <label>Kapitał: </label>
-        <span th:text="${conf.mCapital}"></span>
+        <span th:text="${conf.capital}"></span>
 
     </div>
 
     <div class="configuration-row">
         <label>Typ raty: </label>
-        <span th:text="${conf.mInstallmentType}"></span>
+        <span th:text="${conf.installmentType}"></span>
 
     </div>
 
     <div class="configuration-row">
         <label>Liczba rat: </label>
-        <span th:text="${conf.mInstallmentAmount}"></span>
+        <span th:text="${conf.installmentAmount}"></span>
 
     </div>
 
     <div class="configuration-row">
         <label>Oprocentowanie: </label>
-        <span th:text="${conf.mInterestRate}"></span>
+        <span th:text="${conf.interestRate}"></span>
 
     </div>
 
     <div class="configuration-row">
         <label>Data wypłaty: </label>
-        <span th:text="${conf.mWithdrawalDate}"></span>
+        <span th:text="${conf.withdrawalDate}"></span>
 
     </div>
 
     <div class="configuration-row">
         <label>Procent prowizji: </label>
-        <span th:text="${conf.mCommissionRate}"></span>
+        <span th:text="${conf.commissionRate}"></span>
 
     </div>
 
     <div class="configuration-row">
         <label>Ubezpieczenie: </label>
-        <span th:if="${conf.mInsurance}">Tak</span>
-        <span th:unless="${conf.mInsurance}">Nie</span>
+        <span th:if="${conf.insurance}">Tak</span>
+        <span th:unless="${conf.insurance}">Nie</span>
 
     </div>
 
 
-    <div class="configuration-row" th:if="${conf.mInsurance}">
+    <div class="configuration-row" th:if="${conf.insurance}">
         <label>Wiek </label>
-        <span th:text="${conf.mAge}"></span>
+        <span th:text="${conf.age}"></span>
     </div>
 
 </div>
 
-<table>
-    <tr>
-        <th colspan="2">Suma rat odsetkowych</th>
-        <th colspan="2">Suma rat kapitalowych</th>
-        <th colspan="2">Suma rat całkowitych</th>
-        <th th:if="installments.insurancePremiumList.length">Suma składek ubezpieczeniowych</th>
+<div class="schedule-summary">
 
-    </tr>
+    <div class="configuration-row">
+        <label>Suma rat odsetkowych: </label>
+        <span th:text="${conf.capital}"></span>
 
-    <tr class="installment-summary">
-        <td colspan="2"> {{ currencyFormat(calculateSum(i => i.interestInstallment)) }} </td>
-        <td colspan="2"> {{ currencyFormat(calculateSum(i => i.capitalInstallment)) }} </td>
-        <td colspan="2"> {{ currencyFormat(calculateSum(i => i.capitalInstallment + i.interestInstallment)) }} </td>
-        <td th:if="${$lists.size(schedule.insurancePremiumList)} > 0">{{currencyFormat(installments.insuranceTotalAmount)}}</td>
-    </tr>
+    </div>
 
+    <div class="configuration-row">
+        <label>Suma rat kapitalowych: </label>
+        <span th:text="${schedule.sumUpCapitalInstallment}"></span>
 
-    <tr>
-        <th colspan="2">Kwota kredytu do wypłaty</th>
-        <th colspan="1">Kwota prowizji</th>
-        <th colspan="2">Łączne koszty kredytu</th>
-        <th>RSSO: </th>
-    </tr>
+    </div>
 
-    <tr>
-        <td colspan="2" th:text="${schedule.loanPaidOutAmount}"></td>
-        <td colspan="1" th:text="${schedule.commissionAmount}"></td>
-        <td colspan="2" th:text="${schedule.loanTotalCost}"></td>
-        <td th:text="${schedule.APRC}"></td>
-    </tr>
-</table>
+    <div class="configuration-row">
+        <label>Suma rat całkowitych: </label>
+        <span th:text="${conf.capital}"></span>
 
-<table th:if="${$lists.size(schedule.installmentList)} > 0" class="scheduleTable">
+    </div>
+
+    <div class="configuration-row" th:if="${#lists.size(schedule.insurancePremiumList)} > 0">
+        <label>Suma składek ubezpieczeniowych: </label>
+        <span th:text="${schedule.insuranceTotalAmount}"></span>
+
+    </div>
+
+    <div class="configuration-row">
+        <label>Kwota kredytu do wypłaty: </label>
+        <span th:text="${schedule.loanPaidOutAmount}"></span>
+
+    </div>
+
+    <div class="configuration-row">
+        <label>Kwota prowizji: </label>
+        <span th:text="${schedule.commissionAmount}"></span>
+
+    </div>
+
+    <div class="configuration-row">
+        <label>Łączne koszty kredytu: </label>
+        <span th:text="${schedule.loanTotalCost}"></span>
+
+    </div>
+
+    <div class="configuration-row">
+        <label>RSSO: </label>
+        <span th:text="${schedule.APRC} * 100"></span>
+
+    </div>
+
+</div>
+
+<table th:if="${#lists.size(schedule.installmentList)} > 0" class="scheduleTable">
     <tr>
         <th>Rata</th>
         <th>Data raty</th>
@@ -156,7 +174,7 @@
         <th>Rata kapitałowa</th>
         <th>Rata całkowita</th>
         <th>Kapitał po spłacie</th>
-        <th th:if="${$lists.size(schedule.insurancePremiumList)} > 0">Składka ubezpieczeniowa</th>
+        <th th:if="${#lists.size(schedule.insurancePremiumList)} > 0">Składka ubezpieczeniowa</th>
 
     </tr>
 
@@ -167,8 +185,8 @@
         <td th:text="${payment.installment.capitalInstallment}"></td>
         <td th:text="${payment.installment.capitalInstallment} + ${payment.installment.interestInstallment}"></td>
         <td th:text="${payment.installment.remainingDebt}"></td>
-        <td th:if="${$lists.size(schedule.insurancePremiumList)} > 0">
-            <span th:if="${payment.hasInsurance}" th:text="${payment.insurancePremium.mInsurancePremiumValue}"></span>
+        <td th:if="${#lists.size(schedule.insurancePremiumList)} > 0">
+            <span th:if="${payment.hasInsurance}" th:text="${payment.insurancePremium.insurancePremiumValue}"></span>
         </td>
     </tr>
 </table>
