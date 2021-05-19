@@ -16,6 +16,7 @@ public class ThymeLeafConfiguration {
     @Scope("singleton")
     public ITemplateResolver getTemplateResolver() {
         ClassLoaderTemplateResolver resolver = new ClassLoaderTemplateResolver();
+        resolver.setPrefix("/templates/");
         resolver.setSuffix(".html");
         resolver.setTemplateMode(TemplateMode.HTML);
         return resolver;
