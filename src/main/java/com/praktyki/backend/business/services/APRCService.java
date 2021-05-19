@@ -47,7 +47,7 @@ public class APRCService {
                 RANGE_START,
                 RANGE_END,
                 PRECISION
-        )).setScale(2, RoundingMode.HALF_UP);
+        )).setScale(4, RoundingMode.HALF_UP);
     }
 
     private UnaryOperator<Double> createAPRCFunction(
