@@ -132,7 +132,7 @@
 
     <div class="configuration-row">
         <label>Data wypłaty: </label>
-        <span th:text="*{{conf.withdrawalDate}}"></span>
+        <span th:text="${#dates.format(confDate,'dd.MM.YYYY')}"></span>
 
     </div>
 
@@ -222,7 +222,7 @@
 
     <tr th:each="payment: ${paymentsList}">
         <td th:text="${payment.installment.index}"></td>
-        <td th:text="${payment.installment.installmentDate}"></td>
+        <td th:text="${#dates.format(payment.paymentDate,'dd.MM.YYYY')}"></td>
         <td th:text="${#numbers.formatCurrency(payment.installment.interestInstallment)}"></td>
         <td th:text="${#numbers.formatCurrency(payment.installment.capitalInstallment)}"></td>
         <td th:text="${#numbers.formatCurrency(payment.installment.capitalInstallment + payment.installment.interestInstallment)}"></td>

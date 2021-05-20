@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.nio.file.Paths;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -83,6 +84,7 @@ public class ScheduleInteractor {
                 .reduce(BigDecimal::add)
                 .orElse(null)
         );
+        context.setVariable("confDate", Date.valueOf(schedule.getScheduleConfiguration().getWithdrawalDate()));
         String url;
 
         try {
@@ -112,6 +114,7 @@ public class ScheduleInteractor {
                     .findFirst();
 
             contextPayments.add(new ContextPayment(
+                    Date.valueOf(installment.getDate()),
                     installment,
                     insurancePremium.isPresent(),
                     insurancePremium.orElse(null)
@@ -122,11 +125,16 @@ public class ScheduleInteractor {
 
 
     private class ContextPayment {
+        public Date paymentDate;
         public Installment installment;
         public boolean hasInsurance;
         public InsurancePremium insurancePremium;
 
-        public ContextPayment(Installment installment, boolean hasInsurance, InsurancePremium insurancePremium) {
+        public ContextPayment(
+                Date paymentDate, Installment installment,
+                boolean hasInsurance, InsurancePremium insurancePremium)
+        {
+            this.paymentDate = paymentDate;
             this.installment = installment;
             this.hasInsurance = hasInsurance;
             this.insurancePremium = insurancePremium;
