@@ -11,6 +11,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
@@ -26,7 +27,7 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class ErrorHandler extends ResponseEntityExceptionHandler {
 
-    private static Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger();
 
     @Autowired
     private HttpServletRequest mRequest;
@@ -72,6 +73,20 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
                 .setSuggestedAction("See validation errors for more info")
                 .setStatus(HttpStatus.BAD_REQUEST)
                 .build());
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleMissingServletRequestParameter(
+            MissingServletRequestParameterException ex, 
+            HttpHeaders headers,
+            HttpStatus status,
+            WebRequest request) {
+        return createResponseEntity(ApiError.builder()
+                .setStatus(status)
+                .setMessage(ex.getMessage())
+                .setSuggestedAction("Please contact the system administrator")
+                .build());
+
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
@@ -121,12 +136,15 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleException(Exception ex) {
-        ApiError error = ApiError.builder().build();
+        ApiError error = ApiError.builder()
+                .setStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+                .build();
 
         log.error(stackTraceToString(ex));
 
         return createResponseEntity(error);
     }
+
 
 
 }
