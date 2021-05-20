@@ -1,10 +1,8 @@
 package com.praktyki.backend.business.entities.dates;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.temporal.TemporalAmount;
-import java.time.temporal.TemporalUnit;
 import java.util.Iterator;
 import java.util.Objects;
 

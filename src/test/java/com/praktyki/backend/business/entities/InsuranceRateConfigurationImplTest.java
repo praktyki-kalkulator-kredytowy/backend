@@ -2,11 +2,11 @@ package com.praktyki.backend.business.entities;
 
 import com.praktyki.backend.app.configuration.ConfigurationGroupKeys;
 import com.praktyki.backend.app.configuration.ConfigurationImpl;
+import com.praktyki.backend.app.configuration.exceptions.ConfigurationValueValidationException;
 import com.praktyki.backend.app.mocks.data.repositories.MockupConfigurationRepositoryImpl;
 import com.praktyki.backend.business.services.exceptions.NoInsuranceRateForAgeException;
 import com.praktyki.backend.configuration.Configuration;
 import com.praktyki.backend.configuration.ConfigurationGroupKey;
-import com.praktyki.backend.app.configuration.exceptions.ConfigurationValueValidationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

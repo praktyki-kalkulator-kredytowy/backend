@@ -1,12 +1,12 @@
 package com.praktyki.backend.web.controllers;
 
-import com.praktyki.backend.app.configuration.*;
+import com.praktyki.backend.app.configuration.ConfigurationGroupKeys;
+import com.praktyki.backend.app.configuration.exceptions.ConfigurationValueValidationException;
 import com.praktyki.backend.app.data.repositories.ConfigurationRepository;
 import com.praktyki.backend.configuration.Configuration;
 import com.praktyki.backend.configuration.ConfigurationEntry;
 import com.praktyki.backend.configuration.ConfigurationGroupKey;
 import com.praktyki.backend.configuration.ConfigurationKey;
-import com.praktyki.backend.app.configuration.exceptions.ConfigurationValueValidationException;
 import com.praktyki.backend.web.models.request.ConfigurationEntryModel;
 import com.praktyki.backend.web.models.request.DeleteConfigurationEntryModel;
 import com.praktyki.backend.web.models.response.ConfigurationSchemaResponseModel;
@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import java.util.Collection;
-import java.util.List;
 
 @CrossOrigin
 @RestController

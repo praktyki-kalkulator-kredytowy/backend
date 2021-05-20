@@ -1,9 +1,9 @@
 package com.praktyki.backend.web.error;
 
-import com.praktyki.backend.app.data.exceptions.EntityNotFoundException;
-import com.praktyki.backend.business.services.exceptions.NoInsuranceRateForAgeException;
 import com.praktyki.backend.app.configuration.exceptions.ConfigurationGroupValidationException;
 import com.praktyki.backend.app.configuration.exceptions.ConfigurationValueValidationException;
+import com.praktyki.backend.app.data.exceptions.EntityNotFoundException;
+import com.praktyki.backend.business.services.exceptions.NoInsuranceRateForAgeException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

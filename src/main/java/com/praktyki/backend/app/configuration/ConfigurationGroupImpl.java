@@ -1,8 +1,8 @@
 package com.praktyki.backend.app.configuration;
 
+import com.praktyki.backend.app.configuration.exceptions.ConfigurationValueValidationException;
 import com.praktyki.backend.app.data.entities.ConfigurationEntryEntity;
 import com.praktyki.backend.app.data.repositories.ConfigurationRepository;
-import com.praktyki.backend.app.configuration.exceptions.ConfigurationValueValidationException;
 import com.praktyki.backend.configuration.ConfigurationEntry;
 import com.praktyki.backend.configuration.ConfigurationGroup;
 import com.praktyki.backend.configuration.ConfigurationGroupKey;
