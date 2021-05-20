@@ -21,7 +21,7 @@ public class BusinessConfiguration {
     @Bean
     @Scope("singleton")
     public InsurancePremiumDateCalculator getConfiguredDateScheduleCalculator(
-            com.praktyki.backend.app.configuration.Configuration configuration) {
+            com.praktyki.backend.configuration.Configuration configuration) {
         return new InsurancePremiumDateCalculator(configuration);
     }
 
@@ -29,7 +29,7 @@ public class BusinessConfiguration {
     @Scope("singleton")
     public InstallmentScheduleService getScheduleService(
             MonthlyDateScheduleCalculator calculator,
-            com.praktyki.backend.app.configuration.Configuration configuration) {
+            com.praktyki.backend.configuration.Configuration configuration) {
         return new InstallmentScheduleService(calculator, configuration );
     }
 
@@ -43,7 +43,7 @@ public class BusinessConfiguration {
     @Scope("singleton")
     public InsuranceService getInsuranceService(
             InsurancePremiumDateCalculator calculator,
-            com.praktyki.backend.app.configuration.Configuration configuration,
+            com.praktyki.backend.configuration.Configuration configuration,
             InsuranceRateConfiguration insuranceRateConfiguration
     ) {
         return new InsuranceService(calculator, configuration, insuranceRateConfiguration);
@@ -58,7 +58,7 @@ public class BusinessConfiguration {
     @Bean
     @Scope("singleton")
     public InsuranceRateConfiguration getInstallmentRateConfiguration(
-            com.praktyki.backend.app.configuration.Configuration configuration
+            com.praktyki.backend.configuration.Configuration configuration
     ) {
         return new InsuranceRateConfigurationImpl(configuration);
     }

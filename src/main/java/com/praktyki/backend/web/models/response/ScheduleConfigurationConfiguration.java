@@ -1,7 +1,7 @@
 package com.praktyki.backend.web.models.response;
 
 import com.praktyki.backend.app.configuration.ConfigurationKeys;
-import com.praktyki.backend.app.configuration.Configuration;
+import com.praktyki.backend.configuration.Configuration;
 
 public class ScheduleConfigurationConfiguration {
 

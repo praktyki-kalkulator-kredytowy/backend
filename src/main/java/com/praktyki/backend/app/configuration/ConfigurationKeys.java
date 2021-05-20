@@ -1,6 +1,7 @@
 package com.praktyki.backend.app.configuration;
 
 import com.praktyki.backend.app.configuration.exceptions.ConfigurationValueValidationException;
+import com.praktyki.backend.configuration.ConfigurationKey;
 
 public enum ConfigurationKeys implements ConfigurationKey {
     MIN_PREMIUM_VALUE {

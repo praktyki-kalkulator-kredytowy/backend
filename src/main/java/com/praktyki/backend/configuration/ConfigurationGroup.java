@@ -1,4 +1,4 @@
-package com.praktyki.backend.app.configuration;
+package com.praktyki.backend.configuration;
 
 import com.praktyki.backend.app.configuration.exceptions.ConfigurationValueValidationException;
 

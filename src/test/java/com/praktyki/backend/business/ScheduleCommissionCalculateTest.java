@@ -2,19 +2,17 @@ package com.praktyki.backend.business;
 
 import com.praktyki.backend.app.configuration.ConfigurationImpl;
 import com.praktyki.backend.app.configuration.ConfigurationKeys;
-import com.praktyki.backend.app.data.repositories.ConfigurationRepository;
 import com.praktyki.backend.app.mocks.data.repositories.MockupConfigurationRepositoryImpl;
 import com.praktyki.backend.business.entities.InstallmentType;
 import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
 import com.praktyki.backend.business.services.InstallmentScheduleService;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
-import com.praktyki.backend.app.configuration.Configuration;
+import com.praktyki.backend.configuration.Configuration;
 import com.praktyki.backend.app.configuration.exceptions.ConfigurationValueValidationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

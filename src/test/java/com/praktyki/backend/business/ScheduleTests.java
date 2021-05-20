@@ -17,6 +17,8 @@ import com.praktyki.backend.business.services.InsuranceService;
 import com.praktyki.backend.business.services.exceptions.NoInsuranceRateForAgeException;
 import com.praktyki.backend.app.configuration.exceptions.ConfigurationValueValidationException;
 import com.praktyki.backend.business.value.Schedule;
+import com.praktyki.backend.configuration.Configuration;
+import com.praktyki.backend.configuration.ConfigurationGroupKey;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

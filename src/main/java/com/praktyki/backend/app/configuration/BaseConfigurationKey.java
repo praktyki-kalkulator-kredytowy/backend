@@ -1,5 +1,7 @@
 package com.praktyki.backend.app.configuration;
 
+import com.praktyki.backend.configuration.ConfigurationKey;
+
 public abstract class BaseConfigurationKey implements ConfigurationKey {
 
     @Override
