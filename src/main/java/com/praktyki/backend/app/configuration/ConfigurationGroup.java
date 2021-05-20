@@ -12,6 +12,8 @@ public interface ConfigurationGroup {
 
     String get(ConfigurationKey key);
 
+    ConfigurationEntry getEntry(ConfigurationKey key);
+
     ConfigurationGroup save(ConfigurationKey key, String value) throws ConfigurationValueValidationException;
 
     ConfigurationGroup remove(ConfigurationKey key);

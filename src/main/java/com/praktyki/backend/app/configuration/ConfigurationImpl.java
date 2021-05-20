@@ -30,6 +30,11 @@ public class ConfigurationImpl implements Configuration {
     }
 
     @Override
+    public ConfigurationEntry getEntry(ConfigurationKey key) {
+        return mGroups.get(ConfigurationGroupKeys.DEFAULT).getEntry(key);
+    }
+
+    @Override
     public Configuration save(ConfigurationKey key, String value) throws ConfigurationValueValidationException {
         mGroups.get(ConfigurationGroupKeys.DEFAULT).save(key, value);
         return this;

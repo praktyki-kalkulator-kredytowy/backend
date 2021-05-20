@@ -42,6 +42,13 @@ public class ConfigurationGroupImpl implements ConfigurationGroup {
     }
 
     @Override
+    public ConfigurationEntry getEntry(ConfigurationKey key) {
+        return mConfigurationRepository.find(mGroupKey.getKey(), key.getKey())
+                .map(this::mapToEntry)
+                .orElseGet(() -> new ConfigurationEntryImpl(key, key.getDefaultValue()));
+    }
+
+    @Override
     public ConfigurationGroup save(ConfigurationKey key, String value) throws ConfigurationValueValidationException {
         key.validate(value);
 
