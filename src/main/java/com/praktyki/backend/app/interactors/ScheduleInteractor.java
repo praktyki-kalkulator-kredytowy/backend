@@ -94,8 +94,6 @@ public class ScheduleInteractor {
         }
 
         String html = mITemplateEngine.process("schedule_template", context);
-        System.out.println(html);
-
         new PdfRendererBuilder()
                 .withHtmlContent(
                         html,
