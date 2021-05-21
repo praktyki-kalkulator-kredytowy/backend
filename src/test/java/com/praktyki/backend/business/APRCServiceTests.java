@@ -61,36 +61,4 @@ public class APRCServiceTests {
                 ConfigurationKeys.MONTH_FRAME.getDefaultValue());
 
     }
-
-    @Test
-    public void test() throws NoInsuranceRateForAgeException, ConfigurationValueValidationException {
-
-        repositorySetUp();
-
-        ScheduleConfiguration conf = ScheduleConfiguration.builder()
-                .setInstallmentType(InstallmentType.CONSTANT)
-                .setInterestRate(0.1)
-                .setCapital(BigDecimal.valueOf(10000))
-                .setInstallmentAmount(12)
-                .setCommissionRate(0.05)
-                .setInsurance(true)
-                .setAge(30)
-                .setWithdrawalDate(LocalDate.of(2021, 4, 11))
-                .build();
-
-        List<Installment> installments = mInstallmentScheduleService.createInstallmentSchedule(conf);
-        List<InsurancePremium> insurancePremiums = mInsuranceService.calculateInsurancePremium(conf, installments);
-
-        // TODO: Assert
-        System.out.println(mAPRCService.calculateAPRC(
-                conf,
-                installments,
-                insurancePremiums,
-                mInstallmentScheduleService.calculateCommission(conf)
-        ));
-
-        mConfiguration.getGroup(ConfigurationGroupKeys.INSURANCE_GROUPS).remove(
-                ConfigurationGroupKeys.INSURANCE_GROUPS.createKey("0")
-        );
-    }
 }
