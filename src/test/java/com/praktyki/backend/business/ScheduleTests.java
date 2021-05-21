@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.praktyki.backend.app.ThymeLeafConfiguration;
 import com.praktyki.backend.app.configuration.ConfigurationGroupKeys;
 import com.praktyki.backend.app.configuration.ConfigurationImpl;
 import com.praktyki.backend.app.configuration.ConfigurationKeys;
@@ -41,6 +42,7 @@ import java.util.List;
         InsuranceService.class,
         InsurancePremiumDateCalculator.class,
         InsuranceRateConfigurationImpl.class,
+        ThymeLeafConfiguration.class,
 })
 public class ScheduleTests {
 
