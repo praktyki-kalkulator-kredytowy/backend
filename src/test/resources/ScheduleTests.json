@@ -105,7 +105,7 @@
   "mCommissionAmount" : 1000.00,
   "mInsuranceTotalAmount" : 100.00,
   "mLoanTotalCost" : 2201.58,
-  "mAPRC" : 0.23
+  "mAPRC" : 0.2281
 }, {
   "mTestScheduleConfiguration" : {
     "mCapital" : 30000.00,
@@ -317,7 +317,7 @@
   "mCommissionAmount" : 600.00,
   "mInsuranceTotalAmount" : 270.00,
   "mLoanTotalCost" : 5787.72,
-  "mAPRC" : 0.19
+  "mAPRC" : 0.1940
 }, {
   "mTestScheduleConfiguration" : {
     "mCapital" : 40000.00,
@@ -589,7 +589,7 @@
   "mCommissionAmount" : 800.00,
   "mInsuranceTotalAmount" : 200.00,
   "mLoanTotalCost" : 14483.95,
-  "mAPRC" : 0.24
+  "mAPRC" : 0.2411
 }, {
   "mTestScheduleConfiguration" : {
     "mCapital" : 600000.00,
@@ -961,7 +961,7 @@
   "mCommissionAmount" : 6000.00,
   "mInsuranceTotalAmount" : 5400.00,
   "mLoanTotalCost" : 74680.01,
-  "mAPRC" : 0.06
+  "mAPRC" : 0.0609
 }, {
   "mTestScheduleConfiguration" : {
     "mCapital" : 10000.00,
@@ -1029,7 +1029,7 @@
   "mCommissionAmount" : 200.00,
   "mInsuranceTotalAmount" : 90.00,
   "mLoanTotalCost" : 645.34,
-  "mAPRC" : 0.24
+  "mAPRC" : 0.2440
 }, {
   "mTestScheduleConfiguration" : {
     "mCapital" : 25000.00,
@@ -1169,7 +1169,7 @@
   "mCommissionAmount" : 1000.00,
   "mInsuranceTotalAmount" : 50.00,
   "mLoanTotalCost" : 4114.20,
-  "mAPRC" : 0.23
+  "mAPRC" : 0.2285
 }, {
   "mTestScheduleConfiguration" : {
     "mCapital" : 60000.00,
@@ -1453,7 +1453,7 @@
   "mCommissionAmount" : 1800.00,
   "mInsuranceTotalAmount" : 540.00,
   "mLoanTotalCost" : 14098.69,
-  "mAPRC" : 0.16
+  "mAPRC" : 0.1567
 }, {
   "mTestScheduleConfiguration" : {
     "mCapital" : 800000.00,
@@ -2001,7 +2001,7 @@
   "mCommissionAmount" : 32000.00,
   "mInsuranceTotalAmount" : 7200.00,
   "mLoanTotalCost" : 221189.79,
-  "mAPRC" : 0.09
+  "mAPRC" : 0.0908
 }, {
   "mTestScheduleConfiguration" : {
     "mCapital" : 20000.00,
@@ -2109,7 +2109,7 @@
   "mCommissionAmount" : 200.00,
   "mInsuranceTotalAmount" : 100.00,
   "mLoanTotalCost" : 1388.13,
-  "mAPRC" : 0.14
+  "mAPRC" : 0.1362
 }, {
   "mTestScheduleConfiguration" : {
     "mCapital" : 35000.00,
@@ -2261,7 +2261,7 @@
   "mCommissionAmount" : 700.00,
   "mInsuranceTotalAmount" : 70.00,
   "mLoanTotalCost" : 4917.34,
-  "mAPRC" : 0.20
+  "mAPRC" : 0.1956
 }, {
   "mTestScheduleConfiguration" : {
     "mCapital" : 100000.00,
@@ -2425,7 +2425,7 @@
   "mCommissionAmount" : 8000.00,
   "mInsuranceTotalAmount" : 200.00,
   "mLoanTotalCost" : 14540.33,
-  "mAPRC" : 0.21
+  "mAPRC" : 0.2129
 }, {
   "mTestScheduleConfiguration" : {
     "mCapital" : 55000.00,
@@ -2685,7 +2685,7 @@
   "mCommissionAmount" : 1650.00,
   "mInsuranceTotalAmount" : 275.00,
   "mLoanTotalCost" : 10398.62,
-  "mAPRC" : 0.13
+  "mAPRC" : 0.1327
 }, {
   "mTestScheduleConfiguration" : {
     "mCapital" : 25000.00,
@@ -2749,7 +2749,7 @@
   "mCommissionAmount" : 2500.00,
   "mInsuranceTotalAmount" : 225.00,
   "mLoanTotalCost" : 3655.47,
-  "mAPRC" : 0.72
+  "mAPRC" : 0.7197
 }, {
   "mTestScheduleConfiguration" : {
     "mCapital" : 25000.00,
@@ -2881,7 +2881,7 @@
   "mCommissionAmount" : 750.00,
   "mInsuranceTotalAmount" : 50.00,
   "mLoanTotalCost" : 4518.52,
-  "mAPRC" : 0.29
+  "mAPRC" : 0.2941
 }, {
   "mTestScheduleConfiguration" : {
     "mCapital" : 800000.00,
@@ -3429,7 +3429,7 @@
   "mCommissionAmount" : 40000.00,
   "mInsuranceTotalAmount" : 1600.00,
   "mLoanTotalCost" : 163211.56,
-  "mAPRC" : 0.07
+  "mAPRC" : 0.0717
 }, {
   "mTestScheduleConfiguration" : {
     "mCapital" : 40000.00,
@@ -3889,7 +3889,7 @@
   "mCommissionAmount" : 2400.00,
   "mInsuranceTotalAmount" : 360.00,
   "mLoanTotalCost" : 14950.29,
-  "mAPRC" : 0.16
+  "mAPRC" : 0.1646
 }, {
   "mTestScheduleConfiguration" : {
     "mCapital" : 60000.00,
@@ -4393,7 +4393,7 @@
   "mCommissionAmount" : 4200.00,
   "mInsuranceTotalAmount" : 540.00,
   "mLoanTotalCost" : 33210.48,
-  "mAPRC" : 0.23
+  "mAPRC" : 0.2297
 }, {
   "mTestScheduleConfiguration" : {
     "mCapital" : 17000.00,
@@ -4617,5 +4617,5 @@
   "mCommissionAmount" : 1530.00,
   "mInsuranceTotalAmount" : 85.00,
   "mLoanTotalCost" : 6231.33,
-  "mAPRC" : 0.35
+  "mAPRC" : 0.3485
 } ]
