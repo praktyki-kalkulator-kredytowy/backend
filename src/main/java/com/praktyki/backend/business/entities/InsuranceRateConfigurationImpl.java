@@ -26,7 +26,7 @@ public class InsuranceRateConfigurationImpl implements InsuranceRateConfiguratio
                 .map(ConfigurationEntry::getKey)
                 .map(ConfigurationKey::getKey)
                 .map(Integer::parseInt)
-                .filter(k -> k < age)
+                .filter(k -> k <= age)
                 .max(Integer::compare)
                 .orElseThrow(() -> new NoInsuranceRateForAgeException(age));
 
