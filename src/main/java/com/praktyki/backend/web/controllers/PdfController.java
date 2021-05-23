@@ -8,10 +8,8 @@ import com.praktyki.backend.web.models.converters.ScheduleConfigurationConverter
 import com.praktyki.backend.web.models.request.ScheduleConfigurationModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -27,7 +25,7 @@ public class PdfController {
     @Autowired
     private ScheduleInteractor mScheduleInteractor;
 
-    @GetMapping("/api/v1/schedule/pdf")
+    @PostMapping("/api/v1/schedule/pdf")
     public void transportPdfToFrontend(
             HttpServletResponse response,
             @Valid @RequestBody ScheduleConfigurationModel scheduleConfigurationModel
