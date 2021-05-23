@@ -8,7 +8,6 @@ import com.praktyki.backend.web.models.converters.ScheduleConfigurationConverter
 import com.praktyki.backend.web.models.request.ScheduleConfigurationModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
