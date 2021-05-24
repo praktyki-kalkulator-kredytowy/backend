@@ -2119,7 +2119,7 @@
     "mWithdrawalDate" : [ 2020, 1, 20 ],
     "mCommissionRate" : 0.02,
     "mInsurance" : true,
-    "mAge" : 50,
+    "mAge" : 49,
     "mMonthFrame" : 3
   },
   "mInstallmentList" : [ {

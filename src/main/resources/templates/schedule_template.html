@@ -107,7 +107,7 @@
     <h2>Konfiguracja</h2>
     <div class="configuration-row">
         <label>Kapitał: </label>
-        <span th:text="${#numbers.formatCurrency(conf.capital)}"></span>
+        <span th:text="${#numbers.formatDecimal(conf.capital,1,'DEFAULT',2,'COMMA')} + ' zł'"></span>
 
     </div>
 
@@ -126,7 +126,7 @@
 
     <div class="configuration-row">
         <label>Oprocentowanie: </label>
-        <span th:text="${#numbers.formatDecimal(conf.interestRate * 100,0,'DEFAULT',2,'POINT')} + '%'"></span>
+        <span th:text="${#numbers.formatDecimal(conf.interestRate * 100,1,'NONE',2,'POINT')} + '%'"></span>
 
     </div>
 
@@ -138,7 +138,7 @@
 
     <div class="configuration-row">
         <label>Procent prowizji: </label>
-        <span th:text="${#numbers.formatDecimal(conf.commissionRate * 100,0,'DEFAULT',2,'POINT')} + '%'"></span>
+        <span th:text="${#numbers.formatDecimal(conf.commissionRate * 100,1,'NONE',2,'POINT')} + '%'"></span>
 
     </div>
 
@@ -152,7 +152,7 @@
 
     <div class="configuration-row" th:if="${conf.insurance}">
         <label>Wiek: </label>
-        <span th:text="${#numbers.formatDecimal(conf.age,0,'DEFAULT',0,'NONE')}"></span>
+        <span th:text="${#numbers.formatDecimal(conf.age,1,'NONE',0,'NONE')}"></span>
     </div>
 
 </div>
@@ -160,49 +160,49 @@
     <h2>Podsumowanie</h2>
     <div class="configuration-row">
         <label>Suma rat odsetkowych: </label>
-        <span th:text="${#numbers.formatCurrency(interestInstallmentSum)}"></span>
+        <span th:text="${#numbers.formatDecimal(interestInstallmentSum,1,'DEFAULT',2,'COMMA')} + ' zł'"></span>
 
     </div>
 
     <div class="configuration-row">
         <label>Suma rat kapitalowych: </label>
-        <span th:text="${#numbers.formatCurrency(schedule.sumUpCapitalInstallment)}"></span>
+        <span th:text="${#numbers.formatDecimal(schedule.sumUpCapitalInstallment,1,'DEFAULT',2,'COMMA')} + ' zł'"></span>
 
     </div>
 
     <div class="configuration-row">
         <label>Suma rat całkowitych: </label>
-        <span th:text="${#numbers.formatCurrency(totalInstallmentSum)}"></span>
+        <span th:text="${#numbers.formatDecimal(totalInstallmentSum,1,'DEFAULT',2,'COMMA')} + ' zł'"></span>
 
     </div>
 
     <div class="configuration-row" th:if="${#lists.size(schedule.insurancePremiumList)} > 0">
         <label>Suma składek ubezpieczeniowych: </label>
-        <span th:text="${#numbers.formatCurrency(schedule.insuranceTotalAmount)}"></span>
+        <span th:text="${#numbers.formatDecimal(schedule.insuranceTotalAmount,1,'DEFAULT',2,'COMMA')} + ' zł'"></span>
 
     </div>
 
     <div class="configuration-row">
         <label>Kwota kredytu do wypłaty: </label>
-        <span th:text="${#numbers.formatCurrency(schedule.loanPaidOutAmount)}"></span>
+        <span th:text="${#numbers.formatDecimal(schedule.loanPaidOutAmount,1,'DEFAULT',2,'COMMA')} + ' zł'"></span>
 
     </div>
 
     <div class="configuration-row">
         <label>Kwota prowizji: </label>
-        <span th:text="${#numbers.formatCurrency(schedule.commissionAmount)}"></span>
+        <span th:text="${#numbers.formatDecimal(schedule.commissionAmount,1,'DEFAULT',2,'COMMA')} + ' zł'"></span>
 
     </div>
 
     <div class="configuration-row">
         <label>Łączne koszty kredytu: </label>
-        <span th:text="${#numbers.formatCurrency(schedule.loanTotalCost)}"></span>
+        <span th:text="${#numbers.formatDecimal(schedule.loanTotalCost,1,'DEFAULT',2,'COMMA')} + ' zł'"></span>
 
     </div>
 
     <div class="configuration-row">
         <label>RSSO: </label>
-        <span th:text="${#numbers.formatDecimal(schedule.APRC * 100,0,'DEFAULT',2,'POINT')} + '%'"></span>
+        <span th:text="${#numbers.formatDecimal(schedule.APRC * 100,1,'NONE',2,'POINT')} + '%'"></span>
 
     </div>
 
@@ -223,12 +223,12 @@
     <tr th:each="payment: ${paymentsList}">
         <td th:text="${payment.installment.index}"></td>
         <td th:text="${#dates.format(payment.paymentDate,'dd.MM.YYYY')}"></td>
-        <td th:text="${#numbers.formatCurrency(payment.installment.interestInstallment)}"></td>
-        <td th:text="${#numbers.formatCurrency(payment.installment.capitalInstallment)}"></td>
-        <td th:text="${#numbers.formatCurrency(payment.installment.capitalInstallment + payment.installment.interestInstallment)}"></td>
-        <td th:text="${#numbers.formatCurrency(payment.installment.remainingDebt)}"></td>
+        <td th:text="${#numbers.formatDecimal(payment.installment.interestInstallment,1,'DEFAULT',2,'COMMA')}  + ' zł'"></td>
+        <td th:text="${#numbers.formatDecimal(payment.installment.capitalInstallment,1,'DEFAULT',2,'COMMA')}  + ' zł'"></td>
+        <td th:text="${#numbers.formatDecimal(payment.installment.capitalInstallment + payment.installment.interestInstallment,1,'DEFAULT',2,'COMMA')}  + ' zł'"></td>
+        <td th:text="${#numbers.formatDecimal(payment.installment.remainingDebt,1,'DEFAULT',2,'COMMA')}  + ' zł'"></td>
         <td th:if="${#lists.size(schedule.insurancePremiumList)} > 0">
-            <span th:if="${payment.hasInsurance}" th:text="${#numbers.formatCurrency(payment.insurancePremium.insurancePremiumValue)}"></span>
+            <span th:if="${payment.hasInsurance}" th:text="${#numbers.formatDecimal(payment.insurancePremium.insurancePremiumValue,1,'DEFAULT',2,'COMMA')}  + ' zł'"></span>
         </td>
     </tr>
 </table>

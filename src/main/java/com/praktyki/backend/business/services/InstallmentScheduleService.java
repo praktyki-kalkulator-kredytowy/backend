@@ -76,17 +76,18 @@ public class InstallmentScheduleService {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    // TODO: should this be somewhere else?
     public BigDecimal calculateCommission(ScheduleConfiguration scheduleConfiguration) {
 
-        BigDecimal minimalCommissionAmount = new BigDecimal(mConfiguration.get(ConfigurationKeys.MIN_COMMISSION_AMOUNT));
+        BigDecimal minimalCommissionAmount = new BigDecimal(mConfiguration.get(ConfigurationKeys.MIN_COMMISSION_AMOUNT))
+                .setScale(2, RoundingMode.HALF_UP);
 
         BigDecimal commission = scheduleConfiguration.getCapital().multiply(
-                BigDecimal.valueOf(scheduleConfiguration.getCommissionRate()), MathUtils.CONTEXT);
+                BigDecimal.valueOf(scheduleConfiguration.getCommissionRate()), MathUtils.CONTEXT)
+                .setScale(2, RoundingMode.HALF_UP);
 
         return commission.compareTo(minimalCommissionAmount) > 0 || commission.equals(new BigDecimal("0.00"))
-                ? commission.setScale(2, RoundingMode.HALF_UP)
-                : minimalCommissionAmount.setScale(2, RoundingMode.HALF_UP);
+                ? commission
+                : minimalCommissionAmount;
 
     }
 
