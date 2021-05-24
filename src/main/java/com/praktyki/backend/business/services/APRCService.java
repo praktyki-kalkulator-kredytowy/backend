@@ -39,8 +39,10 @@ public class APRCService {
                 conf.getWithdrawalDate()
         );
 
-        if(APRCFunction.apply(0D) == 0)
-            return BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP);
+        if(BigDecimal.valueOf(APRCFunction.apply(0D))
+                .setScale(4,RoundingMode.HALF_UP)
+                .compareTo(BigDecimal.ZERO) == 0)
+            return BigDecimal.ZERO.setScale(4, RoundingMode.HALF_UP);
 
         return BigDecimal.valueOf(MathUtils.solveForZeroWithBisection(
                 APRCFunction,
