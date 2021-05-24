@@ -39,7 +39,7 @@ class InsuranceRateConfigurationImplTest {
 
             Assertions.assertEquals(0.2, rateConfiguration.getRateForAge(25));
 
-            Assertions.assertEquals(0.2, rateConfiguration.getRateForAge(40));
+            Assertions.assertEquals(0.4, rateConfiguration.getRateForAge(40));
 
             Assertions.assertEquals(0.7, rateConfiguration.getRateForAge(99));
 
