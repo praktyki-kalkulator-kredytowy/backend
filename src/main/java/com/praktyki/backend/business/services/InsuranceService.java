@@ -50,13 +50,12 @@ public class InsuranceService {
                 mInsuranceRateConfiguration.getRateForAge(scheduleConfiguration.getAge())
         );
 
-
-        int premiumAmount = ((int) ChronoUnit.MONTHS.between(
+        int months = (int) ChronoUnit.MONTHS.between(
                 installments.get(0).getInstallmentDate(),
-                installments.get(installments.size() - 1).getInstallmentDate()
-        ) + 1) / Integer.parseInt(mConfiguration.get(ConfigurationKeys.MONTH_FRAME));
+                installments.get(installments.size() - 1).getInstallmentDate());
 
-        if(premiumAmount == 0) premiumAmount = 1;
+
+        int premiumAmount = (months / Integer.parseInt(mConfiguration.get(ConfigurationKeys.MONTH_FRAME))) + 1;
 
 
         BigDecimal totalInsurance = scheduleConfiguration
