@@ -5,7 +5,7 @@ import com.praktyki.backend.business.services.exceptions.NoInsuranceRateForAgeEx
 import com.praktyki.backend.business.value.Schedule;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
 import com.praktyki.backend.web.models.converters.ScheduleConfigurationConverter;
-import com.praktyki.backend.web.models.request.ScheduleConfigurationModel;
+import com.praktyki.backend.web.models.ScheduleConfigurationModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
