@@ -45,7 +45,7 @@ public class ScheduleConfiguration {
         return mCommissionRate;
     }
 
-    public double getAge() {
+    public int getAge() {
         return mAge;
     }
 
