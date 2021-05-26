@@ -17,6 +17,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 
+	// RabbitMQ
+	implementation 'org.springframework.boot:spring-boot-starter-amqp'
+
 	// PDF generation
 	implementation "org.thymeleaf:thymeleaf:3.0.11.RELEASE"
 	implementation "com.openhtmltopdf:openhtmltopdf-core:1.0.8"
@@ -35,6 +38,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.1'
 	testImplementation "org.mockito:mockito-core:3.+"
+	testImplementation 'org.springframework.amqp:spring-rabbit-test'
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.1'
 }
 
@@ -42,9 +46,10 @@ tasks.bootRun.configure {
 	systemProperty("spring.profiles.active", "dev")
 }
 
-tasks.bootRun.configure {
+tasks.test.configure {
 	systemProperty("spring.profiles.active", "dev")
 }
+
 
 test {
 	useJUnitPlatform()
