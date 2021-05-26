@@ -22,6 +22,44 @@ public class ScheduleCalculationEventModel {
     public double aprc;
     public LocalDate calculationDate;
 
+    public ScheduleCalculationEventModel() {
+    }
+
+    public ScheduleCalculationEventModel(
+            int id,
+            double capital,
+            String installmentType,
+            int installmentAmount,
+            double interestRate,
+            LocalDate withdrawalDate,
+            double commissionRate,
+            int age,
+            boolean insurance,
+            double capitalInstallmentSum,
+            double loanPaidOutAmount,
+            double commissionAmount,
+            double insuranceTotalAmount,
+            double loanTotalCost,
+            double aprc,
+            LocalDate calculationDate
+    ) {
+        this.id = id;
+        this.capital = capital;
+        this.installmentType = installmentType;
+        this.installmentAmount = installmentAmount;
+        this.interestRate = interestRate;
+        this.withdrawalDate = withdrawalDate;
+        this.commissionRate = commissionRate;
+        this.age = age;
+        this.insurance = insurance;
+        this.capitalInstallmentSum = capitalInstallmentSum;
+        this.loanPaidOutAmount = loanPaidOutAmount;
+        this.commissionAmount = commissionAmount;
+        this.insuranceTotalAmount = insuranceTotalAmount;
+        this.loanTotalCost = loanTotalCost;
+        this.aprc = aprc;
+        this.calculationDate = calculationDate;
+    }
 
     @Override
     public boolean equals(Object o) {
