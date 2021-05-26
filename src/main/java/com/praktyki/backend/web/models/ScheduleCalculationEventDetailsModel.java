@@ -8,6 +8,15 @@ public class ScheduleCalculationEventDetailsModel {
     public LocalDate calculationDate;
     public ScheduleModel schedule;
 
+    public ScheduleCalculationEventDetailsModel() {
+    }
+
+    public ScheduleCalculationEventDetailsModel(int id, LocalDate calculationDate, ScheduleModel schedule) {
+        this.id = id;
+        this.calculationDate = calculationDate;
+        this.schedule = schedule;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
