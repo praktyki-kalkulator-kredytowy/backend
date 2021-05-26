@@ -13,6 +13,7 @@ import com.praktyki.backend.app.configuration.ConfigurationKeys;
 import com.praktyki.backend.app.configuration.exceptions.ConfigurationValueValidationException;
 import com.praktyki.backend.app.interactors.ScheduleInteractor;
 import com.praktyki.backend.app.mocks.data.repositories.MockupConfigurationRepositoryImpl;
+import com.praktyki.backend.app.mocks.rabbitmq.MockupRabbitMQConfiguration;
 import com.praktyki.backend.business.entities.InsuranceRateConfigurationImpl;
 import com.praktyki.backend.business.entities.dates.InsurancePremiumDateCalculator;
 import com.praktyki.backend.business.entities.dates.MonthlyDateScheduleCalculator;
@@ -50,6 +51,7 @@ import java.util.List;
         RabbitMqConfiguration.class,
         ScheduleConfigurationConverterImpl.class,
         ScheduleConverterImpl.class,
+        MockupRabbitMQConfiguration.class,
 
 })
 public class ScheduleTests {
