@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.praktyki.backend.app.RabbitMqConfiguration;
 import com.praktyki.backend.app.ThymeLeafConfiguration;
 import com.praktyki.backend.app.configuration.ConfigurationGroupKeys;
 import com.praktyki.backend.app.configuration.ConfigurationImpl;
@@ -22,6 +23,9 @@ import com.praktyki.backend.business.services.exceptions.NoInsuranceRateForAgeEx
 import com.praktyki.backend.business.value.Schedule;
 import com.praktyki.backend.configuration.Configuration;
 import com.praktyki.backend.configuration.ConfigurationGroupKey;
+import com.praktyki.backend.web.models.converters.ScheduleConfigurationConverterImpl;
+import com.praktyki.backend.web.models.converters.ScheduleConverter;
+import com.praktyki.backend.web.models.converters.ScheduleConverterImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +47,10 @@ import java.util.List;
         InsurancePremiumDateCalculator.class,
         InsuranceRateConfigurationImpl.class,
         ThymeLeafConfiguration.class,
+        RabbitMqConfiguration.class,
+        ScheduleConfigurationConverterImpl.class,
+        ScheduleConverterImpl.class,
+
 })
 public class ScheduleTests {
 
