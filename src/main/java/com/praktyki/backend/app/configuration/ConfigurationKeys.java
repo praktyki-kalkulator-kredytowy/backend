@@ -74,7 +74,7 @@ public enum ConfigurationKeys implements ConfigurationKey {
 
         @Override
         public void validate(String value) throws ConfigurationValueValidationException {
-            ConfigurationValidationUtils.within(this, value,0,1);
+            ConfigurationValidationUtils.min(this,value,0);
         }
     },
 
