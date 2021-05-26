@@ -10,13 +10,22 @@ import com.praktyki.backend.web.models.ScheduleCalculationEventModel;
 import com.praktyki.backend.web.models.ScheduleConfigurationModel;
 import com.praktyki.backend.web.models.response.ScheduleCalculationEvent;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriBuilder;
 
+import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.math.BigDecimal;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 
 @CrossOrigin
@@ -25,6 +34,13 @@ public class AuditController {
 
     @Autowired
     private ScheduleInteractor mScheduleInteractor;
+
+    private RestTemplate mRestTemplate;
+
+    @Autowired
+    private void configureTemplate(RestTemplateBuilder restTemplateBuilder) {
+        mRestTemplate = restTemplateBuilder.build();
+    }
 
 
     @GetMapping("/api/v1/audit")
@@ -44,9 +60,23 @@ public class AuditController {
             @RequestParam(value = "clientAgeStart", required = false) Integer clientAgeStart,
             @RequestParam(value = "clientAgeEnd", required = false) Integer clientAgeEnd,
             @RequestParam(value = "aprcStart", required = false) Double aprcStart,
-            @RequestParam(value = "aprcEnd", required = false) Double aprcEnd
+            @RequestParam(value = "aprcEnd", required = false) Double aprcEnd,
+            HttpServletRequest request
     ) throws NoInsuranceRateForAgeException {
-        return null;
+
+        String url = "http://localhost:4201/api/v1/audit";
+
+        if(request.getQueryString() != null) url += "?"+ request.getQueryString();
+
+        return Arrays.asList(mRestTemplate.getForObject(url, ScheduleCalculationEventModel[].class));
+
     }
 
+    @GetMapping("/api/v1/audit/{id}")
+    public ScheduleCalculationEventDetailsModel getEventById(@PathVariable String id) {
+
+        String url = "http://localhost:4201/api/v1/audit/" + id;
+        return mRestTemplate.getForObject(url, ScheduleCalculationEventDetailsModel.class);
+
+    }
 }
