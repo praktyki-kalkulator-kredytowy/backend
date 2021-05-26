@@ -1,6 +1,7 @@
 package com.praktyki.backend.app.interactors;
 
 import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
+import com.praktyki.backend.app.RabbitMqConfiguration;
 import com.praktyki.backend.business.services.APRCService;
 import com.praktyki.backend.business.services.InstallmentScheduleService;
 import com.praktyki.backend.business.services.InsuranceService;
@@ -9,6 +10,10 @@ import com.praktyki.backend.business.value.Installment;
 import com.praktyki.backend.business.value.InsurancePremium;
 import com.praktyki.backend.business.value.Schedule;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
+import com.praktyki.backend.web.models.ScheduleCalculationEventDetailsModel;
+import com.praktyki.backend.web.models.converters.ScheduleConverter;
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.ITemplateEngine;
@@ -19,6 +24,7 @@ import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.nio.file.Paths;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -39,6 +45,12 @@ public class ScheduleInteractor {
     @Autowired
     private ITemplateEngine mITemplateEngine;
 
+    @Autowired
+    private AmqpTemplate mAmqpTemplate;
+
+    @Autowired
+    private ScheduleConverter mScheduleConverter;
+
     public Schedule calculateSchedule(ScheduleConfiguration configuration) throws NoInsuranceRateForAgeException {
         return createSchedule(configuration);
     }
@@ -53,7 +65,7 @@ public class ScheduleInteractor {
         BigDecimal sumUpInsurancePremium = mInsuranceService.calculateTotalInsuranceCost(insurancePremiumList);
         BigDecimal sumUpInterestInstallment = mInstallmentScheduleService.sumUpInterestInstallment(installments);
 
-        return new Schedule(
+        Schedule schedule =  new Schedule(
                 scheduleConfiguration,
                 installments,
                 insurancePremiumList,
@@ -66,6 +78,15 @@ public class ScheduleInteractor {
                         insurancePremiumList, commission)
         );
 
+        ScheduleCalculationEventDetailsModel model = new ScheduleCalculationEventDetailsModel(
+                0,
+                LocalDate.now(),
+                mScheduleConverter.convertToModel(schedule)
+        );
+
+        mAmqpTemplate.convertAndSend(RabbitMqConfiguration.EXCHANGE_NAME, "", model);
+
+        return schedule;
     }
 
     public void generatePdf(Schedule schedule, OutputStream outputStream) throws IOException {
@@ -102,6 +123,8 @@ public class ScheduleInteractor {
                 .run();
     }
 
+
+    // TODO: Use models instead
     private List<ContextPayment> createPaymentTable(Schedule schedule) {
         List<ContextPayment> contextPayments = new LinkedList<>();
 
