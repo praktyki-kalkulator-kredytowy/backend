@@ -1,5 +1,6 @@
 package com.praktyki.backend.app;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
@@ -28,13 +29,13 @@ public class RabbitMqConfiguration {
     }
 
     @Bean
-    public MessageConverter getJsonMassageConverter() {
-        return new Jackson2JsonMessageConverter();
+    public MessageConverter getJsonMassageConverter(ObjectMapper objectMapper) {
+        return new Jackson2JsonMessageConverter(objectMapper);
     }
 
 
-    public AmqpTemplate getAmqpTemplate(RabbitTemplate template) {
-        template.setMessageConverter(getJsonMassageConverter());
+    public AmqpTemplate getAmqpTemplate(RabbitTemplate template, Jackson2JsonMessageConverter converter) {
+        template.setMessageConverter(converter);
         return template;
     }
 }
