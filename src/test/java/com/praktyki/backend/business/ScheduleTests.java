@@ -24,6 +24,7 @@ import com.praktyki.backend.business.services.exceptions.NoInsuranceRateForAgeEx
 import com.praktyki.backend.business.value.Schedule;
 import com.praktyki.backend.configuration.Configuration;
 import com.praktyki.backend.configuration.ConfigurationGroupKey;
+import com.praktyki.backend.web.models.converters.PaymentConverterImpl;
 import com.praktyki.backend.web.models.converters.ScheduleConfigurationConverterImpl;
 import com.praktyki.backend.web.models.converters.ScheduleConverterImpl;
 import org.junit.jupiter.api.Assertions;
@@ -50,6 +51,7 @@ import java.util.List;
         RabbitMqConfiguration.class,
         ScheduleConfigurationConverterImpl.class,
         ScheduleConverterImpl.class,
+        PaymentConverterImpl.class,
         MockupRabbitMQConfiguration.class,
         ObjectMapper.class,
 
