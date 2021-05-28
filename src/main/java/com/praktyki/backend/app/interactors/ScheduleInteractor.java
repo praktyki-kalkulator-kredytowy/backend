@@ -62,18 +62,19 @@ public class ScheduleInteractor {
                 ? mInsuranceService.calculateInsurancePremium(scheduleConfiguration, installments)
                 : Collections.emptyList();
         BigDecimal commission = mInstallmentScheduleService.calculateCommission(scheduleConfiguration);
-        BigDecimal sumUpInsurancePremium = mInsuranceService.calculateTotalInsuranceCost(insurancePremiumList);
-        BigDecimal sumUpInterestInstallment = mInstallmentScheduleService.sumUpInterestInstallment(installments);
+        BigDecimal insurancePremiumSum = mInsuranceService.calculateTotalInsuranceCost(insurancePremiumList);
+        BigDecimal interestInstallmentSum = mInstallmentScheduleService.sumUpInterestInstallment(installments);
 
         Schedule schedule =  new Schedule(
                 scheduleConfiguration,
                 installments,
                 insurancePremiumList,
                 mInstallmentScheduleService.sumUpCapitalInstallment(installments),
+                interestInstallmentSum,
                 scheduleConfiguration.getCapital().subtract(commission),
                 commission,
-                sumUpInsurancePremium,
-                commission.add(sumUpInsurancePremium).add(sumUpInterestInstallment),
+                insurancePremiumSum,
+                commission.add(insurancePremiumSum).add(interestInstallmentSum),
                 mAPRCService.calculateAPRC(scheduleConfiguration, installments,
                         insurancePremiumList, commission)
         );

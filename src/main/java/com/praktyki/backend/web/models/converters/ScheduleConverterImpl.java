@@ -44,7 +44,8 @@ public class ScheduleConverterImpl implements ScheduleConverter {
         return new ScheduleModel(
                 mScheduleConfigurationConverter.convertToScheduleConfigurationModel(schedule.getScheduleConfiguration()),
                 payments,
-                schedule.getSumUpCapitalInstallment().doubleValue(),
+                schedule.getCapitalInstallmentSum().doubleValue(),
+                schedule.getInterestInstallmentSum().doubleValue(),
                 schedule.getLoanPaidOutAmount().doubleValue(),
                 schedule.getCommissionAmount().doubleValue(),
                 schedule.getInsuranceTotalAmount().doubleValue(),

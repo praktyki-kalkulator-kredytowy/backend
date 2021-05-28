@@ -9,7 +9,8 @@ public class Schedule {
     private ScheduleConfiguration mScheduleConfiguration;
     private List<Installment> mInstallmentList;
     private List<InsurancePremium> mInsurancePremiumList;
-    private BigDecimal mSumUpCapitalInstallment;
+    private BigDecimal mCapitalInstallmentSum;
+    private BigDecimal mInterestInstallmentSum;
     private BigDecimal mLoanPaidOutAmount;
     private BigDecimal mCommissionAmount;
     private BigDecimal mInsuranceTotalAmount;
@@ -30,8 +31,12 @@ public class Schedule {
         return mInsurancePremiumList;
     }
 
-    public BigDecimal getSumUpCapitalInstallment() {
-        return mSumUpCapitalInstallment;
+    public BigDecimal getCapitalInstallmentSum() {
+        return mCapitalInstallmentSum;
+    }
+
+    public BigDecimal getInterestInstallmentSum() {
+        return mInterestInstallmentSum;
     }
 
     public BigDecimal getLoanPaidOutAmount() {
@@ -55,22 +60,29 @@ public class Schedule {
     }
 
     public Schedule(
-            ScheduleConfiguration scheduleConfiguration, List<Installment> installmentList,
-            List<InsurancePremium> insurancePremiumList, BigDecimal sumUpCapitalInstallment,
-            BigDecimal loanPaidOutAmount, BigDecimal commissionAmount, BigDecimal insuranceTotalAmount,
-            BigDecimal loanTotalCost, BigDecimal APRC
+            ScheduleConfiguration scheduleConfiguration,
+            List<Installment> installmentList,
+            List<InsurancePremium> insurancePremiumList,
+            BigDecimal capitalInstallmentSum,
+            BigDecimal interestInstallmentSum,
+            BigDecimal loanPaidOutAmount,
+            BigDecimal commissionAmount,
+            BigDecimal insuranceTotalAmount,
+            BigDecimal loanTotalCost,
+            BigDecimal APRC
     ) {
-        this.mScheduleConfiguration = scheduleConfiguration;
-        this.mInstallmentList = installmentList;
-        this.mInsurancePremiumList = insurancePremiumList;
-        this.mSumUpCapitalInstallment = sumUpCapitalInstallment;
-        this.mLoanPaidOutAmount = loanPaidOutAmount;
-        this.mCommissionAmount = commissionAmount;
-        this.mInsuranceTotalAmount = insuranceTotalAmount;
-        this.mLoanTotalCost = loanTotalCost;
-        this.mAPRC = APRC;
+        mScheduleConfiguration = scheduleConfiguration;
+        mInstallmentList = installmentList;
+        mInsurancePremiumList = insurancePremiumList;
+        mCapitalInstallmentSum = capitalInstallmentSum;
+        mInterestInstallmentSum = interestInstallmentSum;
+        mLoanPaidOutAmount = loanPaidOutAmount;
+        mCommissionAmount = commissionAmount;
+        mInsuranceTotalAmount = insuranceTotalAmount;
+        mLoanTotalCost = loanTotalCost;
+        mAPRC = APRC;
     }
-    
+
     private Schedule(){};
 
     public static class Builder{
@@ -93,7 +105,7 @@ public class Schedule {
         }
 
         public Builder setSumUpCapitalInstallment(BigDecimal sumUpCapitalInstallment){
-            mSchedule.mSumUpCapitalInstallment = sumUpCapitalInstallment;
+            mSchedule.mCapitalInstallmentSum = sumUpCapitalInstallment;
             return this;
         }
 
@@ -127,7 +139,7 @@ public class Schedule {
             if(mSchedule.mScheduleConfiguration == null
                     || mSchedule.mInstallmentList == null
                     || mSchedule.mInsurancePremiumList == null
-                    || mSchedule.mSumUpCapitalInstallment == null
+                    || mSchedule.mCapitalInstallmentSum == null
                     || mSchedule.mLoanPaidOutAmount == null
                     || mSchedule.mCommissionAmount == null
                     || mSchedule.mInsuranceTotalAmount == null
@@ -151,7 +163,7 @@ public class Schedule {
         return getScheduleConfiguration().equals(that.getScheduleConfiguration())
                 && getInstallmentList().equals(that.getInstallmentList())
                 && getInsurancePremiumList().equals(that.getInsurancePremiumList())
-                && getSumUpCapitalInstallment().equals(that.getSumUpCapitalInstallment())
+                && getCapitalInstallmentSum().equals(that.getCapitalInstallmentSum())
                 && getLoanPaidOutAmount().equals(that.getLoanPaidOutAmount())
                 && getCommissionAmount().equals(that.getCommissionAmount())
                 && getInsuranceTotalAmount().equals(that.getInsuranceTotalAmount())
@@ -165,7 +177,7 @@ public class Schedule {
                 getScheduleConfiguration(),
                 getInstallmentList(),
                 getInsurancePremiumList(),
-                getSumUpCapitalInstallment(),
+                getCapitalInstallmentSum(),
                 getLoanPaidOutAmount(),
                 getCommissionAmount(),
                 getInsuranceTotalAmount(),
@@ -180,7 +192,7 @@ public class Schedule {
                 "scheduleConfiguration = " + mScheduleConfiguration +
                 ", installmentList = " + mInstallmentList +
                 ", insuranceList = " + mInsurancePremiumList +
-                ", sumUpCapitalInstallment = " + mSumUpCapitalInstallment +
+                ", sumUpCapitalInstallment = " + mCapitalInstallmentSum +
                 ", loanPaidOutAmount = " + mLoanPaidOutAmount +
                 ", commissionAmount = " + mCommissionAmount +
                 ", insuranceTotalAmount = " + mInsuranceTotalAmount +

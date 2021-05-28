@@ -7,11 +7,12 @@ public class ScheduleModel {
     public ScheduleConfigurationModel scheduleConfiguration;
     public List<PaymentModel> payments;
     public Double capitalInstallmentSum;
+    public Double interestInstallmentSum;
     public Double loanPaidOutAmount;
     public Double commissionAmount;
     public Double insuranceTotalAmount;
     public Double loanTotalCost;
-    public double aprc;
+    public Double aprc;
 
     public ScheduleModel() {
     }
@@ -20,15 +21,17 @@ public class ScheduleModel {
             ScheduleConfigurationModel scheduleConfiguration,
             List<PaymentModel> payments,
             Double capitalInstallmentSum,
+            Double interestInstallmentSum,
             Double loanPaidOutAmount,
             Double commissionAmount,
             Double insuranceTotalAmount,
             Double loanTotalCost,
-            double aprc
+            Double aprc
     ) {
         this.scheduleConfiguration = scheduleConfiguration;
         this.payments = payments;
         this.capitalInstallmentSum = capitalInstallmentSum;
+        this.interestInstallmentSum = interestInstallmentSum;
         this.loanPaidOutAmount = loanPaidOutAmount;
         this.commissionAmount = commissionAmount;
         this.insuranceTotalAmount = insuranceTotalAmount;
