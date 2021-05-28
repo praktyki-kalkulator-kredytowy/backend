@@ -86,4 +86,18 @@ public class ScheduleConfigurationModel {
                 insurance
         );
     }
+
+    @Override
+    public String toString() {
+        return "ScheduleConfigurationModel{" +
+                "capital =" + capital +
+                ", installmentType ='" + installmentType + '\'' +
+                ", installmentAmount =" + installmentAmount +
+                ", interestRate =" + interestRate +
+                ", withdrawalDate =" + withdrawalDate +
+                ", commissionRate =" + commissionRate +
+                ", age =" + age +
+                ", insurance =" + insurance +
+                '}';
+    }
 }

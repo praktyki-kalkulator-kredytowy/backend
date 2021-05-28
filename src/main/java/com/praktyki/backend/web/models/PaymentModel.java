@@ -47,4 +47,16 @@ public class PaymentModel {
     public int hashCode() {
         return Objects.hash(index, date, capitalInstallment, interestInstallment, remainingDebt, insurancePremium);
     }
+
+    @Override
+    public String toString() {
+        return "PaymentModel{" +
+                "index =" + index +
+                ", date =" + date +
+                ", capitalInstallment =" + capitalInstallment +
+                ", interestInstallment =" + interestInstallment +
+                ", remainingDebt =" + remainingDebt +
+                ", insurancePremium =" + insurancePremium +
+                '}';
+    }
 }

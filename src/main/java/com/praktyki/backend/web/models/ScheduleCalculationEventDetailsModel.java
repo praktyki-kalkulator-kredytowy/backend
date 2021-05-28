@@ -29,4 +29,13 @@ public class ScheduleCalculationEventDetailsModel {
     public int hashCode() {
         return Objects.hash(id, calculationDate, schedule);
     }
+
+    @Override
+    public String toString() {
+        return "ScheduleCalculationEventDetailsModel{" +
+                "id =" + id +
+                ", calculationDate =" + calculationDate +
+                ", schedule =" + schedule +
+                '}';
+    }
 }

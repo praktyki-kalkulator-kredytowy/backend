@@ -67,4 +67,19 @@ public class ScheduleModel {
                 aprc
         );
     }
+
+    @Override
+    public String toString() {
+        return "ScheduleModel{" +
+                "scheduleConfiguration =" + scheduleConfiguration +
+                ", payments =" + payments +
+                ", capitalInstallmentSum =" + capitalInstallmentSum +
+                ", interestInstallmentSum =" + interestInstallmentSum +
+                ", loanPaidOutAmount =" + loanPaidOutAmount +
+                ", commissionAmount =" + commissionAmount +
+                ", insuranceTotalAmount =" + insuranceTotalAmount +
+                ", loanTotalCost =" + loanTotalCost +
+                ", aprc =" + aprc +
+                '}';
+    }
 }
