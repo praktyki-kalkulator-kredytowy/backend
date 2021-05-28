@@ -11,6 +11,7 @@ import com.praktyki.backend.business.value.InsurancePremium;
 import com.praktyki.backend.business.value.Schedule;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
 import com.praktyki.backend.web.models.ScheduleCalculationEventDetailsModel;
+import com.praktyki.backend.web.models.ScheduleModel;
 import com.praktyki.backend.web.models.converters.ScheduleConverter;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -90,22 +91,17 @@ public class ScheduleInteractor {
         return schedule;
     }
 
-    public void generatePdf(Schedule schedule, OutputStream outputStream) throws IOException {
+    public void generatePdf(ScheduleModel scheduleModel, OutputStream outputStream) throws IOException {
+
         Context context = new Context();
-        context.setVariable("schedule", schedule);
-        context.setVariable("conf", schedule.getScheduleConfiguration());
-        context.setVariable("paymentsList", createPaymentTable(schedule));
-        context.setVariable("interestInstallmentSum", schedule.getInstallmentList().stream()
-                .map(Installment::getInterestInstallment)
-                .reduce(BigDecimal::add)
-                .orElse(null)
+        context.setVariable("schedule", scheduleModel);
+        context.setVariable("conf", scheduleModel.scheduleConfiguration);
+        context.setVariable("paymentsList", scheduleModel.payments);
+        context.setVariable("totalInstallmentSum",scheduleModel.payments.stream()
+                .mapToDouble(i -> i.capitalInstallment + i.interestInstallment)
+                .sum()
         );
-        context.setVariable("totalInstallmentSum",schedule.getInstallmentList().stream()
-                .map(i -> i.getCapitalInstallment().add(i.getInterestInstallment()))
-                .reduce(BigDecimal::add)
-                .orElse(null)
-        );
-        context.setVariable("confDate", Date.valueOf(schedule.getScheduleConfiguration().getWithdrawalDate()));
+        context.setVariable("confDate", Date.valueOf(scheduleModel.scheduleConfiguration.withdrawalDate));
         String url;
 
         try {
@@ -124,42 +120,5 @@ public class ScheduleInteractor {
                 .run();
     }
 
-
-    // TODO: Use models instead
-    private List<ContextPayment> createPaymentTable(Schedule schedule) {
-        List<ContextPayment> contextPayments = new LinkedList<>();
-
-        for(Installment installment : schedule.getInstallmentList()) {
-            Optional<InsurancePremium> insurancePremium = schedule.getInsurancePremiumList().stream()
-                    .filter(p -> p.getDate().equals(installment.getDate()))
-                    .findFirst();
-
-            contextPayments.add(new ContextPayment(
-                    Date.valueOf(installment.getDate()),
-                    installment,
-                    insurancePremium.isPresent(),
-                    insurancePremium.orElse(null)
-            ));
-        }
-        return contextPayments;
-    }
-
-
-    private class ContextPayment {
-        public Date paymentDate;
-        public Installment installment;
-        public boolean hasInsurance;
-        public InsurancePremium insurancePremium;
-
-        public ContextPayment(
-                Date paymentDate, Installment installment,
-                boolean hasInsurance, InsurancePremium insurancePremium)
-        {
-            this.paymentDate = paymentDate;
-            this.installment = installment;
-            this.hasInsurance = hasInsurance;
-            this.insurancePremium = insurancePremium;
-        }
-    }
 
 }

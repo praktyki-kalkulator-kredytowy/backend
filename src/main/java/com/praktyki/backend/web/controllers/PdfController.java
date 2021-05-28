@@ -6,6 +6,7 @@ import com.praktyki.backend.business.value.Schedule;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
 import com.praktyki.backend.web.models.converters.ScheduleConfigurationConverter;
 import com.praktyki.backend.web.models.ScheduleConfigurationModel;
+import com.praktyki.backend.web.models.converters.ScheduleConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,9 @@ public class PdfController {
     @Autowired
     private ScheduleInteractor mScheduleInteractor;
 
+    @Autowired
+    private ScheduleConverter mScheduleConverter;
+
     @PostMapping("/api/v1/schedule/pdf")
     public void transportPdfToFrontend(
             HttpServletResponse response,
@@ -37,7 +41,7 @@ public class PdfController {
 
         response.setContentType(MediaType.APPLICATION_PDF.toString());
 
-        mScheduleInteractor.generatePdf(schedule, response.getOutputStream());
+        mScheduleInteractor.generatePdf(mScheduleConverter.convertToModel(schedule), response.getOutputStream());
 
         response.getOutputStream().flush();
     }
