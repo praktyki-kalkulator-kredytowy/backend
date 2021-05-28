@@ -101,7 +101,6 @@ public class ScheduleInteractor {
                 .mapToDouble(i -> i.capitalInstallment + i.interestInstallment)
                 .sum()
         );
-        context.setVariable("confDate", Date.valueOf(scheduleModel.scheduleConfiguration.withdrawalDate));
         String url;
 
         try {

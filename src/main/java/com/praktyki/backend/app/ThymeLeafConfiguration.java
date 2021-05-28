@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.thymeleaf.ITemplateEngine;
 import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
@@ -28,6 +29,7 @@ public class ThymeLeafConfiguration {
     public ITemplateEngine getTemplateEngine(ITemplateResolver resolver) {
         TemplateEngine engine = new TemplateEngine();
         engine.setTemplateResolver(resolver);
+        engine.addDialect(new Java8TimeDialect());
         return engine;
     }
 

@@ -132,7 +132,7 @@
 
     <div class="configuration-row">
         <label>Data wypłaty: </label>
-        <span th:text="${#dates.format(confDate,'dd.MM.YYYY')}"></span>
+        <span th:text="${#temporals.format(conf.withdrawalDate,'dd.MM.YYYY')}"></span>
 
     </div>
 
@@ -222,7 +222,7 @@
 
     <tr th:each="payment: ${paymentsList}">
         <td th:text="${payment.index}"></td>
-        <td th:text="${#dates.format(payment.date,'dd.MM.YYYY')}"></td>
+        <td th:text="${#temporals.format(payment.date,'dd.MM.YYYY')}"></td>
         <td th:text="${#numbers.formatDecimal(payment.interestInstallment,1,'WHITESPACE',2,'COMMA')}  + ' zł'"></td>
         <td th:text="${#numbers.formatDecimal(payment.capitalInstallment,1,'WHITESPACE',2,'COMMA')}  + ' zł'"></td>
         <td th:text="${#numbers.formatDecimal(payment.capitalInstallment + payment.interestInstallment,1,'WHITESPACE',2,'COMMA')}  + ' zł'"></td>
