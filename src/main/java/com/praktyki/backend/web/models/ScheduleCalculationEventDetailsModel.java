@@ -33,9 +33,9 @@ public class ScheduleCalculationEventDetailsModel {
     @Override
     public String toString() {
         return "ScheduleCalculationEventDetailsModel{" +
-                "id =" + id +
-                ", calculationDate =" + calculationDate +
-                ", schedule =" + schedule +
+                "id = " + id +
+                ", calculationDate = " + calculationDate +
+                ", schedule = " + schedule +
                 '}';
     }
 }

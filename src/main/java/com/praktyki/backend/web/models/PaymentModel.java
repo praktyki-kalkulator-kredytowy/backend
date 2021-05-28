@@ -51,12 +51,12 @@ public class PaymentModel {
     @Override
     public String toString() {
         return "PaymentModel{" +
-                "index =" + index +
-                ", date =" + date +
-                ", capitalInstallment =" + capitalInstallment +
-                ", interestInstallment =" + interestInstallment +
-                ", remainingDebt =" + remainingDebt +
-                ", insurancePremium =" + insurancePremium +
+                "index = " + index +
+                ", date = " + date +
+                ", capitalInstallment = " + capitalInstallment +
+                ", interestInstallment = " + interestInstallment +
+                ", remainingDebt = " + remainingDebt +
+                ", insurancePremium = " + insurancePremium +
                 '}';
     }
 }

@@ -106,22 +106,22 @@ public class ScheduleCalculationEventModel {
     @Override
     public String toString() {
         return "ScheduleCalculationEventModel{" +
-                "id =" + id +
-                ", capital =" + capital +
-                ", installmentType ='" + installmentType + '\'' +
-                ", installmentAmount =" + installmentAmount +
-                ", interestRate =" + interestRate +
-                ", withdrawalDate =" + withdrawalDate +
-                ", commissionRate =" + commissionRate +
-                ", age =" + age +
-                ", insurance =" + insurance +
-                ", capitalInstallmentSum =" + capitalInstallmentSum +
-                ", loanPaidOutAmount =" + loanPaidOutAmount +
-                ", commissionAmount =" + commissionAmount +
-                ", insuranceTotalAmount =" + insuranceTotalAmount +
-                ", loanTotalCost =" + loanTotalCost +
-                ", aprc =" + aprc +
-                ", calculationDate =" + calculationDate +
+                "id = " + id +
+                ", capital = " + capital +
+                ", installmentType = '" + installmentType + '\'' +
+                ", installmentAmount = " + installmentAmount +
+                ", interestRate = " + interestRate +
+                ", withdrawalDate = " + withdrawalDate +
+                ", commissionRate = " + commissionRate +
+                ", age = " + age +
+                ", insurance = " + insurance +
+                ", capitalInstallmentSum = " + capitalInstallmentSum +
+                ", loanPaidOutAmount = " + loanPaidOutAmount +
+                ", commissionAmount = " + commissionAmount +
+                ", insuranceTotalAmount = " + insuranceTotalAmount +
+                ", loanTotalCost = " + loanTotalCost +
+                ", aprc = " + aprc +
+                ", calculationDate = " + calculationDate +
                 '}';
     }
 }
