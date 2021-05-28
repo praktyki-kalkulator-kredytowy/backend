@@ -4,6 +4,7 @@ import com.praktyki.backend.app.interactors.ScheduleInteractor;
 import com.praktyki.backend.business.services.exceptions.NoInsuranceRateForAgeException;
 import com.praktyki.backend.business.value.Schedule;
 import com.praktyki.backend.business.value.ScheduleConfiguration;
+import com.praktyki.backend.web.models.ScheduleModel;
 import com.praktyki.backend.web.models.converters.ScheduleConfigurationConverter;
 import com.praktyki.backend.web.models.ScheduleConfigurationModel;
 import com.praktyki.backend.web.models.converters.ScheduleConverter;
@@ -31,17 +32,12 @@ public class PdfController {
     @PostMapping("/api/v1/schedule/pdf")
     public void transportPdfToFrontend(
             HttpServletResponse response,
-            @Valid @RequestBody ScheduleConfigurationModel scheduleConfigurationModel
+            @Valid @RequestBody ScheduleModel scheduleModel
     ) throws IOException, NoInsuranceRateForAgeException {
-
-        ScheduleConfiguration scheduleConfiguration =
-                mScheduleConfigurationConverter.convertToScheduleConfiguration(scheduleConfigurationModel);
-
-        Schedule schedule = mScheduleInteractor.calculateSchedule(scheduleConfiguration);
 
         response.setContentType(MediaType.APPLICATION_PDF.toString());
 
-        mScheduleInteractor.generatePdf(mScheduleConverter.convertToModel(schedule), response.getOutputStream());
+        mScheduleInteractor.generatePdf(scheduleModel, response.getOutputStream());
 
         response.getOutputStream().flush();
     }

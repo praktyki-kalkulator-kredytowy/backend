@@ -1,17 +1,42 @@
 package com.praktyki.backend.web.models;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Objects;
 
 public class ScheduleModel {
+
+    @Valid
+    @NotNull
     public ScheduleConfigurationModel scheduleConfiguration;
+
+    @Valid
+    @NotNull
+    @Size(min = 1)
     public List<PaymentModel> payments;
+
+    @Positive
     public Double capitalInstallmentSum;
+
+    @Positive
     public Double interestInstallmentSum;
+
+    @Positive
     public Double loanPaidOutAmount;
+
+    @Positive
     public Double commissionAmount;
+
+    @Positive
     public Double insuranceTotalAmount;
+
+    @Positive
     public Double loanTotalCost;
+
+    @Positive
     public Double aprc;
 
     public ScheduleModel() {

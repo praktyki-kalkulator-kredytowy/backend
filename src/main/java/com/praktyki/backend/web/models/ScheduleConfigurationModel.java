@@ -3,7 +3,9 @@ package com.praktyki.backend.web.models;
 import com.praktyki.backend.web.validation.ValidCommissionRate;
 import com.praktyki.backend.web.validation.ValidInstallmentType;
 import com.praktyki.backend.web.validation.ValidInterestRate;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.Objects;

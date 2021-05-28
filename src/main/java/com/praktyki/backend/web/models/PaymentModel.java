@@ -1,14 +1,28 @@
 package com.praktyki.backend.web.models;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.time.LocalDate;
 import java.util.Objects;
 
 public class PaymentModel {
+
+    @Positive
     public int index;
+
+    @NotNull(message = "Please specify a date")
     public LocalDate date;
+
+    @Positive
     public Double capitalInstallment;
+
+    @Positive
     public Double interestInstallment;
+
+    @Positive
     public Double remainingDebt;
+
+    @Positive
     public Double insurancePremium;
 
     public PaymentModel() {
