@@ -25,7 +25,6 @@ import com.praktyki.backend.business.value.Schedule;
 import com.praktyki.backend.configuration.Configuration;
 import com.praktyki.backend.configuration.ConfigurationGroupKey;
 import com.praktyki.backend.web.models.converters.ScheduleConfigurationConverterImpl;
-import com.praktyki.backend.web.models.converters.ScheduleConverter;
 import com.praktyki.backend.web.models.converters.ScheduleConverterImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -52,6 +51,7 @@ import java.util.List;
         ScheduleConfigurationConverterImpl.class,
         ScheduleConverterImpl.class,
         MockupRabbitMQConfiguration.class,
+        ObjectMapper.class,
 
 })
 public class ScheduleTests {
@@ -132,7 +132,7 @@ public class ScheduleTests {
         Assertions.assertEquals(testCase.getCommissionAmount(), schedule.getCommissionAmount());
         Assertions.assertEquals(testCase.getLoanPaidOutAmount(), schedule.getLoanPaidOutAmount());
         Assertions.assertEquals(testCase.getLoanTotalCost(), schedule.getLoanTotalCost());
-        Assertions.assertEquals(testCase.getSumUpCapitalInstallment(), schedule.getSumUpCapitalInstallment());
+        Assertions.assertEquals(testCase.getSumUpCapitalInstallment(), schedule.getCapitalInstallmentSum());
 
 
     }
