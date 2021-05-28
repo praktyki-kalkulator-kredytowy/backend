@@ -1,5 +1,6 @@
 package com.praktyki.backend.web.models;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.time.LocalDate;
@@ -13,16 +14,16 @@ public class PaymentModel {
     @NotNull(message = "Please specify a date")
     public LocalDate date;
 
-    @Positive
+    @Min(value = 0, message = "Installment must be 0 or higher")
     public Double capitalInstallment;
 
-    @Positive
+    @Min(value = 0, message = "Installment must be 0 or higher")
     public Double interestInstallment;
 
-    @Positive
+    @Min(value = 0, message = "Installment must be 0 or higher")
     public Double remainingDebt;
 
-    @Positive
+    @Min(value = 0, message = "Installment must be 0 or higher")
     public Double insurancePremium;
 
     public PaymentModel() {

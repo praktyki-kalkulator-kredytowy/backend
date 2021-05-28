@@ -1,6 +1,7 @@
 package com.praktyki.backend.web.models;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
@@ -18,25 +19,25 @@ public class ScheduleModel {
     @Size(min = 1)
     public List<PaymentModel> payments;
 
-    @Positive
+    @Min(value = 0, message = "Installment must be 0 or higher")
     public Double capitalInstallmentSum;
 
-    @Positive
+    @Min(value = 0, message = "Installment must be 0 or higher")
     public Double interestInstallmentSum;
 
-    @Positive
+    @Min(value = 0, message = "Installment must be 0 or higher")
     public Double loanPaidOutAmount;
 
-    @Positive
+    @Min(value = 0, message = "Installment must be 0 or higher")
     public Double commissionAmount;
 
-    @Positive
+    @Min(value = 0, message = "Installment must be 0 or higher")
     public Double insuranceTotalAmount;
 
-    @Positive
+    @Min(value = 0, message = "Installment must be 0 or higher")
     public Double loanTotalCost;
 
-    @Positive
+    @Min(value = 0, message = "Installment must be 0 or higher")
     public Double aprc;
 
     public ScheduleModel() {
