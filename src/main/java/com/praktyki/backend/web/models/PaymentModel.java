@@ -14,16 +14,16 @@ public class PaymentModel {
     @NotNull(message = "Please specify a date")
     public LocalDate date;
 
-    @Min(value = 0, message = "Installment must be 0 or higher")
+    @Min(value = 0, message = "Capital must be 0 or higher")
     public Double capitalInstallment;
 
-    @Min(value = 0, message = "Installment must be 0 or higher")
+    @Min(value = 0, message = "InterestInstallment must be 0 or higher")
     public Double interestInstallment;
 
-    @Min(value = 0, message = "Installment must be 0 or higher")
+    @Min(value = 0, message = "RemainingDebt must be 0 or higher")
     public Double remainingDebt;
 
-    @Min(value = 0, message = "Installment must be 0 or higher")
+    @Min(value = 0, message = "InsurancePremium must be 0 or higher")
     public Double insurancePremium;
 
     public PaymentModel() {

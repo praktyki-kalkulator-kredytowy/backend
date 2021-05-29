@@ -19,25 +19,25 @@ public class ScheduleModel {
     @Size(min = 1)
     public List<PaymentModel> payments;
 
-    @Min(value = 0, message = "Installment must be 0 or higher")
+    @Min(value = 0, message = "CapitalInstallmentSum must be 0 or higher")
     public Double capitalInstallmentSum;
 
-    @Min(value = 0, message = "Installment must be 0 or higher")
+    @Min(value = 0, message = "InterestInstallmentSum must be 0 or higher")
     public Double interestInstallmentSum;
 
-    @Min(value = 0, message = "Installment must be 0 or higher")
+    @Min(value = 0, message = "LoanPaidOutAmount must be 0 or higher")
     public Double loanPaidOutAmount;
 
-    @Min(value = 0, message = "Installment must be 0 or higher")
+    @Min(value = 0, message = "CommissionAmount must be 0 or higher")
     public Double commissionAmount;
 
-    @Min(value = 0, message = "Installment must be 0 or higher")
+    @Min(value = 0, message = "InsuranceTotalAmount must be 0 or higher")
     public Double insuranceTotalAmount;
 
-    @Min(value = 0, message = "Installment must be 0 or higher")
+    @Min(value = 0, message = "LoanTotalCost must be 0 or higher")
     public Double loanTotalCost;
 
-    @Min(value = 0, message = "Installment must be 0 or higher")
+    @Min(value = 0, message = "Aprc must be 0 or higher")
     public Double aprc;
 
     public ScheduleModel() {
