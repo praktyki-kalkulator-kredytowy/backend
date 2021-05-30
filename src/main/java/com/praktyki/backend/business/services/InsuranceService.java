@@ -80,6 +80,10 @@ public class InsuranceService {
                 .reduce(BigDecimal.ZERO, BigDecimal::add))
                 .setScale(2, RoundingMode.HALF_UP);
 
+        if(lastPremiumValue.compareTo(BigDecimal.ZERO) == 0 && insuranceRate.compareTo(BigDecimal.ZERO) != 0)
+                lastPremiumValue = minPremiumValue;
+
+
         premiums.add(new InsurancePremium(
                 premiums.size() + 1,
                 schedule.getDateFor(premiums.size() + 1),
