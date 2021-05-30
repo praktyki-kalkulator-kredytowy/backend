@@ -47,13 +47,13 @@ public class AuditController {
     @GetMapping("/api/v1/audit")
     public List<ScheduleCalculationEventModel> audit(
             @RequestParam(value = "calculationStartDate", required = false)
-            @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate calculationStartDate,
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate calculationStartDate,
             @RequestParam(value = "calculationEndDate", required = false)
-            @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate calculationEndDate,
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate calculationEndDate,
             @RequestParam(value = "withdrawalStartDate", required = false)
-            @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate withdrawalStartDate,
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate withdrawalStartDate,
             @RequestParam(value = "withdrawalEndDate", required = false)
-            @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate withdrawalEndDate,
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate withdrawalEndDate,
             @RequestParam(value = "capitalStart", required = false) Double capitalStart,
             @RequestParam(value = "capitalEnd", required = false) Double capitalEnd,
             @RequestParam(value = "installmentAmountStart", required = false) Integer installmentAmountStart,
