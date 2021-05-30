@@ -20,6 +20,7 @@ public class ScheduleCalculationEventConverterImpl implements ScheduleCalculatio
                 m.schedule.scheduleConfiguration.age,
                 m.schedule.scheduleConfiguration.insurance,
                 m.schedule.capitalInstallmentSum,
+                m.schedule.interestInstallmentSum,
                 m.schedule.loanPaidOutAmount,
                 m.schedule.commissionAmount,
                 m.schedule.insuranceTotalAmount,
