@@ -60,6 +60,8 @@ public class AuditController {
             @RequestParam(value = "installmentAmountEnd", required = false) Integer installmentAmountEnd,
             @RequestParam(value = "interestRateStart", required = false) Double interestRateStart,
             @RequestParam(value = "interestRateEnd", required = false) Double interestRateEnd,
+            @RequestParam(value = "commissionRateStart", required = false) Double commissionRateStart,
+            @RequestParam(value = "commissionRateEnd", required = false) Double commissionRateEnd,
             @RequestParam(value = "insuranceSumStart", required = false) Double insuranceSumStart,
             @RequestParam(value = "insuranceSumEnd", required = false) Double insuranceSumEnd,
             @RequestParam(value = "clientAgeStart", required = false) Integer clientAgeStart,
