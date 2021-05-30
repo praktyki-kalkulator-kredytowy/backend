@@ -44,12 +44,18 @@ public class APRCService {
                 .compareTo(BigDecimal.ZERO) == 0)
             return BigDecimal.ZERO.setScale(4, RoundingMode.HALF_UP);
 
-        return BigDecimal.valueOf(MathUtils.solveForZeroWithBisection(
+        BigDecimal result =  BigDecimal.valueOf(MathUtils.solveForZeroWithBisection(
                 APRCFunction,
                 RANGE_START,
                 RANGE_END,
                 PRECISION
         )).setScale(4, RoundingMode.HALF_UP);
+
+        System.out.println("-------------------------------------------------------------------------------------------");
+        System.out.println(result);
+        System.out.println(APRCFunction.apply(result.doubleValue()));
+
+        return result;
     }
 
     private UnaryOperator<Double> createAPRCFunction(
@@ -61,7 +67,7 @@ public class APRCService {
 
         for(Payment p : payments) {
             double yearProgress = (double) ChronoUnit.DAYS.between(withdrawalDate, p.getDate())
-                    / p.getDate().lengthOfYear();
+                    / 360;
 
              sum +=
                     p.getAmount().doubleValue() / Math.pow(1 + x, yearProgress);

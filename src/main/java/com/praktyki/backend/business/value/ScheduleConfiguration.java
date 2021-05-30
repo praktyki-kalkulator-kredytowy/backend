@@ -15,7 +15,7 @@ public class ScheduleConfiguration {
     private LocalDate mWithdrawalDate;
     private double mCommissionRate;
     private boolean mInsurance;
-    private int mAge;
+    private Integer mAge;
 
     public static Builder builder(){
         return new Builder();
@@ -45,7 +45,7 @@ public class ScheduleConfiguration {
         return mCommissionRate;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return mAge;
     }
 
@@ -61,7 +61,7 @@ public class ScheduleConfiguration {
             LocalDate withdrawalDate,
             double commissionRate,
             boolean insurance,
-            int age
+            Integer age
     ) {
         mCapital = capital;
         mInstallmentType = installmentType;
@@ -114,7 +114,7 @@ public class ScheduleConfiguration {
             return this;
         }
 
-        public Builder setAge(int age) {
+        public Builder setAge(Integer age) {
             mScheduleConfiguration.mAge = age;
             return this;
         }
@@ -146,10 +146,11 @@ public class ScheduleConfiguration {
         ScheduleConfiguration that = (ScheduleConfiguration) o;
         return getInstallmentAmount() == that.getInstallmentAmount()
                 && Double.compare(that.getInterestRate(), getInterestRate()) == 0
-                && getCapital().equals(that.getCapital()) && getInstallmentType() == that.getInstallmentType()
-                && getWithdrawalDate().equals(that.getWithdrawalDate())
                 && Double.compare(that.getCommissionRate(), getCommissionRate()) == 0
-                && Double.compare(that.getAge(), getAge()) == 0;
+                && isInsurance() == that.isInsurance() && getCapital().equals(that.getCapital())
+                && getInstallmentType() == that.getInstallmentType()
+                && getWithdrawalDate().equals(that.getWithdrawalDate())
+                && Objects.equals(getAge(), that.getAge());
     }
 
     @Override
@@ -161,7 +162,9 @@ public class ScheduleConfiguration {
                 getInterestRate(),
                 getWithdrawalDate(),
                 getCommissionRate(),
-                getAge());
+                isInsurance(),
+                getAge()
+        );
     }
 
     @Override

@@ -44,7 +44,7 @@ public class InstallmentUtils {
 
         return prev.getRemainingDebt()
                 .multiply(BigDecimal.valueOf(conf.getInterestRate()), MathUtils.CONTEXT)
-                .multiply(BigDecimal.valueOf(timeDifference).divide(BigDecimal.valueOf(date.lengthOfYear()), MathUtils.CONTEXT), MathUtils.CONTEXT)
+                .multiply(BigDecimal.valueOf(timeDifference).divide(BigDecimal.valueOf(360), MathUtils.CONTEXT), MathUtils.CONTEXT)
                 .setScale(2,RoundingMode.HALF_UP);
     }
 }

@@ -12,7 +12,7 @@ public class ScheduleCalculationEventModel {
     public double interestRate;
     public LocalDate withdrawalDate;
     public double commissionRate;
-    public int age;
+    public Integer age;
     public boolean insurance;
     public double capitalInstallmentSum;
     public double loanPaidOutAmount;
@@ -33,7 +33,7 @@ public class ScheduleCalculationEventModel {
             double interestRate,
             LocalDate withdrawalDate,
             double commissionRate,
-            int age,
+            Integer age,
             boolean insurance,
             double capitalInstallmentSum,
             double loanPaidOutAmount,
@@ -71,7 +71,7 @@ public class ScheduleCalculationEventModel {
                 && installmentAmount == that.installmentAmount
                 && Double.compare(that.interestRate, interestRate) == 0
                 && Double.compare(that.commissionRate, commissionRate) == 0
-                && age == that.age && insurance == that.insurance
+                && age.equals(that.age) && insurance == that.insurance
                 && Double.compare(that.capitalInstallmentSum, capitalInstallmentSum) == 0
                 && Double.compare(that.loanPaidOutAmount, loanPaidOutAmount) == 0
                 && Double.compare(that.commissionAmount, commissionAmount) == 0

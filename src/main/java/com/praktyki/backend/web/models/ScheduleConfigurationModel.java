@@ -34,7 +34,7 @@ public class ScheduleConfigurationModel {
 
     @Min(value = 0, message = "Age must be positive")
     @Max(value = 150, message = "Maximum age value is 150")
-    public int age;
+    public Integer age;
 
     public boolean insurance;
 
@@ -48,7 +48,7 @@ public class ScheduleConfigurationModel {
             double interestRate,
             LocalDate withdrawalDate,
             double commissionRate,
-            int age,
+            Integer age,
             boolean insurance
     ) {
         this.capital = capital;
@@ -70,7 +70,7 @@ public class ScheduleConfigurationModel {
                 && installmentAmount == that.installmentAmount
                 && Double.compare(that.interestRate, interestRate) == 0
                 && Double.compare(that.commissionRate, commissionRate) == 0
-                && age == that.age && insurance == that.insurance
+                && age.equals(that.age) && insurance == that.insurance
                 && installmentType.equals(that.installmentType)
                 && withdrawalDate.equals(that.withdrawalDate);
     }
