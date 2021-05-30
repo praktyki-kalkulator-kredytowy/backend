@@ -44,14 +44,12 @@ public class APRCService {
                 .compareTo(BigDecimal.ZERO) == 0)
             return BigDecimal.ZERO.setScale(4, RoundingMode.HALF_UP);
 
-        BigDecimal result =  BigDecimal.valueOf(MathUtils.solveForZeroWithBisection(
+        return BigDecimal.valueOf(MathUtils.solveForZeroWithBisection(
                 APRCFunction,
                 RANGE_START,
                 RANGE_END,
                 PRECISION
         )).setScale(4, RoundingMode.HALF_UP);
-
-        return result;
     }
 
     private UnaryOperator<Double> createAPRCFunction(
