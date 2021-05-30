@@ -51,10 +51,6 @@ public class APRCService {
                 PRECISION
         )).setScale(4, RoundingMode.HALF_UP);
 
-        System.out.println("-------------------------------------------------------------------------------------------");
-        System.out.println(result);
-        System.out.println(APRCFunction.apply(result.doubleValue()));
-
         return result;
     }
 
