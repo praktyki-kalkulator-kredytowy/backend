@@ -11,6 +11,7 @@ import com.praktyki.backend.web.models.ScheduleConfigurationModel;
 import com.praktyki.backend.web.models.response.ScheduleCalculationEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriBuilder;
@@ -45,10 +46,14 @@ public class AuditController {
 
     @GetMapping("/api/v1/audit")
     public List<ScheduleCalculationEventModel> audit(
-            @RequestParam(value = "calculationStartDate", required = false) LocalDate calculationStartDate,
-            @RequestParam(value = "calculationEndDate", required = false) LocalDate calculationEndDate,
-            @RequestParam(value = "withdrawalStartDate", required = false) LocalDate withdrawalStartDate,
-            @RequestParam(value = "withdrawalEndDate", required = false) LocalDate withdrawalEndDate,
+            @RequestParam(value = "calculationStartDate", required = false)
+            @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate calculationStartDate,
+            @RequestParam(value = "calculationEndDate", required = false)
+            @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate calculationEndDate,
+            @RequestParam(value = "withdrawalStartDate", required = false)
+            @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate withdrawalStartDate,
+            @RequestParam(value = "withdrawalEndDate", required = false)
+            @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate withdrawalEndDate,
             @RequestParam(value = "capitalStart", required = false) Double capitalStart,
             @RequestParam(value = "capitalEnd", required = false) Double capitalEnd,
             @RequestParam(value = "installmentAmountStart", required = false) Integer installmentAmountStart,
